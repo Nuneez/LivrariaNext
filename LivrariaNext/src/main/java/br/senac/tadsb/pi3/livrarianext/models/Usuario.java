@@ -14,6 +14,7 @@ public class Usuario {
     private String nome;
     private String sobreNome;
     private Boolean ativo;
+    private Perfil perfil;
     
     public Usuario(String nome, String sobreNome, Boolean ativo){
         this.nome = nome;
@@ -21,8 +22,9 @@ public class Usuario {
         this.ativo = ativo;
     }
     
-    public Usuario(int id, String nome, String sobreNome, Boolean ativo){
+    public Usuario(int id, String nome, String sobreNome, Boolean ativo, Perfil perfil){
         this(nome, sobreNome, ativo);
+        this.perfil = perfil;
         this.id = id;
     }
 
@@ -55,10 +57,24 @@ public class Usuario {
     }
     
     public final void Login(){
-    
+        //TODO [IMPLEMENTAR]
     }
     
     public final void Logout(){
-    
+        //TODO [IMPLEMENTAR]
+    }
+
+    /**
+     * @return the perfil
+     */
+    public final Perfil getPerfil() {
+        return perfil;
+    }
+
+    /**
+     * @param perfil the perfil to set
+     */
+    public final void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 }
