@@ -16,6 +16,12 @@
     
     <dependencies>
         <dependency>
+            <groupId>javadb</groupId>
+            <artifactId>javadb</artifactId>
+            <version>10.10.2.0</version>
+            <type>zip</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>

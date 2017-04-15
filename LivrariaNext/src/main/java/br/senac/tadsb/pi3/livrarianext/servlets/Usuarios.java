@@ -7,6 +7,7 @@ package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.models.Usuario;
 import br.senac.tadsb.pi3.livrarianext.models.Perfil;
+import br.senac.tadsb.pi3.livrarianext.servicos.ServicoUsuario;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,14 +33,15 @@ public class Usuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Usuario> usuarios = new ArrayList<>();
         
-        usuarios.add(new Usuario(1, "Roger", "Rodrigues de Oliveira", true, new Perfil("teste")));
-        usuarios.add(new Usuario(2, "Elison", "Teste", true, new Perfil("teste")));
-        usuarios.add(new Usuario(3, "Thiago", "Teste", true, new Perfil("teste")));
-        usuarios.add(new Usuario(4, "Paulo", "Teste", true, new Perfil("teste")));
+        ServicoUsuario servico = new  ServicoUsuario();
         
+        List<Perfil> perfis = servico.ObterPerfis();        
+        request.setAttribute("perfis", perfis);
+        
+        List<Usuario> usuarios = servico.ObterUsuarios();
         request.setAttribute("usuarios", usuarios);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
         
         try

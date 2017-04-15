@@ -16,7 +16,12 @@ public class Usuario {
     private Boolean ativo;
     private Perfil perfil;
     
+    public Usuario(){
+        this.ativo = true;
+    }
+    
     public Usuario(String nome, String sobreNome, Boolean ativo){
+        this();
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.ativo = ativo;
