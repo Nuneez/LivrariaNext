@@ -4,9 +4,17 @@
         <servlet-name>Usuarios</servlet-name>
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Usuarios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Clientes</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Clientes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Usuarios</servlet-name>
         <url-pattern>/Usuarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Clientes</servlet-name>
+        <url-pattern>/Clientes</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
