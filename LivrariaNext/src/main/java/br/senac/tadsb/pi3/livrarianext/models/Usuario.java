@@ -9,7 +9,7 @@ package br.senac.tadsb.pi3.livrarianext.models;
  *
  * @author roger
  */
-public class Usuario {
+public class Usuario{
     private int id;
     private String nome;
     private String sobreNome;
@@ -27,9 +27,9 @@ public class Usuario {
         this.ativo = ativo;
     }
     
-    public Usuario(int id, String nome, String sobreNome, Boolean ativo, Perfil perfil){
+    public Usuario(int id, String nome, String sobreNome, Boolean ativo){//, Perfil perfil){
         this(nome, sobreNome, ativo);
-        this.perfil = perfil;
+        //this.perfil = perfil;
         this.id = id;
     }
 
@@ -81,5 +81,26 @@ public class Usuario {
      */
     public final void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @param sobreNome the sobreNome to set
+     */
+    public void setSobreNome(String sobreNome) {
+        this.sobreNome = sobreNome;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }

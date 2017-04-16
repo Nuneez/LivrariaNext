@@ -34,25 +34,31 @@ public class Usuarios extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ServicoUsuario servico = new  ServicoUsuario();
-        
-        List<Perfil> perfis = servico.ObterPerfis();        
-        request.setAttribute("perfis", perfis);
-        
-        List<Usuario> usuarios = servico.ObterUsuarios();
-        request.setAttribute("usuarios", usuarios);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
-        
         try
         {
-            dispatcher.forward(request, response);
+            ServicoUsuario servico = new  ServicoUsuario();
+        
+            List<Perfil> perfis = servico.ObterPerfis();        
+            request.setAttribute("perfis", perfis);
+
+            List<Usuario> usuarios = servico.ObterUsuarios();
+            request.setAttribute("usuarios", usuarios);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
+
+            try
+            {
+                dispatcher.forward(request, response);
+            }
+            catch(IOException ex)
+            {
+
+            }
         }
-        catch(IOException ex)
+        catch(Exception ex)
         {
             
         }
-        
     }
 
     /**

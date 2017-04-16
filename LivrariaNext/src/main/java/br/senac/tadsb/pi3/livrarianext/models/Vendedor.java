@@ -16,7 +16,7 @@ public class Vendedor extends Usuario {
     }
     
     public Vendedor(int id, String nome, String sobreNome, Boolean ativo, Perfil perfil){        
-        super(id, nome, sobreNome, ativo, perfil);
+        //super(id, nome, sobreNome, ativo, perfil);
     }    
     
     public final void iniciarVenda(){
