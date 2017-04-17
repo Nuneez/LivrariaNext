@@ -24,15 +24,20 @@ public class DaoUsuario extends Dao<Usuario> {
     }    
     
     @Override
-    public void incluir(Usuario usuario) throws SQLException, Exception {        
+    public void incluir(Usuario usuario) throws SQLException, Exception {     
         
-        PreparedStatement stt = obterStatement("insert into usuario (id, nome, sobrenome, ativo) values (?,?,?,?)");
-        stt.setInt(0, usuario.getId());
+        System.out.println("entrando na inclusao...");
+               
+        
+        PreparedStatement stt = obterStatement("insert into usuario (nome, sobrenome, ativo) values (?,?,?)");
+        //stt.setInt(0, usuario.getId());
         stt.setString(1, usuario.getNome());
         stt.setString(2, usuario.getSobreNome());
         stt.setBoolean(3, usuario.getAtivo());
         
         stt.execute();
+        
+        System.out.println("saindo da inclusao...");
     }
     
     @Override
@@ -72,6 +77,29 @@ public class DaoUsuario extends Dao<Usuario> {
         }
         
         return usuario;
+    }
+    
+    public List<Usuario> obterUsuarios(String nome) throws SQLException, Exception {
+        
+        String query = "select * from usuario u ";
+        
+        if (nome != null && !nome.isEmpty())
+            query += " where UPPER(u.nome) like ('%" + nome.toUpperCase() + "%')";
+        
+        ResultSet rs = getList(query);
+        
+        List<Usuario> usuarios = new ArrayList<>();        
+        
+        while (rs.next()) {
+             usuarios.add(new Usuario(
+                             rs.getInt("id"), 
+                             rs.getString("nome"), 
+                             rs.getString("sobrenome"), 
+                             rs.getBoolean("ativo")
+                     ));
+        }
+        
+        return usuarios;
     }
 
     public List<Perfil> obterPerfis(){

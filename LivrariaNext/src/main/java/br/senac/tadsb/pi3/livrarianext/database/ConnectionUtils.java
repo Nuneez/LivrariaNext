@@ -22,14 +22,16 @@ public class ConnectionUtils {
         try
         {
             System.out.println("...tentando conectar...");
-            
-            String dbURL = "jdbc:mysql://localhost:3311/livraria?zeroDateTimeBehavior=convertToNull";
+                        
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            String dbURL = "jdbc:derby://localhost:1527/livraria";
             
             Properties properties = new Properties();
             properties.put("user", "root");
             properties.put("password", "root");
             
             connection = DriverManager.getConnection(dbURL, properties);
+            //connection = DriverManager.getConnection(dbURL);
             
             System.out.println("conectado!");        
         }

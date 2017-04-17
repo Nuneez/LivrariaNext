@@ -6,12 +6,11 @@
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.exceptions.UsuarioException;
-import br.senac.tadsb.pi3.livrarianext.models.Usuario;
-import br.senac.tadsb.pi3.livrarianext.models.Perfil;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoUsuario;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class Usuarios extends HttpServlet {
+public class ManterUsuario extends HttpServlet {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -35,34 +34,15 @@ public class Usuarios extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Usuario.jsp");
+        
         try
         {
-            String nome = request.getParameter("nome");
-            
-            System.out.println("testando com nome: " + nome);
-            
-            ServicoUsuario servico = new  ServicoUsuario();
-        
-//            List<Perfil> perfis = servico.ObterPerfis();        
-//            request.setAttribute("perfis", perfis);
-
-            List<Usuario> usuarios = servico.ObterUsuarios(nome);
-            request.setAttribute("usuarios", usuarios);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
-
-            try
-            {
-                dispatcher.forward(request, response);
-            }
-            catch(IOException ex)
-            {
-
-            }
+            dispatcher.forward(request, response);
         }
-        catch(UsuarioException ux)
+        catch(IOException ex)
         {
-            System.out.println(ux.getMessage());
+
         }
     }
 
@@ -77,6 +57,22 @@ public class Usuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+        
+        String nome = request.getParameter("nome");
+        String sobrenome = request.getParameter("sobrenome");
+        String ativo = request.getParameter("ativo");
+        
+        try
+        {
+            ServicoUsuario servico = new ServicoUsuario();
+            servico.incluir(nome, sobrenome);
+            response.sendRedirect("Usuarios");
+        }
+        catch(UsuarioException ue)
+        {
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }
 }

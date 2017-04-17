@@ -22,7 +22,7 @@ public class ServicoUsuario extends Servico<Usuario> {
 
     DaoUsuario dao;
     
-    public ServicoUsuario() throws Exception {
+    public ServicoUsuario() throws UsuarioException {
         try
         {
             dao = new DaoUsuario();
@@ -30,7 +30,11 @@ public class ServicoUsuario extends Servico<Usuario> {
         catch(SQLException sqlex)
         {
             System.out.println(sqlex.getMessage());
-            throw new Exception("");
+            throw new UsuarioException(sqlex.getMessage(), ExceptionTypesEnum.DISPLAY);
+        }
+        catch(Exception ex)
+        {
+            throw new UsuarioException("");
         }
     }
     
@@ -129,8 +133,21 @@ public class ServicoUsuario extends Servico<Usuario> {
         }
     }    
     
-    public List<Usuario> ObterUsuarios(){
-        return new ArrayList<Usuario>();
+    public List<Usuario> ObterUsuarios(String nome) throws UsuarioException  {
+        try
+        {
+            return dao.obterUsuarios(nome);
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
+        }
     }
     
     public List<Perfil> ObterPerfis(){
