@@ -25,10 +25,6 @@ public class DaoUsuario extends Dao<Usuario> {
     
     @Override
     public void incluir(Usuario usuario) throws SQLException, Exception {     
-        
-        System.out.println("entrando na inclusao...");
-               
-        
         PreparedStatement stt = obterStatement("insert into usuario (nome, sobrenome, ativo) values (?,?,?)");
         //stt.setInt(0, usuario.getId());
         stt.setString(1, usuario.getNome());
@@ -36,8 +32,6 @@ public class DaoUsuario extends Dao<Usuario> {
         stt.setBoolean(3, usuario.getAtivo());
         
         stt.execute();
-        
-        System.out.println("saindo da inclusao...");
     }
     
     @Override

@@ -23,8 +23,9 @@ public class Cliente {
     private String email;
     private String telefone;
     private Loja loja;
+    private Boolean ativo;
     
-    public Cliente(String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone){
+    public Cliente(String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, Boolean ativo){
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.cpf = cpf;
@@ -32,17 +33,18 @@ public class Cliente {
         this.sexo = sexo;
         this.email = email;
         this.telefone = telefone;
+        this.ativo = ativo;
     }
     
-    public Cliente(String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro){
-        this(nome, sobreNome, cpf, nascimento, sexo, email, telefone);
+    public Cliente(String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Boolean ativo){
+        this(nome, sobreNome, cpf, nascimento, sexo, email, telefone, ativo);
         this.endereco = endereco;
         this.numero = numero;
         this.bairro = bairro;
     }
     
-    public Cliente(int id, String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Loja loja){
-        this(nome, sobreNome, cpf, nascimento, sexo, email, telefone, endereco, numero, bairro);
+    public Cliente(int id, String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Loja loja, Boolean ativo){
+        this(nome, sobreNome, cpf, nascimento, sexo, email, telefone, endereco, numero, bairro, ativo);
         this.id = id;
         this.loja = loja;
     }
@@ -149,6 +151,10 @@ public class Cliente {
 
     public Loja getLoja() {
         return loja;
+    }
+    
+    public Boolean getAtivo(){
+        return ativo;
     }
     
 }

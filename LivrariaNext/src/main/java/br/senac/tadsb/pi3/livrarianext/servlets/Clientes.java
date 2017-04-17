@@ -26,7 +26,7 @@ public class Clientes extends HttpServlet {
   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cliente cliente = new Cliente("Thiago", "Messias", "123.456.789-10", "01/01/1996", "masculino", "email@email.com", "+5511987654321");
+        Cliente cliente = new Cliente("Thiago", "Messias", "123.456.789-10", "01/01/1996", "masculino", "email@email.com", "+5511987654321", true);
         // String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone
         request.setAttribute("cliente", cliente);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");

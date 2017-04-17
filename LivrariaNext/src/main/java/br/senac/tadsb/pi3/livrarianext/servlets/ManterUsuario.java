@@ -6,10 +6,12 @@
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.exceptions.UsuarioException;
+import br.senac.tadsb.pi3.livrarianext.models.Perfil;
 import br.senac.tadsb.pi3.livrarianext.models.Usuario;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -36,11 +38,15 @@ public class ManterUsuario extends HttpServlet {
             throws ServletException, IOException {
         
         try
-        {
+        {            
+            ServicoUsuario servico = new ServicoUsuario();
+            
+//            List<Perfil> perfis = servico.ObterPerfis();        
+//            request.setAttribute("perfis", perfis);            
+            
             String usuarioId = request.getParameter("id");
 
             if (usuarioId != null && !usuarioId.isEmpty()){
-                ServicoUsuario servico = new ServicoUsuario();
                 
                 Usuario usuario = servico.ObterUsuarioPorId(Integer.parseInt(usuarioId));
                 

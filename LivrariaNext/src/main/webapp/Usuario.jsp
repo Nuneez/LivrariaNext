@@ -22,7 +22,9 @@
                         <label for="nome">Nome</label>
                         <input id="nome" type="text" name="nome" value="${usuario.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
-                        <input id="sobrenome" type="text" name="sobrenome" value="${usuario.sobreNome}"/>
+                        <input id="sobrenome" type="text" name="sobrenome" value="${usuario.sobreNome}"/>                        
+                    </div>
+                    <div class="row">
                         <label for="atividade">Ativo</label>
                         <select name="ativo" id="ativo">
                             <option value="1">Sim</option>
