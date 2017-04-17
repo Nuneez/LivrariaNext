@@ -6,6 +6,7 @@
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.exceptions.UsuarioException;
+import br.senac.tadsb.pi3.livrarianext.models.Usuario;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoUsuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,7 +35,24 @@ public class ManterUsuario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Usuario.jsp");
+        try
+        {
+            String usuarioId = request.getParameter("id");
+
+            if (usuarioId != null && !usuarioId.isEmpty()){
+                ServicoUsuario servico = new ServicoUsuario();
+                
+                Usuario usuario = servico.ObterUsuarioPorId(Integer.parseInt(usuarioId));
+                
+                request.setAttribute("usuario", usuario);
+            }    
+        }
+        catch(UsuarioException ue)
+        {
+            request.setAttribute("erro", ue.getMessage());
+        }               
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Usuario.jsp");        
         
         try
         {

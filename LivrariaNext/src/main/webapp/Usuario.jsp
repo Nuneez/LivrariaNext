@@ -14,15 +14,15 @@
         <title>Usuário</title>
     </head>
     <body>
-        <jsp:include page="/shared/menu.jsp"></jsp:include>
+        <jsp:include page="/shared/menu.jsp"></jsp:include>        
         <div class="content">
             <form action="/LivrariaNext/ManterUsuario" method="post">
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>
-                        <input id="nome" type="text" name="nome"/>
+                        <input id="nome" type="text" name="nome" value="${usuario.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
-                        <input id="sobrenome" type="text" name="sobrenome"/>
+                        <input id="sobrenome" type="text" name="sobrenome" value="${usuario.sobreNome}"/>
                         <label for="atividade">Ativo</label>
                         <select name="ativo" id="ativo">
                             <option value="1">Sim</option>
@@ -34,6 +34,10 @@
                 <div class="row">
                     <input type="submit" value="Enviar">
                     <input type='reset' value='Cancelar'>
+                </div>
+                <hr>
+                <div class="row">
+                    <c:out value="${erro}" />
                 </div>
             </form>
         </div>

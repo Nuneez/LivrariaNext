@@ -150,6 +150,23 @@ public class ServicoUsuario extends Servico<Usuario> {
         }
     }
     
+    public Usuario ObterUsuarioPorId(int id) throws UsuarioException  {
+        try
+        {
+            return dao.obterPorId(id);
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
+        }
+    }
+    
     public List<Perfil> ObterPerfis(){
         return new ArrayList<Perfil>();
     }   

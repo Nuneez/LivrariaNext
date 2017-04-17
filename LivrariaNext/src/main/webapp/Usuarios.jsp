@@ -30,21 +30,26 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Sobrenome</th>
+                        <th>Ativo</th>
                         <th>Perfil</th>
+                        <th></th>
                       </tr>
                       <c:forEach items="${usuarios}" var="usuario">
                         <tr>
                           <td><c:out value="${usuario.id}" /></td>
                           <td><c:out value="${usuario.nome}" /></td>
                           <td><c:out value="${usuario.sobreNome}" /></td>
+                          <td><c:out value="${usuario.ativo?'SIM':'NÃO'}" /></td>
                           <td><c:out value="${usuario.perfil.nome}" /></td>
+                          <td><input type="button" class="btn-editar" data-id="${usuario.id}" Value="Editar" /></td>
+                          <td><button class="btn-excluir" data-id="${usuario.id}">Excluir</button></td>
                         </tr>
                       </c:forEach>
                     </table>                        
                 </div>
                 <div class="session">
                     <div class="row">
-                        <input id="btn-novo" type="button" value="Incluir Novo" />
+                        <input id="btn-novo" type="button" value="Novo Usuário" />
                     </div>
                 </div>
             </form>

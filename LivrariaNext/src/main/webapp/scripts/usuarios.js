@@ -5,22 +5,20 @@
  */
 
 var init = function(){    
-    var btn = document.querySelector("#btn-novo");    
-    btn.addEventListener("click", novoUsuario);    
+    var btnNovo = document.querySelector("#btn-novo");    
+    btnNovo.addEventListener("click", novoUsuario);    
+    
+    var btsEditar = document.querySelectorAll(".btn-editar");
+    btsEditar.forEach(function(b){ b.addEventListener("click", editarUsuario); });;
 };
 
-var buscarUsuarios = function(){
-    var nome = document.querySelector("#nome");
-    
-    if (nome.Value.trim() == "")
-    {
-        alert("Preencha o campo nome para buscar.");
-        return;        
-    }
-        
-    ajaxGet("http://localhost:8080/LivrariaNext/Usuarios?nome=" + nome.Value, function(){
-        
-    });    
+var editarUsuario = function(evt){
+    var btn = evt.srcElement;    
+    window.location = "http://localhost:8080/LivrariaNext/ManterUsuario?id=" + btn.getAttribute("data-id");    
+};
+
+var excluirUsuario = function(){
+    //window.location = "http://localhost:8080/LivrariaNext/ManterUsuario";    
 };
 
 var novoUsuario = function(){
