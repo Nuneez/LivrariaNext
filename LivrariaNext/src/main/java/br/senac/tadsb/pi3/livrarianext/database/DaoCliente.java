@@ -6,10 +6,11 @@
 package br.senac.tadsb.pi3.livrarianext.database;
 
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
-import br.senac.tadsb.pi3.livrarianext.models.Usuario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,8 +22,8 @@ public class DaoCliente extends Dao<Cliente>  {
     }
 
     @Override
-    protected void incluir(Cliente dominio) throws SQLException, Exception {
-        PreparedStatement stt = obterStatement("insert into usuario (nome, sobrenome, sexo, cpf, rg, endereco, bairro, numero, email, telefone, ativo) values (?,?,?,?,?,?,?,?,?,?,?)");
+    public void incluir(Cliente dominio) throws SQLException, Exception {
+        PreparedStatement stt = obterStatement("insert into cliente (nome, sobrenome, sexo, cpf, rg, endereco, bairro, numero, email, telefone, ativo) values (?,?,?,?,?,?,?,?,?,?,?)");
         //stt.setInt(0, usuario.getId());
         stt.setString(1, dominio.getNome());
         stt.setString(2, dominio.getSobreNome());
@@ -41,8 +42,8 @@ public class DaoCliente extends Dao<Cliente>  {
     }
 
     @Override
-    protected void alterar(Cliente dominio) throws SQLException, Exception {
-        PreparedStatement stt = obterStatement("update usuario set nome = ?, sobrenome = ?, sexo = ?,  cpf = ?, rg = ?, endereco = ?, bairro = ?, numero = ?, email = ?, telefone = ?, ativo = ? where id = ?");
+    public void alterar(Cliente dominio) throws SQLException, Exception {
+        PreparedStatement stt = obterStatement("update cliente set nome = ?, sobrenome = ?, sexo = ?,  cpf = ?, rg = ?, endereco = ?, bairro = ?, numero = ?, email = ?, telefone = ?, ativo = ? where id = ?");
         
         stt.setString(1, dominio.getNome());
         stt.setString(2, dominio.getSobreNome());
@@ -62,7 +63,7 @@ public class DaoCliente extends Dao<Cliente>  {
     }
 
     @Override
-    protected void excluir(Cliente dominio) throws SQLException, Exception {
+    public void excluir(Cliente dominio) throws SQLException, Exception {
         PreparedStatement stt = obterStatement("update cliente set ativo = ? where id = ?");
         stt.setBoolean(0, false);        
         stt.setInt(1, dominio.getId());
@@ -71,23 +72,64 @@ public class DaoCliente extends Dao<Cliente>  {
     }
 
     @Override
-    protected Cliente obterPorId(int id) throws SQLException, Exception {
+    public Cliente obterPorId(int id) throws SQLException, Exception {
         ResultSet rs = getList("select * from cliente where id = " + id);
         
         Cliente dominio = null;
         
         while (rs.next()) {
-//             dominio = 
-//                     new Cliente(
-//                             rs.getInt("id"), 
-//                             rs.getString("nome"), 
-//                             rs.getString("sobrenome"), 
-//                             rs.getBoolean("ativo")
-//                     );     
+             dominio = 
+                     new Cliente(
+                             rs.getInt("id"), 
+                             rs.getString("nome"), 
+                             rs.getString("sobrenome"), 
+                             rs.getString("cpf"), 
+                             null, 
+                             rs.getString("sexo"), 
+                             rs.getString("email"), 
+                             rs.getString("telefone"), 
+                             rs.getString("endereco"), 
+                             rs.getString("numero"), 
+                             rs.getString("bairro"), 
+                             null, 
+                             rs.getBoolean("ativo")
+                     );     
         }
         
         return dominio;
     }
-    
-    
+
+    public List<Cliente> obterClientes(String nome, String cpf) throws SQLException, Exception {
+        String query = "select * from cliente c ";
+        
+        if (nome != null && !nome.isEmpty())
+                query += tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
+
+        if (cpf != null && !cpf.isEmpty())
+            query += tratarQuery(query) + " c.cpf like ('%" + cpf + "%')";
+            
+        ResultSet rs = getList(query);
+        
+        List<Cliente> clientes = new ArrayList<>();        
+        
+        while (rs.next()) {
+             clientes.add(new Cliente(
+                             rs.getInt("id"), 
+                             rs.getString("nome"), 
+                             rs.getString("sobrenome"), 
+                             rs.getString("cpf"), 
+                             null, 
+                             rs.getString("sexo"), 
+                             rs.getString("email"), 
+                             rs.getString("telefone"), 
+                             rs.getString("endereco"), 
+                             rs.getString("numero"), 
+                             rs.getString("bairro"), 
+                             null, 
+                             rs.getBoolean("ativo")
+                     ));
+        }
+        
+        return clientes;
+    }    
 }

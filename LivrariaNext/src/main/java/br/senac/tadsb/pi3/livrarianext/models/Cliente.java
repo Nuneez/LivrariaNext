@@ -154,7 +154,7 @@ public class Cliente {
     }
     
     public Boolean getAtivo(){
-        return ativo;
+        return ativo;   
     }
     
 }

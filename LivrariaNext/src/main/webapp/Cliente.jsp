@@ -16,7 +16,7 @@
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
         <div class="content">
-            <form action="/LivrariaNext/Clientes" method="post">
+            <form action="/LivrariaNext/ManterCliente" method="post">
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>
@@ -27,8 +27,8 @@
                     <div class="row">
                         <label for="sexo">Sexo</label>
                         <select name="sexo" id="sexo">
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
                         </select>
                     </div>
                     <div class="row">

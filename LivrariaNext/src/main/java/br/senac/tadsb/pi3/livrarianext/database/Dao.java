@@ -60,4 +60,12 @@ public abstract class Dao<T> {
         if (connection == null || connection.isClosed())
             this.connection = util.getConnection();
     }
+    
+    protected String tratarQuery(String query)
+    {
+        if (query.toLowerCase().contains("where"))
+            return query += " and ";
+        
+        return query += " where ";
+    }
 }

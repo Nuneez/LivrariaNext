@@ -5,9 +5,11 @@
  */
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
+import br.senac.tadsb.pi3.livrarianext.exceptions.ClienteException;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.models.Perfil;
 import br.senac.tadsb.pi3.livrarianext.models.Usuario;
+import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,20 +28,32 @@ public class Clientes extends HttpServlet {
   @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cliente cliente = new Cliente("Thiago", "Messias", "123.456.789-10", "01/01/1996", "masculino", "email@email.com", "+5511987654321", true);
-        // String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone
-        request.setAttribute("cliente", cliente);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-        
+                
         try
         {
-            dispatcher.forward(request, response);
+            String nome = request.getParameter("nome");
+            String cpf = request.getParameter("cpf");
+                        
+            ServicoCliente servico = new  ServicoCliente();
+
+            List<Cliente> clientes = servico.obterClientes(nome, cpf);
+            request.setAttribute("clientes", clientes);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Clientes.jsp");
+
+            try
+            {
+                dispatcher.forward(request, response);
+            }
+            catch(IOException ex)
+            {
+
+            }
         }
-        catch(IOException ex)
+        catch(ClienteException ux)
         {
-            
-        }
-        
+            System.out.println(ux.getMessage());
+        }        
     }
 
     /**
