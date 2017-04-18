@@ -9,8 +9,25 @@ var init = function(){
     
 };
 
-var incluir = function(){
+var salvar = function(){
+    //ajaxPost("http://localhost:8080/LivrariaNext/Usuarios", "action=excluir&usuario_id=", salvo);
+};
+
+var salvo = function(r){            
         
+    if (r === undefined){
+        alert("Erro ao executar a operação.");
+        return;
+    }
+    
+    var retorno = JSON.parse(r);
+        
+    alert(retorno.mensagem);
+    
+    if (retorno.sucesso){
+        var btn = document.querySelector("#btn-voltar");
+        btn.click();
+    }
 };
 
 window.addEventListener("load", init);

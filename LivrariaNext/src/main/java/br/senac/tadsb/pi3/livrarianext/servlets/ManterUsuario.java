@@ -97,6 +97,43 @@ public class ManterUsuario extends HttpServlet {
             
         } catch (Exception ex) {
             Logger.getLogger(ManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
+
+         /*
+        String action = request.getParameter("action");
+        
+        String nome = request.getParameter("nome");
+        String id = request.getParameter("id");
+        String sobrenome = request.getParameter("sobrenome");
+        
+        try
+        {            
+            ServicoUsuario servico = new ServicoUsuario();
+            
+            switch (action) {
+                case "incluir":                    
+                servico.incluir(nome, sobrenome);
+                    break;
+                case "alterar":
+                servico.alterar(Integer.parseInt(id), nome, sobrenome, Boolean.TRUE);
+                    break;    
+                default:
+                    throw new AssertionError();
+            }
+            
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluída com sucesso.\" }");
+        }
+        catch(UsuarioException ue)
+        {
+            System.out.println(ue.getMessage());
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operação. Detalhes: " + ue.getMessage() + "' }");
+        } catch (Exception ex) {
+            Logger.getLogger(ManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
     }
 }
