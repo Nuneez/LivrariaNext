@@ -6,23 +6,44 @@
 
 var init = function(){    
     var btnNovo = document.querySelector("#btn-novo");    
-    btnNovo.addEventListener("click", novoUsuario);    
+    btnNovo.addEventListener("click", incluir);    
     
     var btsEditar = document.querySelectorAll(".btn-editar");
-    btsEditar.forEach(function(b){ b.addEventListener("click", editarUsuario); });;
+    btsEditar.forEach(function(b){ b.addEventListener("click", editar); });;
+    
+    var btsExcluir = document.querySelectorAll(".btn-excluir");
+    btsExcluir.forEach(function(b){ b.addEventListener("click", excluir); });;
 };
 
-var editarUsuario = function(evt){
+var editar = function(evt){
     var btn = evt.srcElement;    
     window.location = "http://localhost:8080/LivrariaNext/ManterUsuario?id=" + btn.getAttribute("data-id");    
 };
 
-var excluirUsuario = function(){
-    //window.location = "http://localhost:8080/LivrariaNext/ManterUsuario";    
+var excluir = function(evt){
+    var btn = evt.srcElement;    
+    ajaxPost("http://localhost:8080/LivrariaNext/Usuarios", "action=excluir&usuario_id=" + btn.getAttribute("data-id"), exclusao);
 };
 
-var novoUsuario = function(){
+var incluir = function(){
     window.location = "http://localhost:8080/LivrariaNext/ManterUsuario";    
+};
+
+var exclusao = function(r){            
+        
+    if (r === undefined){
+        alert("Erro ao executar a operação.");
+        return;
+    }
+    
+    var retorno = JSON.parse(r);
+        
+    alert(retorno.mensagem);
+    
+    if (retorno.sucesso){
+        var btn = document.querySelector("#btn-buscar");
+        btn.click();
+    }
 };
 
 window.addEventListener("load", init);

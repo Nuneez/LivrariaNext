@@ -34,7 +34,6 @@
                         <th>Nome</th>
                         <th>Sobrenome</th>
                         <th>CPF</th>
-                        <th>Data de Nascimento</th>
                         <th>Ativo</th>
                         <th></th>
                       </tr>
@@ -44,10 +43,9 @@
                           <td><c:out value="${cliente.nome}" /></td>
                           <td><c:out value="${cliente.sobreNome}" /></td>                          
                           <td><c:out value="${cliente.cpf}" /></td>
-                          <td><c:out value="${cliente.nascimento}" /></td>                          
                           <td><c:out value="${cliente.ativo?'SIM':'NÃO'}" /></td>
                           <td><input type="button" class="btn-editar" data-id="${cliente.id}" Value="Editar" /></td>
-                          <td><button class="btn-excluir" data-id="${cliente.id}">Excluir</button></td>
+                          <td><input type="button" class="btn-excluir" data-id="${cliente.id}" Value="Excluir" /></td>
                         </tr>
                       </c:forEach>
                     </table>                        

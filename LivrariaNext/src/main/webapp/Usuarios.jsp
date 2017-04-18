@@ -42,7 +42,7 @@
                           <td><c:out value="${usuario.ativo?'SIM':'NÃO'}" /></td>
                           <td><c:out value="${usuario.perfil.nome}" /></td>
                           <td><input type="button" class="btn-editar" data-id="${usuario.id}" Value="Editar" /></td>
-                          <td><button class="btn-excluir" data-id="${usuario.id}">Excluir</button></td>
+                          <td><input type="button" class="btn-excluir" data-id="${usuario.id}" Value="Excluir" /></td>
                         </tr>
                       </c:forEach>
                     </table>                        

@@ -37,10 +37,10 @@ public class DaoUsuario extends Dao<Usuario> {
     @Override
     public void alterar(Usuario usuario) throws SQLException, Exception {
         PreparedStatement stt = obterStatement("update usuario set nome = ?, sobrenome = ?, ativo = ? where id = ?");
-        stt.setString(0, usuario.getNome());
-        stt.setString(1, usuario.getSobreNome());
-        stt.setBoolean(2, usuario.getAtivo());        
-        stt.setInt(3, usuario.getId());
+        stt.setString(1, usuario.getNome());
+        stt.setString(2, usuario.getSobreNome());
+        stt.setBoolean(3, usuario.getAtivo());        
+        stt.setInt(4, usuario.getId());
         
         stt.execute();
     }
@@ -48,8 +48,8 @@ public class DaoUsuario extends Dao<Usuario> {
     @Override
     public void excluir(Usuario usuario) throws SQLException, Exception {
         PreparedStatement stt = obterStatement("update usuario set ativo = ? where id = ?");
-        stt.setBoolean(0, false);        
-        stt.setInt(1, usuario.getId());
+        stt.setBoolean(1, false);        
+        stt.setInt(2, usuario.getId());
         
         stt.execute();
     }

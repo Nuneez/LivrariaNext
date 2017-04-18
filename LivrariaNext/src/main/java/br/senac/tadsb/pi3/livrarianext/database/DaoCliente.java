@@ -65,8 +65,8 @@ public class DaoCliente extends Dao<Cliente>  {
     @Override
     public void excluir(Cliente dominio) throws SQLException, Exception {
         PreparedStatement stt = obterStatement("update cliente set ativo = ? where id = ?");
-        stt.setBoolean(0, false);        
-        stt.setInt(1, dominio.getId());
+        stt.setBoolean(1, false);        
+        stt.setInt(2, dominio.getId());
         
         stt.execute();
     }
@@ -103,10 +103,10 @@ public class DaoCliente extends Dao<Cliente>  {
         String query = "select * from cliente c ";
         
         if (nome != null && !nome.isEmpty())
-                query += tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
+                query = tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
 
         if (cpf != null && !cpf.isEmpty())
-            query += tratarQuery(query) + " c.cpf like ('%" + cpf + "%')";
+            query = tratarQuery(query) + " c.cpf like ('%" + cpf + "%')";
             
         ResultSet rs = getList(query);
         

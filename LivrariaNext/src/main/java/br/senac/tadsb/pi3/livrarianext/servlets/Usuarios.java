@@ -78,5 +78,31 @@ public class Usuarios extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
    
+        String action = request.getParameter("action");
+                
+        try
+        {
+            ServicoUsuario servico = new ServicoUsuario();
+            
+            switch (action) {
+                case "excluir":
+                    String usuarioId = request.getParameter("usuario_id");
+                    servico.excluir(Integer.parseInt(usuarioId));
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluída com sucesso.\" }");
+        }
+        catch(UsuarioException ux)
+        {
+            System.out.println(ux.getMessage());
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operação. Detalhes: " + ux.getMessage() + "' }");
+        }        
     }
 }

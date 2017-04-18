@@ -67,6 +67,31 @@ public class Clientes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+        String action = request.getParameter("action");
+                
+        try
+        {
+            ServicoCliente servico = new ServicoCliente();
+            
+            switch (action) {
+                case "excluir":
+                    String clienteId = request.getParameter("cliente_id");
+                    servico.excluir(Integer.parseInt(clienteId));
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluída com sucesso.\" }");
+        }
+        catch(ClienteException ux)
+        {
+            System.out.println(ux.getMessage());
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operação. Detalhes: " + ux.getMessage() + "' }");
+        }   
     }
 }
