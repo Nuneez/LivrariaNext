@@ -9,10 +9,10 @@ var init = function(){
     btnIncluir.addEventListener("click", incluir);    
     
     var btsEditar = document.querySelectorAll(".btn-editar");
-    btsEditar.forEach(function(b){ b.addEventListener("click", editar); });;
+    btsEditar.map(b => b.addEventListener("click", editar));;
     
     var btsExcluir = document.querySelectorAll(".btn-excluir");
-    btsExcluir.forEach(function(b){ b.addEventListener("click", excluir); });;
+    btsExcluir.map(b => b.addEventListener("click", excluir));;
 };
 
 var editar = function(evt){

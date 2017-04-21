@@ -9,10 +9,16 @@ var init = function(){
     btnNovo.addEventListener("click", incluir);    
     
     var btsEditar = document.querySelectorAll(".btn-editar");
-    btsEditar.forEach(function(b){ b.addEventListener("click", editar); });;
+    //btsEditar.forEach(function(b){ b.addEventListener("click", editar); });;
+    
+    for (var x = 0; x < btsEditar.length; x++)
+        btsEditar[x].addEventListener("click", editar);
     
     var btsExcluir = document.querySelectorAll(".btn-excluir");
-    btsExcluir.forEach(function(b){ b.addEventListener("click", excluir); });;
+    //btsExcluir.forEach(function(b){ b.addEventListener("click", excluir); });;
+    
+    for (var x = 0; x < btsExcluir.length; x++)
+        btsExcluir[x].addEventListener("click", excluir);
 };
 
 var editar = function(evt){

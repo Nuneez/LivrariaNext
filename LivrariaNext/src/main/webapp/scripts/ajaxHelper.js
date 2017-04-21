@@ -15,7 +15,7 @@ var ajaxGet = function(url, success){
     return xhr;    
 };
 
-function ajaxPost(url, data, success) {
+function ajaxPost(url, data, success) {    
     var params = typeof data == 'string' ? data : Object.keys(data).map(
             function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
         ).join('&');

@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/usuarios.js"></script>

@@ -24,15 +24,6 @@
         </dependency>
         
     </dependencies>
-    
-    <properties>
-        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mysql.url>jdbc:mysql://localhost:3311/livraria?zeroDateTimeBehavior=convertToNull</mysql.url>
-        <mysql.username>root</mysql.username>
-        <mysql.password>root</mysql.password>
-        <mysql.driver>com.mysql.jdbc.Driver</mysql.driver>
-    </properties>
 
     <build>
         <plugins>
