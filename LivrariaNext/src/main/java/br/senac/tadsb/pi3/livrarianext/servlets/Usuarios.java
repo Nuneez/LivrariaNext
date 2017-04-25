@@ -86,7 +86,7 @@ public class Usuarios extends HttpServlet {
             
             switch (action) {
                 case "excluir":
-                    String usuarioId = request.getParameter("usuario_id");
+                    String usuarioId = request.getParameter("id");
                     servico.excluir(Integer.parseInt(usuarioId));
                     break;
                 default:

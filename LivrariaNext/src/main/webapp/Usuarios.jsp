@@ -18,6 +18,7 @@
         <jsp:include page="/shared/menu.jsp"></jsp:include>
         <div class="content">            
             <form action="/LivrariaNext/Usuarios" method="get">
+                <input type="hidden" id="edit" Value="ManterUsuario"/>
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>

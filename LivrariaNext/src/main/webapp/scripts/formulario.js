@@ -6,11 +6,19 @@
 
 
 var init = function(){
-    
+    var btnCancelar = document.querySelector("#cancelar");
+    btnCancelar.addEventListener("click", cancelar);
 };
 
 var salvar = function(){
     //ajaxPost("http://localhost:8080/LivrariaNext/Usuarios", "action=excluir&usuario_id=", salvo);
+};
+
+var cancelar = function(){
+    var url = document.forms[0].action.replace("Manter", "") + "s";
+    console.log(url);
+    
+    window.location = url;// document.forms[0].action.replace("Manter", "") + "s";
 };
 
 var salvo = function(r){            

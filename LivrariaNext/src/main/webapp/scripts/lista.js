@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-var redirectEdit = document.querySelector("#redirectEdit");
-var action = document.forms[0].action;
+var edit = function() { return document.querySelector("#edit").value; };
+var action = function () { return document.forms[0].action; };
 
 var init = function(){    
     var btnNovo = document.querySelector("#btn-novo");    
@@ -26,16 +26,16 @@ var init = function(){
 
 var editar = function(evt){
     var btn = evt.srcElement;    
-    window.location = action + "?id=" + btn.getAttribute("data-id");    
+    window.location = "http://localhost:8080/LivrariaNext/" + edit() + "?id=" + btn.getAttribute("data-id");    
 };
 
 var incluir = function(){
-    window.location = "http://localhost:8080/LivrariaNext/" + redirectEdit;    
+    window.location = "http://localhost:8080/LivrariaNext/" + edit();    
 };
 
 var excluir = function(evt){
     var btn = evt.srcElement;    
-    ajaxPost(action, "action=excluir&id=" + btn.getAttribute("data-id"), exclusao);
+    ajaxPost(action(), "action=excluir&id=" + btn.getAttribute("data-id"), exclusao);
 };
 
 var exclusao = function(r){            

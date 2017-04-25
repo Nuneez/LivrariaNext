@@ -82,6 +82,7 @@ public class ManterUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String id = request.getParameter("id");
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
         String ativo = request.getParameter("ativo");
@@ -89,7 +90,17 @@ public class ManterUsuario extends HttpServlet {
         try
         {
             ServicoUsuario servico = new ServicoUsuario();
-            servico.incluir(nome, sobrenome);
+                        
+            
+            System.out.println("ativo = " + ativo);
+            
+            System.out.println("ativo = " + Boolean.parseBoolean(ativo));
+            
+            if (id.isEmpty())            
+                servico.incluir(nome, sobrenome);
+            else
+                servico.alterar(Integer.parseInt(id), nome, sobrenome, Boolean.parseBoolean(ativo));
+                        
             response.sendRedirect("Usuarios");
         }
         catch(UsuarioException ue)
