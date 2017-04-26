@@ -24,6 +24,8 @@ public class Loja {
     private String cidade;
     private String estado;
     private String telefone;
+    private Boolean ativo;
+    
     
     private List<Vendedor> funcionarios;
     
@@ -50,9 +52,100 @@ public class Loja {
     }
     
     public void adicionarFuncionario(Vendedor funcionario){
-        if (funcionarios == null)
+        if (getFuncionarios() == null)
             funcionarios = new ArrayList<>();
         
-        this.funcionarios.add(funcionario);
+        this.getFuncionarios().add(funcionario);
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @return the ehFilial
+     */
+    public Boolean getEhFilial() {
+        return ehFilial;
+    }
+
+    /**
+     * @return the cnpj
+     */
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    /**
+     * @return the razaoSocial
+     */
+    public String getRazaoSocial() {
+        return razaoSocial;
+    }
+
+    /**
+     * @return the inscricaoEstadual
+     */
+    public String getInscricaoEstadual() {
+        return inscricaoEstadual;
+    }
+
+    /**
+     * @return the endereco
+     */
+    public String getEndereco() {
+        return endereco;
+    }
+
+    /**
+     * @return the numero
+     */
+    public String getNumero() {
+        return numero;
+    }
+
+    /**
+     * @return the cidade
+     */
+    public String getCidade() {
+        return cidade;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @return the telefone
+     */
+    public String getTelefone() {
+        return telefone;
+    }
+
+    /**
+     * @return the funcionarios
+     */
+    public List<Vendedor> getFuncionarios() {
+        return funcionarios;
+    }
+
+    /**
+     * @return the ativo
+     */
+    public Boolean getAtivo() {
+        return ativo;
     }
 }
