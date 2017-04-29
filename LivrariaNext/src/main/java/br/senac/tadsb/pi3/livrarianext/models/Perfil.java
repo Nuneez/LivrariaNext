@@ -15,10 +15,12 @@ import java.util.List;
 public class Perfil {
     private int id;
     private String nome;
+    private Boolean ativo;
     private List<String> permissoes;
     
     public Perfil(String nome){
         this.nome = nome;
+        this.ativo = true;
     }
     
     public Perfil(String nome, List<String> permissoes){
@@ -26,9 +28,10 @@ public class Perfil {
         this.permissoes = permissoes;
     }
     
-    public Perfil(int id, String nome, List<String> permissoes){
+    public Perfil(int id, String nome, Boolean ativo, List<String> permissoes){
         this(nome, permissoes);
         this.id = id;
+        this.ativo = ativo;
     }
 
     /**
@@ -57,5 +60,12 @@ public class Perfil {
             permissoes = new ArrayList<>();
         
         getPermissoes().add(permissao);
+    }
+
+    /**
+     * @return the ativo
+     */
+    public Boolean getAtivo() {
+        return ativo;
     }
 }

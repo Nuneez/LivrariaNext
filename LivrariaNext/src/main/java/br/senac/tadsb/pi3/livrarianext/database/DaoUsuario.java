@@ -73,12 +73,16 @@ public class DaoUsuario extends Dao<Usuario> {
         return usuario;
     }
     
-    public List<Usuario> obterUsuarios(String nome) throws SQLException, Exception {
+    public List<Usuario> obterUsuarios(String nome, Boolean ativos) throws SQLException, Exception {
         
         String query = "select * from usuario u ";
         
+        query += " where u.ativo = " + ativos;
+        
         if (nome != null && !nome.isEmpty())
-            query += " where UPPER(u.nome) like ('%" + nome.toUpperCase() + "%')";
+            query += " AND UPPER(u.nome) like ('%" + nome.toUpperCase() + "%')";                    
+        
+        System.out.println(query);
         
         ResultSet rs = getList(query);
         
@@ -96,7 +100,22 @@ public class DaoUsuario extends Dao<Usuario> {
         return usuarios;
     }
 
-    public List<Perfil> obterPerfis(){
-        return new ArrayList<Perfil>();
+    public List<Perfil> obterPerfis() throws SQLException, Exception {        
+        String query = "select * from perfil ";
+                
+        ResultSet rs = getList(query);
+        
+        List<Perfil> lista = new ArrayList<>();        
+        
+        while (rs.next()) {
+             lista.add(new Perfil(
+                             rs.getInt("id"), 
+                             rs.getString("nome"), 
+                             rs.getBoolean("ativo"), 
+                             null
+                     ));
+        }
+        
+        return lista;
     }
 }

@@ -8,6 +8,11 @@ and open the template in the editor.
     Author     : Thiago
 */
 
+body{
+    font-family: tahoma;    
+    font-size: 13px;
+}
+
 #header-space {
     height: 90px;
     width: 100%;

@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
+        <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lista.css">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/lista.js"></script>
         <title>Usuários</title>
     </head>

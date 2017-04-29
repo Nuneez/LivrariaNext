@@ -133,10 +133,10 @@ public class ServicoUsuario extends Servico<Usuario> {
         }
     }    
     
-    public List<Usuario> ObterUsuarios(String nome) throws UsuarioException  {
+    public List<Usuario> ObterUsuarios(String nome, Boolean ativos) throws UsuarioException  {
         try
         {
-            return dao.obterUsuarios(nome);
+            return dao.obterUsuarios(nome, ativos);
         }
         catch(SQLException sqlex)
         {
@@ -150,7 +150,7 @@ public class ServicoUsuario extends Servico<Usuario> {
         }
     }
     
-    public Usuario ObterUsuarioPorId(int id) throws UsuarioException  {
+    public Usuario ObterUsuarioPorId(int id) throws UsuarioException {
         try
         {
             return dao.obterPorId(id);
@@ -167,7 +167,20 @@ public class ServicoUsuario extends Servico<Usuario> {
         }
     }
     
-    public List<Perfil> ObterPerfis(){
-        return new ArrayList<Perfil>();
+    public List<Perfil> ObterPerfis() throws UsuarioException {
+        try
+        {
+            return dao.obterPerfis();
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
+        }
     }   
 }

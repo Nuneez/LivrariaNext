@@ -23,6 +23,20 @@ import javax.servlet.http.HttpServletResponse;
  * @author roger
  */
 public class Usuarios extends HttpServlet {
+    
+    private ServicoUsuario servico;
+    
+    public Usuarios(){
+        try
+        {
+            servico = new ServicoUsuario();
+        }
+        catch(UsuarioException ux)
+        {
+            System.out.println(ux.getMessage());
+        }
+    }
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -37,18 +51,20 @@ public class Usuarios extends HttpServlet {
         
         try
         {
+            //Obtendo parametros
             String nome = request.getParameter("nome");
+            String ativo = request.getParameter("ativo");
+            String perfil = request.getParameter("perfil");
+                
+            //tratando os atributos            
+            Boolean ativos = ativo == null || ativo.isEmpty() ? true : Boolean.parseBoolean(ativo);            
             
-            System.out.println("testando com nome: " + nome);
-            
-            ServicoUsuario servico = new  ServicoUsuario();
-        
-//            List<Perfil> perfis = servico.ObterPerfis();        
-//            request.setAttribute("perfis", perfis);
+            //Setando atributos para o jsp
+            request.setAttribute("perfis", servico.ObterPerfis());
+            request.setAttribute("usuarios", obterUsuarios(nome, ativos));
+            request.setAttribute("ativo", ativos);
 
-            List<Usuario> usuarios = servico.ObterUsuarios(nome);
-            request.setAttribute("usuarios", usuarios);
-
+            //Dispachando a requisição
             RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
 
             try
@@ -57,12 +73,16 @@ public class Usuarios extends HttpServlet {
             }
             catch(IOException ex)
             {
-
+                throw new UsuarioException("Não foi possível enviar a requisição.");
             }
         }
         catch(UsuarioException ux)
         {
             System.out.println(ux.getMessage());
+        }        
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -105,4 +125,8 @@ public class Usuarios extends HttpServlet {
             response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operaÃ§Ã£o. Detalhes: " + ux.getMessage() + "' }");
         }        
     }
+    
+    private List<Usuario> obterUsuarios(String nome, Boolean ativos) throws UsuarioException {
+        return servico.ObterUsuarios(nome, ativos);
+    }    
 }
