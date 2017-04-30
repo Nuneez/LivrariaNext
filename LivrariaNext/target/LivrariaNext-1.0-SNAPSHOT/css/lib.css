@@ -1,0 +1,84 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/04/2017, 06:41:34
+    Author     : Thiago
+*/
+
+#header-space {
+    height: 90px;
+    width: 100%;
+    /* TODO: Remover depois */
+    border-bottom: 1px solid black; 
+    display: flex;
+    align-items: flex-end;
+}
+
+#logo-space {
+    margin: auto;
+}
+#logo-space img {
+    max-height: 85px;
+}
+
+nav {
+    margin-bottom: 10px;
+}
+nav a {
+    border: 1px solid black;
+    padding: 5px;
+    margin: 2px;
+    border-radius: 3px;
+}
+
+#logo-space {
+    max-height: 80px;
+}
+
+.content {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.session {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mid {
+    width: 45%;
+}
+
+.row, .full {
+    width: 100%;
+}
+.rotate {
+    transform: rotate(90deg);
+}
+
+.left, .esquerda {
+    float: left;
+}
+
+.right, .direita {
+    float: right;
+}
+
+input, select {
+    margin-left: 5px;
+    border:solid 1px #2d2d2d;  
+    text-align:center; 
+    background: white; 
+    padding: 5px;
+    border-radius: 3px;
+    /* Fazer o border radius funcionar no firefox e chrome */
+    -moz-border-radius: 3px;  
+    -webkit-border-radius: 3px; 
+}
