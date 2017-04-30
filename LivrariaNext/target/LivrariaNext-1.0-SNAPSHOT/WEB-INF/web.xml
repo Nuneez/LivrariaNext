@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>Index.jsp</welcome-file>
+    </welcome-file-list>
     <servlet>
-        <servlet-name>Usuarios</servlet-name>
-        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Usuarios</servlet-class>
+        <servlet-name>ListarUsuarios</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ListarUsuarios</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Clientes</servlet-name>
-        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Clientes</servlet-class>
+        <servlet-name>ListarClientes</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ListarClientes</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ManterUsuario</servlet-name>
-        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ManterUsuario</servlet-class>
+        <servlet-name>ManterUsuarios</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ManterUsuarios</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Loja</servlet-name>
@@ -25,16 +28,16 @@
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Vendas</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Usuarios</servlet-name>
-        <url-pattern>/Usuarios</url-pattern>
+        <servlet-name>ListarUsuarios</servlet-name>
+        <url-pattern>/ListarUsuarios</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Clientes</servlet-name>
-        <url-pattern>/Clientes</url-pattern>
+        <servlet-name>ListarClientes</servlet-name>
+        <url-pattern>/ListarClientes</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ManterUsuario</servlet-name>
-        <url-pattern>/ManterUsuario</url-pattern>
+        <servlet-name>ManterUsuarios</servlet-name>
+        <url-pattern>/ManterUsuarios</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Loja</servlet-name>

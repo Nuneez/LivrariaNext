@@ -1,9 +1,0 @@
-br\senac\tadsb\pi3\livrarianext\servlets\Usuarios.class
-br\senac\tadsb\pi3\livrarianext\models\Perfil.class
-br\senac\tadsb\pi3\livrarianext\models\Loja.class
-br\senac\tadsb\pi3\livrarianext\models\Vendedor.class
-br\senac\tadsb\pi3\livrarianext\models\Cliente.class
-br\senac\tadsb\pi3\livrarianext\models\Produto.class
-br\senac\tadsb\pi3\livrarianext\models\Item.class
-br\senac\tadsb\pi3\livrarianext\models\Servico.class
-br\senac\tadsb\pi3\livrarianext\models\Usuario.class

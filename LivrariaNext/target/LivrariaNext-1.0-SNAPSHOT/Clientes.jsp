@@ -11,13 +11,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
+        <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lista.css">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/lista.js"></script>
-        <title>Usuários</title>
+        <title>Clientes</title>
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
         <div class="content">            
-            <form action="/LivrariaNext/Clientes" method="get">
+            <form action="/LivrariaNext/ListarClientes" method="get">
+                <input type="hidden" id="edit" Value="ManterCliente"/>
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>

@@ -17,63 +17,52 @@
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
         <div class="content">
-            <form action="/LivrariaNext/ManterCliente" method="post">
+            <form action="/LivrariaNext/ManterClientes" method="post">
+                <input type="hidden" name="id" value="${cliente.id}" />
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>
-                        <input id="nome" type="text" name="nome"/>
+                        <input id="nome" type="text" name="nome" value="${cliente.nome}" />
                         <label for="sobrenome">Sobrenome</label>
-                        <input id="sobrenome" type="text" name="sobrenome"/>
+                        <input id="sobrenome" type="text" name="sobrenome" value="${cliente.sobreNome}"/>
                     </div>
                     <div class="row">
                         <label for="sexo">Sexo</label>
                         <select name="sexo" id="sexo">
-                            <option value="M">Masculino</option>
-                            <option value="F">Feminino</option>
+                            <option value="I" ${cliente.sexo == null ? 'Selected' : ''} >[Selecione...]</option>
+                            <option value="M" ${cliente.sexo == "M" ? 'Selected' : ''} >Masculino</option>
+                            <option value="F" ${cliente.sexo == "F" ? 'Selected' : ''} >Feminino</option>
                         </select>
                     </div>
                     <div class="row">
                         <label for="cpf">CPF</label>
-                        <input type="number" name="cpf" id="cpf">
+                        <input type="number" name="cpf" id="cpf" value="${cliente.cpf}">
                         <label for="rg">RG</label>
-                        <input type="number" name="rg" id="rg">
+                        <input type="text" name="rg" id="rg" value="${cliente.rg}">
                     </div>
                 </div>
                 <hr>
                 
                 <div class="row">
                     <label for="endereco">Endereço</label>
-                    <input type="text" name="endereco" id="endereco"/>
+                    <input type="text" name="endereco" id="endereco" value="${cliente.endereco}"/>
                     <label for="bairro">Bairro</label>
-                    <input type="text" name="bairro" id="bairro"/>
+                    <input type="text" name="bairro" id="bairro" value="${cliente.bairro}"/>
                     <label for="numero">N</label>
-                    <input type="number" name="numero" id="numero"/>
+                    <input type="number" name="numero" id="numero" value="${cliente.numero}"/>
                 </div>
                 <div class="row">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email"/>
+                    <input type="text" name="email" id="email" value="${cliente.email}"/>
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone"/>
+                    <input type="text" name="telefone" id="telefone" value="${cliente.telefone}"/>
                 </div>
                 <hr>
                 <div class="row">
                     <input type="submit" value="Enviar">
-                    <input type='reset' value='Cancelar'>
+                    <input id="cancelar" type='reset' value='Cancelar'>
                 </div>
             </form>
-        </div>
-        <div class="content">
-              <c:out value="${cliente.getNome()}" />
-              <c:out value="${cliente.getSobreNome()}" />
-              <c:out value="${cliente.getId()}" />
-              <c:out value="${cliente.getCpf()}" />
-              <c:out value="${cliente.getRg()}" />
-              <c:out value="${cliente.getNascimento()}" />
-              <c:out value="${cliente.getEndereco()}" />
-              <c:out value="${cliente.getNumero()}" />
-              <c:out value="${cliente.getEmail()}" />
-              <c:out value="${cliente.getTelefone()}" />
-              <c:out value="${cliente.getLoja()}" />
         </div>
         <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
