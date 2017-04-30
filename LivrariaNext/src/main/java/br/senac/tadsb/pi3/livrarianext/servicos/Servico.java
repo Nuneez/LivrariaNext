@@ -5,12 +5,53 @@
  */
 package br.senac.tadsb.pi3.livrarianext.servicos;
 
+import br.senac.tadsb.pi3.livrarianext.database.Dao;
+import br.senac.tadsb.pi3.livrarianext.exceptions.*;
+
 /**
  *
  * @author roger
+ * @param <T>
  */
 public abstract class Servico<T> {
-    protected abstract void incluir(T dominio) throws Exception;
-    protected abstract void alterar(T dominio) throws Exception;
-    protected abstract void excluir(T dominio) throws Exception;
+    
+    protected Dao dao;
+    
+    public Servico(Dao dao){
+        this.dao = dao;
+    }
+        
+    protected void incluir(T dominio) throws ServicoException {        
+        try
+        {
+            dao.incluir(dominio);
+        }
+        catch(DaoException dx)
+        {
+            dx.printStackTrace();
+            throw new ServicoException(dx.getMessage());
+        }
+    }
+    protected void alterar(T dominio) throws ServicoException{
+        try
+        {
+            dao.alterar(dominio);
+        }
+        catch(DaoException dx)
+        {
+            dx.printStackTrace();
+            throw new ServicoException(dx.getMessage());
+        }
+    }
+    protected void excluir(T dominio) throws ServicoException {
+        try
+        {
+            dao.excluir(dominio);
+        }
+        catch(DaoException dx)
+        {
+            dx.printStackTrace();
+            throw new ServicoException(dx.getMessage());
+        }
+    }
 }

@@ -5,6 +5,7 @@
  */
 package br.senac.tadsb.pi3.livrarianext.database;
 
+import br.senac.tadsb.pi3.livrarianext.exceptions.DaoException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,15 +21,16 @@ public abstract class Dao<T> {
     private ConnectionUtils util;
     private Connection connection;
     
-    public Dao(ConnectionUtils util) throws SQLException {
+    public Dao(ConnectionUtils util) throws SQLException {        
         this.util = util;
         this.connection = util.getConnection();
     }
     
-    protected abstract void incluir(T dominio) throws SQLException, Exception;
-    protected abstract void alterar(T dominio) throws SQLException, Exception;
-    protected abstract void excluir(T dominio) throws SQLException, Exception;
-    protected abstract T obterPorId(int id) throws SQLException, Exception;
+    public abstract void incluir(T dominio) throws DaoException;
+    public abstract void alterar(T dominio) throws DaoException;
+    public abstract void excluir(T dominio) throws DaoException;
+    protected abstract T obterPorId(int id) throws DaoException;
+    protected abstract T obterDominio(ResultSet rs) throws DaoException;
     
     protected PreparedStatement obterStatementRetornaId(String command) throws java.sql.SQLException, Exception {
         validarConexao();                
@@ -51,9 +53,17 @@ public abstract class Dao<T> {
         statement.execute(command);
     }
     
-    protected ResultSet getList(String query) throws java.sql.SQLException {                
-        validarConexao();        
-        return connection.createStatement().executeQuery(query);
+    protected ResultSet getList(String query) throws DaoException {                
+        try
+        {
+            validarConexao();        
+            return connection.createStatement().executeQuery(query);
+        }
+        catch(SQLException sqlex)
+        {
+            System.out.println(sqlex.getMessage());
+            throw new DaoException();
+        }
     }
     
     private void validarConexao() throws java.sql.SQLException {

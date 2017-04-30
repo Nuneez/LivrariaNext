@@ -5,12 +5,13 @@
  */
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
-import br.senac.tadsb.pi3.livrarianext.exceptions.UsuarioException;
+import br.senac.tadsb.pi3.livrarianext.database.*;
+import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Usuario;
-import br.senac.tadsb.pi3.livrarianext.models.Perfil;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoUsuario;
+import br.senac.tadsb.livrarianext.helpers.Parser;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,19 +23,25 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class Usuarios extends HttpServlet {
+public class ListarUsuarios extends HttpServlet {
     
     private ServicoUsuario servico;
     
-    public Usuarios(){
+    public ListarUsuarios(){
         try
         {
-            servico = new ServicoUsuario();
+            ConnectionUtils util = new ConnectionUtils();            
+            servico = new ServicoUsuario(new DaoUsuario(util), new DaoPerfil(util));
         }
-        catch(UsuarioException ux)
-        {
-            System.out.println(ux.getMessage());
-        }
+        catch(UsuarioException ux){
+             System.out.println(ux.getMessage());
+         }
+         catch(SQLException sqlex){
+             System.out.println(sqlex.getMessage());
+         }
+         catch(Exception ex){
+             System.out.println(ex.getMessage());
+         }
     }
     
     /**
@@ -60,11 +67,11 @@ public class Usuarios extends HttpServlet {
             Boolean ativos = ativo == null || ativo.isEmpty() ? true : Boolean.parseBoolean(ativo);            
             
             //Setando atributos para o jsp
-            request.setAttribute("perfis", servico.ObterPerfis());
-            request.setAttribute("usuarios", obterUsuarios(nome, ativos));
+            request.setAttribute("perfis", servico.obterPerfis());
+            request.setAttribute("usuarios", obterUsuarios(nome, ativos, Parser.tryParseInt(perfil)));
             request.setAttribute("ativo", ativos);
 
-            //Dispachando a requisição
+            //Despachando a requisição
             RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
 
             try
@@ -101,9 +108,7 @@ public class Usuarios extends HttpServlet {
         String action = request.getParameter("action");
                 
         try
-        {
-            ServicoUsuario servico = new ServicoUsuario();
-            
+        {            
             switch (action) {
                 case "excluir":
                     String usuarioId = request.getParameter("id");
@@ -126,7 +131,7 @@ public class Usuarios extends HttpServlet {
         }        
     }
     
-    private List<Usuario> obterUsuarios(String nome, Boolean ativos) throws UsuarioException {
-        return servico.ObterUsuarios(nome, ativos);
+    private List<Usuario> obterUsuarios(String nome, Boolean ativos, int perfil) throws UsuarioException {
+        return servico.obterUsuarios(nome, ativos, perfil);
     }    
 }

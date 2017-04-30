@@ -17,14 +17,20 @@
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>        
         <div class="content">
-            <form action="/LivrariaNext/ManterUsuario" method="post">
+            <form action="/LivrariaNext/ManterUsuarios" method="post">
                 <input id="id" name="id" type="hidden" value="${usuario.id}" />
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>
                         <input id="nome" type="text" name="nome" value="${usuario.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
-                        <input id="sobrenome" type="text" name="sobrenome" value="${usuario.sobreNome}"/>                        
+                        <input id="sobrenome" type="text" name="sobrenome" value="${usuario.sobrenome}"/>                        
+                    </div>
+                    <div class="row">
+                        <label for="username">Username</label>
+                        <input id="username" type="text" name="username" value="${usuario.username}"/>
+                        <label for="email">Email</label>
+                        <input id="email" type="text" name="email" value="${usuario.email}"/>                        
                     </div>
                     <div class="row">
                         <label for="atividade">Ativo</label>
@@ -33,6 +39,16 @@
                             <option value="false" ${!usuario.ativo ? 'selected' : ''}>Não</option>
                         </select>
                     </div>
+                    <div class="row">
+                        <label for="perfil">Perfil: </label>
+                        <select name="perfil" id="perfil">
+                            <option value="0" ${usuario.perfil == null ? 'Selected' : ''} >[Selecione...]</option>
+                            <c:forEach items="${perfis}" var="perfil">
+                                <option value="${perfil.id}" ${usuario.perfil.id == perfil.id ? 'Selected' : ''} >${perfil.nome}</option>
+                            </c:forEach>
+                        </select>
+                    </div>   
+                        
                 </div>
                 <hr>
                 <div class="row">

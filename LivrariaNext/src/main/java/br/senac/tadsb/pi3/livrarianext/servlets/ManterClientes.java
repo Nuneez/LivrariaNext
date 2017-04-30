@@ -5,11 +5,12 @@
  */
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
-import br.senac.tadsb.pi3.livrarianext.exceptions.ClienteException;
+import br.senac.tadsb.pi3.livrarianext.database.*;
+import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -23,8 +24,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-@WebServlet(name = "ManterCliente", urlPatterns = {"/ManterCliente"})
-public class ManterCliente extends HttpServlet {
+@WebServlet(name = "ManterClientes", urlPatterns = {"/ManterClientes"})
+public class ManterClientes extends HttpServlet {
+    
+    ServicoCliente servico;
+    
+    public ManterClientes(){
+        try
+         {  
+            ConnectionUtils util = new ConnectionUtils();             
+            servico = new ServicoCliente(new DaoCliente(util));
+         }
+         catch(UsuarioException ux){
+             System.out.println(ux.getMessage());
+         }
+         catch(SQLException sqlex){
+             System.out.println(sqlex.getMessage());
+         }
+         catch(Exception ex){
+             System.out.println(ex.getMessage());
+         }
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -35,21 +55,12 @@ public class ManterCliente extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //Cliente cliente = new Cliente("Thiago", "Messias", "123.456.789-10", "01/01/1996", "masculino", "email@email.com", "+5511987654321", true);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try
         {            
-            ServicoCliente servico = new ServicoCliente();          
-            
-            String clienteId = request.getParameter("id");
-
-            if (clienteId != null && !clienteId.isEmpty()){
-                
-                Cliente cliente = servico.obterClientePorId(Integer.parseInt(clienteId));
-                
-                request.setAttribute("cliente", cliente);
-            }    
+            String id = request.getParameter("id");
+            Cliente cliente = (id != null && !id.isEmpty()) ? servico.obterClientePorId(Integer.parseInt(id)) : new Cliente();                
+            request.setAttribute("cliente", cliente);
         }
         catch(ClienteException ce)
         {
@@ -79,26 +90,35 @@ public class ManterCliente extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        //Obtendo parametros
+        String id = request.getParameter("id");
         String nome = request.getParameter("nome");
         String sobrenome = request.getParameter("sobrenome");
-        String cpf = request.getParameter("cpf");
-        //String nascimento = request.getParameter("nascimento");
         String sexo = request.getParameter("sexo");
+        String cpf = request.getParameter("cpf");
+        String rg = request.getParameter("rg");
+        String endereco = request.getParameter("endereco");
+        String bairro = request.getParameter("bairro");
+        String numero = request.getParameter("numero");
+        //String nascimento = request.getParameter("nascimento");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         
         try
         {
-            ServicoCliente servico = new ServicoCliente();
-            servico.incluir(nome, sobrenome, cpf, null, sexo, email, null, null, null, null);
-            response.sendRedirect("Clientes");
+            if (id.isEmpty() || id.equals("0"))        
+                servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
+            else
+                servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
+                        
+            response.sendRedirect("ListarClientes");
         }
         catch(ClienteException ue)
         {
             
         } catch (Exception ex) {
-            Logger.getLogger(ManterUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }
-
 }

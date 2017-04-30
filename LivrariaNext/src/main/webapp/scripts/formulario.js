@@ -15,7 +15,7 @@ var salvar = function(){
 };
 
 var cancelar = function(){
-    var url = document.forms[0].action.replace("Manter", "") + "s";
+    var url = document.forms[0].action.replace("Manter", "Listar");
     console.log(url);
     
     window.location = url;// document.forms[0].action.replace("Manter", "") + "s";

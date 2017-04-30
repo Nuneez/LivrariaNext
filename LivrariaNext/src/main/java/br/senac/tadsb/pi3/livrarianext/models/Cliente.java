@@ -24,11 +24,16 @@ public class Cliente {
     private String telefone;
     private Loja loja;
     private Boolean ativo;
+ 
+    public Cliente(){
     
-    public Cliente(String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, Boolean ativo){
+    }
+    
+    public Cliente(String nome, String sobreNome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, Boolean ativo){
         this.nome = nome;
         this.sobreNome = sobreNome;
         this.cpf = cpf;
+        this.rg = rg;
         this.nascimento = nascimento;
         this.sexo = sexo;
         this.email = email;
@@ -36,15 +41,15 @@ public class Cliente {
         this.ativo = ativo;
     }
     
-    public Cliente(String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Boolean ativo){
-        this(nome, sobreNome, cpf, nascimento, sexo, email, telefone, ativo);
+    public Cliente(String nome, String sobreNome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Boolean ativo){
+        this(nome, sobreNome, cpf, rg, nascimento, sexo, email, telefone, ativo);
         this.endereco = endereco;
         this.numero = numero;
         this.bairro = bairro;
     }
     
-    public Cliente(int id, String nome, String sobreNome, String cpf, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Loja loja, Boolean ativo){
-        this(nome, sobreNome, cpf, nascimento, sexo, email, telefone, endereco, numero, bairro, ativo);
+    public Cliente(int id, String nome, String sobreNome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Loja loja, Boolean ativo){
+        this(nome, sobreNome, cpf, nascimento, sexo, rg, email, telefone, endereco, numero, bairro, ativo);
         this.id = id;
         this.loja = loja;
     }

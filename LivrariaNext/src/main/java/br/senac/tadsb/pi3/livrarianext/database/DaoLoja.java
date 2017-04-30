@@ -5,6 +5,7 @@
  */
 package br.senac.tadsb.pi3.livrarianext.database;
 
+import br.senac.tadsb.pi3.livrarianext.exceptions.DaoException;
 import br.senac.tadsb.pi3.livrarianext.models.Loja;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,101 +19,162 @@ import java.util.List;
  */
 public class DaoLoja extends Dao<Loja> {
 
+    final String queryPadrao = "select * from loja l ";
+    
     public DaoLoja() throws SQLException, Exception {
         super(new ConnectionUtils());
     }
-
-    @Override
-    public void incluir(Loja dominio) throws SQLException, Exception {
-        PreparedStatement stt = obterStatement("insert into loja (nome, ehFilial, cnpj, razaoSocial, endereco, numero, cidade, estado, email, telefone, ativo) values (?,?,?,?,?,?,?,?,?,?)");
-        //stt.setInt(0, dominio.getId());
-        stt.setString(1, dominio.getNome());
-        stt.setBoolean(2, dominio.getEhFilial());
-        stt.setString(3, dominio.getCnpj());
-        stt.setString(4, dominio.getRazaoSocial());
-        stt.setString(5, dominio.getEndereco());
-        stt.setString(6, dominio.getNumero());
-        stt.setString(7, dominio.getCidade());
-        stt.setString(8, dominio.getEstado());
-        stt.setString(9, dominio.getTelefone());
-
-        stt.setBoolean(10, dominio.getAtivo());
-
-        stt.execute();
+    
+    public DaoLoja(ConnectionUtils util) throws SQLException, Exception {
+        super(util);
     }
 
     @Override
-    public void alterar(Loja dominio) throws SQLException, Exception {
-        PreparedStatement stt = obterStatement("update loja set nome = ?, ehFilial = ?, cnpj = ?,  razaoSocial = ?,  endereco = ?, numero = ?, cidade = ?, estado = ?, telefone = ?, ativo = ? where id = ?");
+    public void incluir(Loja dominio) throws DaoException {
+        try
+        {
+            PreparedStatement stt = obterStatement("insert into loja (nome, ehFilial, cnpj, razaoSocial, endereco, numero, cidade, estado, email, telefone, ativo) values (?,?,?,?,?,?,?,?,?,?)");
+            stt.setString(1, dominio.getNome());
+            stt.setBoolean(2, dominio.getEhFilial());
+            stt.setString(3, dominio.getCnpj());
+            stt.setString(4, dominio.getRazaoSocial());
+            stt.setString(5, dominio.getEndereco());
+            stt.setString(6, dominio.getNumero());
+            stt.setString(7, dominio.getCidade());
+            stt.setString(8, dominio.getEstado());
+            stt.setString(9, dominio.getTelefone());
 
-        stt.setString(1, dominio.getNome());
-        stt.setBoolean(2, dominio.getEhFilial());
-        stt.setString(3, dominio.getCnpj());
-        stt.setString(4, dominio.getRazaoSocial());
-        stt.setString(5, dominio.getEndereco());
-        stt.setString(6, dominio.getNumero());
-        stt.setString(7, dominio.getCidade());
-        stt.setString(8, dominio.getEstado());
-        stt.setString(9, dominio.getTelefone());
-        stt.setBoolean(10, dominio.getAtivo());
+            stt.setBoolean(10, dominio.getAtivo());
 
-        stt.setInt(11, dominio.getId());
-
-        stt.execute();
-    }
-
-    @Override
-    public void excluir(Loja dominio) throws SQLException, Exception {
-        PreparedStatement stt = obterStatement("update loja set ativo = ? where id = ?");
-        stt.setBoolean(1, false);
-        stt.setInt(2, dominio.getId());
-
-        stt.execute();
-    }
-
-    @Override
-    public Loja obterPorId(int id) throws SQLException, Exception {
-        ResultSet rs = getList("select * from loja where id = " + id);
-
-        Loja dominio = null;
-
-        while (rs.next()) {
-            dominio
-                    = new Loja(
-                            rs.getInt("id"),
-                            rs.getString("nome"),
-                            rs.getBoolean("ehFilial"),
-                            rs.getString("cnpj"),
-                            rs.getString("razaoSocial"),
-                            rs.getString("endereco"),
-                            rs.getString("numero"),
-                            rs.getString("cidade"),
-                            rs.getString("estado"),
-                            rs.getString("telefone")
-                            
-                    );
+            stt.execute();
         }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
 
-        return dominio;
+    @Override
+    public void alterar(Loja dominio) throws DaoException {
+        try
+        {
+            PreparedStatement stt = obterStatement("update loja set nome = ?, ehFilial = ?, cnpj = ?,  razaoSocial = ?,  endereco = ?, numero = ?, cidade = ?, estado = ?, telefone = ?, ativo = ? where id = ?");
+
+            stt.setString(1, dominio.getNome());
+            stt.setBoolean(2, dominio.getEhFilial());
+            stt.setString(3, dominio.getCnpj());
+            stt.setString(4, dominio.getRazaoSocial());
+            stt.setString(5, dominio.getEndereco());
+            stt.setString(6, dominio.getNumero());
+            stt.setString(7, dominio.getCidade());
+            stt.setString(8, dominio.getEstado());
+            stt.setString(9, dominio.getTelefone());
+            stt.setBoolean(10, dominio.getAtivo());
+
+            stt.setInt(11, dominio.getId());
+
+            stt.execute();
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
+
+    @Override
+    public void excluir(Loja dominio) throws DaoException {
+        try
+        {
+            PreparedStatement stt = obterStatement("update loja set ativo = ? where id = ?");
+            stt.setBoolean(1, false);
+            stt.setInt(2, dominio.getId());
+
+            stt.execute();
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
+
+    @Override
+    public Loja obterPorId(int id) throws DaoException {
+        try
+        {
+            ResultSet rs = getList("select * from loja where id = " + id);
+
+            while (rs.next())
+                return obterDominio(rs);
+
+            return null;
+        }        
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }            
     }
 
     public List<Loja> obterLojas(String nome, String cnpj) throws SQLException, Exception {
-        String query = "select * from loja c ";
+        try
+        {
+            String query = queryPadrao;
 
-        if (nome != null && !nome.isEmpty()) {
-            query = tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
+            if (nome != null && !nome.isEmpty())
+                query = tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
+
+            if (cnpj != null && !cnpj.isEmpty())
+                query = tratarQuery(query) + " c.cnpj like ('%" + cnpj + "%')";
+
+            ResultSet rs = getList(query);
+
+            List<Loja> lojas = new ArrayList<>();
+
+            while (rs.next())
+                lojas.add(obterDominio(rs));
+
+            return lojas;
+        }        
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
         }
-
-        if (cnpj != null && !cnpj.isEmpty()) {
-            query = tratarQuery(query) + " c.cnpj like ('%" + cnpj + "%')";
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
         }
+    }
 
-        ResultSet rs = getList(query);
-
-        List<Loja> lojas = new ArrayList<>();
-
-        while (rs.next()) {
-            lojas.add(new Loja(
+    @Override
+    protected Loja obterDominio(ResultSet rs) throws DaoException {
+        try
+        {                        
+            return new Loja(
                     rs.getInt("id"),
                     rs.getString("nome"),
                     rs.getBoolean("ehFilial"),
@@ -123,11 +185,12 @@ public class DaoLoja extends Dao<Loja> {
                     rs.getString("cidade"),
                     rs.getString("estado"),
                     rs.getString("telefone")
-
-            ));
+            );         
         }
-
-        return lojas;
-    }
-
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }     
+    }    
 }

@@ -10,10 +10,10 @@
       <a href="/LivrariaNext/"><img src="/LivrariaNext/imgs/logo.png"/></a>
     </div>
     <nav>  
-        <a href="/LivrariaNext/Clientes">Clientes</a>
-        <a href="/LivrariaNext/Produtos">Produtos</a>
+        <a href="/LivrariaNext/ListarClientes">Clientes</a>
+        <a href="/LivrariaNext/ListarProdutos">Produtos</a>
         <a href="/LivrariaNext/Vendas">Vendas</a>
-        <a href="/LivrariaNext/Usuarios">Usuários</a>
-        <a href="/LivrariaNext/Lojas">Lojas</a>
+        <a href="/LivrariaNext/ListarUsuarios">Usuários</a>
+        <a href="/LivrariaNext/ListarLojas">Lojas</a>
     </nav>
 </div>

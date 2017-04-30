@@ -9,12 +9,7 @@ package br.senac.tadsb.pi3.livrarianext.models;
  *
  * @author roger
  */
-public class Vendedor extends Usuario {
-    
-    public Vendedor(String nome, String sobreNome, Boolean ativo) {
-        super(nome, sobreNome, ativo);
-    }
-    
+public class Vendedor extends Usuario {        
     public Vendedor(int id, String nome, String sobreNome, Boolean ativo, Perfil perfil){        
         //super(id, nome, sobreNome, ativo, perfil);
     }    

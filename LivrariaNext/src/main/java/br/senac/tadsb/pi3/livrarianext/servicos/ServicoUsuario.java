@@ -5,13 +5,10 @@
  */
 package br.senac.tadsb.pi3.livrarianext.servicos;
 
-import br.senac.tadsb.pi3.livrarianext.models.Usuario;
-import br.senac.tadsb.pi3.livrarianext.database.DaoUsuario;
+import br.senac.tadsb.pi3.livrarianext.database.*;
+import br.senac.tadsb.pi3.livrarianext.models.*;
 import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
-import br.senac.tadsb.pi3.livrarianext.exceptions.UsuarioException;
-import br.senac.tadsb.pi3.livrarianext.models.Perfil;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import java.util.List;
 
 /**
@@ -19,168 +16,118 @@ import java.util.List;
  * @author roger
  */
 public class ServicoUsuario extends Servico<Usuario> {
-
-    DaoUsuario dao;
+    final DaoUsuario dao;
+    final DaoPerfil daoPerfil;
     
-    public ServicoUsuario() throws UsuarioException {
-        try
-        {
-            dao = new DaoUsuario();
-        }
-        catch(SQLException sqlex)
-        {
-            System.out.println(sqlex.getMessage());
-            throw new UsuarioException(sqlex.getMessage(), ExceptionTypesEnum.DISPLAY);
-        }
-        catch(Exception ex)
-        {
-            throw new UsuarioException("");
-        }
+    public ServicoUsuario(DaoUsuario dao, DaoPerfil daoPerfil) throws UsuarioException {        
+        super(dao);
+        this.dao = dao;
+        this.daoPerfil = daoPerfil;
     }
     
-    public void incluir(String nome, String sobrenome)  throws UsuarioException {
-        Usuario novo = new Usuario(nome, sobrenome, true);
-        this.incluir(novo);
-    }
-    
-    protected void incluir(Usuario usuario) throws UsuarioException {
+    public void incluir(String nome, String sobrenome, String username, String email, int perfilId)  throws UsuarioException {              
         try
         {
-            dao.incluir(usuario);
+            Usuario novo = new Usuario(nome, sobrenome, username, email, obterPerfil(perfilId));
+            super.incluir(novo);        
+            enviarSenhaAoUsuario(novo);
         }
-        catch(SQLException sqlex)
+        catch(ServicoException se)
         {
-            sqlex.printStackTrace();
             throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
         }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
-        }
     }
     
-    public void alterar(int id, String nome, String sobrenome, Boolean ativo) throws UsuarioException {
+    public void alterar(int id, String nome, String sobrenome, Boolean ativo, int perfilId) throws UsuarioException {
         try
         {
+            Perfil perfil = daoPerfil.obterPorId(perfilId);
+            
             Usuario usuario = dao.obterPorId(id);
             usuario.setNome(nome);
             usuario.setSobreNome(sobrenome);
+            usuario.setPerfil(perfil);
             usuario.setAtivo(ativo);
-            this.alterar(usuario);
+            
+            super.alterar(usuario);
         }
-        catch(SQLException sqlex)
+        catch(DaoException de)
         {
-            sqlex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_SELECT);
+            throw new UsuarioException(ExceptionTypesEnum.DATABASE);
         }
-        catch(Exception ex)
+        catch(ServicoException se)
         {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
-        }
-    }
-    
-    protected void alterar(Usuario usuario) throws UsuarioException {
-        try
-        {
-            dao.alterar(usuario);
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
             throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
         }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
-        }
-    }
+    }    
     
     public void excluir(int id) throws UsuarioException {
         try
         {
             Usuario usuario = dao.obterPorId(id);
-            this.excluir(usuario);
+            super.excluir(usuario);
         }
-        catch(SQLException sqlex)
+        catch(DaoException de)
+        {
+            throw new UsuarioException(ExceptionTypesEnum.DATABASE);
+        }
+        catch(ServicoException se)
+        {
+            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
+        }
+    }   
+    
+    private Perfil obterPerfil(int id) throws UsuarioException {
+        try
+        {            
+            return daoPerfil.obterPorId(id);
+        }
+        catch(DaoException sqlex)
         {
             sqlex.printStackTrace();
             throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
-        catch(Exception ex)
+    }
+    
+    private void enviarSenhaAoUsuario(Usuario usuario){
+        //Disparar email ao usuário com a senha gerada
+        //usuario.getEmail();
+        //usuario.getSenha()
+    } 
+    
+    public List<Usuario> obterUsuarios(String nome, Boolean ativos, int perfil) throws UsuarioException  {
+        try
         {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
+            return dao.obterUsuarios(nome, ativos, perfil);
+        }
+        catch(DaoException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
     }
     
-    protected void excluir(Usuario usuario) throws UsuarioException {
-        try
-        {
-            dao.excluir(usuario);
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
-        }
-    }    
-    
-    public List<Usuario> ObterUsuarios(String nome, Boolean ativos) throws UsuarioException  {
-        try
-        {
-            return dao.obterUsuarios(nome, ativos);
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
-        }
-    }
-    
-    public Usuario ObterUsuarioPorId(int id) throws UsuarioException {
+    public Usuario obterUsuarioPorId(int id) throws UsuarioException {
         try
         {
             return dao.obterPorId(id);
         }
-        catch(SQLException sqlex)
+        catch(DaoException sqlex)
         {
             sqlex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
+            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
     }
     
-    public List<Perfil> ObterPerfis() throws UsuarioException {
+    public List<Perfil> obterPerfis() throws UsuarioException {
         try
         {
-            return dao.obterPerfis();
+            return daoPerfil.obterPerfis();
         }
-        catch(SQLException sqlex)
+        catch(DaoException sqlex)
         {
             sqlex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new UsuarioException(ExceptionTypesEnum.GENERAL);
+            throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
     }   
 }

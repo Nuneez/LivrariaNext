@@ -28,6 +28,11 @@ create table USUARIO
             (START WITH 1, INCREMENT BY 1),
     NOME VARCHAR(100) not null,
     SOBRENOME VARCHAR(100) not null,
+    USERNAME VARCHAR(10) not null,
+    PASSWORD VARCHAR(10) not null,
+    EMAIL VARCHAR(50) not null,
+    PERFIL INTEGER,
+    LOJA INTEGER,
     ATIVO BOOLEAN not null
 );
 

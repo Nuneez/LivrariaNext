@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var edit = function() { return document.querySelector("#edit").value; };
+var edit = function() { return document.forms[0].action.replace("Listar", "Manter"); };
 var action = function () { return document.forms[0].action; };
 
 var init = function(){    
@@ -26,11 +26,11 @@ var init = function(){
 
 var editar = function(evt){
     var btn = evt.srcElement;    
-    window.location = "http://localhost:8080/LivrariaNext/" + edit() + "?id=" + btn.getAttribute("data-id");    
+    window.location = edit() + "?id=" + btn.getAttribute("data-id");    
 };
 
 var incluir = function(){
-    window.location = "http://localhost:8080/LivrariaNext/" + edit();    
+    window.location = edit();    
 };
 
 var excluir = function(evt){

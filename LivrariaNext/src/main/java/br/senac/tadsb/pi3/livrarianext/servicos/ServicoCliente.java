@@ -7,9 +7,8 @@ package br.senac.tadsb.pi3.livrarianext.servicos;
 
 import br.senac.tadsb.pi3.livrarianext.database.DaoCliente;
 import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
-import br.senac.tadsb.pi3.livrarianext.exceptions.ClienteException;
+import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,85 +17,49 @@ import java.util.List;
  */
 public class ServicoCliente extends Servico<Cliente> {
 
-    DaoCliente dao;
+    final DaoCliente dao;
     
-    public ServicoCliente() throws ClienteException {
+    public ServicoCliente(DaoCliente dao) throws ClienteException {
+        super(dao);
+        this.dao = dao;
+    }
+    
+    public void incluir(String nome, String sobrenome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro)  throws ClienteException {
         try
         {
-            dao = new DaoCliente();
+            Cliente novo = new Cliente(nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro, true);
+            super.incluir(novo);
         }
-        catch(SQLException sqlex)
+        catch(ServicoException se)
         {
-            System.out.println(sqlex.getMessage());
-            throw new ClienteException(sqlex.getMessage(), ExceptionTypesEnum.DISPLAY);
-        }
-        catch(Exception ex)
-        {
-            throw new ClienteException("");
-        }
-    }
-    
-    public void incluir(String nome, String sobrenome, String cpf, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro)  throws ClienteException {
-        Cliente novo = new Cliente(nome, sobrenome, cpf, nascimento, sexo, email, telefone, endereco, numero, bairro, true);
-        this.incluir(novo);
-    }
-    
-    @Override
-    protected void incluir(Cliente dominio) throws ClienteException {
-         try
-        {
-            dao.incluir(dominio);
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
             throw new ClienteException(ExceptionTypesEnum.SPECIFIC_CRUD);
         }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.GENERAL);
-        }
     }
     
-    public void alterar(int id, String nome, String sobrenome, String cpf, String endereco) throws ClienteException {
+    public void alterar(int id, String nome, String sobrenome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro) throws ClienteException {
         try
         {
             Cliente cliente = dao.obterPorId(id);
             cliente.setNome(nome);
             cliente.setSobreNome(sobrenome);
             cliente.setCpf(cpf);
+            cliente.setRg(rg);
+            cliente.setSexo(sexo);
+            cliente.setEmail(email);
+            cliente.setTelefone(telefone);
             cliente.setEndereco(endereco);
+            cliente.setNumero(numero);
+            cliente.setBairro(bairro);
             
-            this.alterar(cliente);
+            super.alterar(cliente);
         }
-        catch(SQLException sqlex)
+        catch(DaoException de)
         {
-            sqlex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.SPECIFIC_SELECT);
+            throw new ClienteException(ExceptionTypesEnum.DATABASE);
         }
-        catch(Exception ex)
+        catch(ServicoException se)
         {
-            ex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.GENERAL);
-        }
-    }
-
-    @Override
-    protected void alterar(Cliente dominio) throws ClienteException {
-        try
-        {
-            dao.alterar(dominio);
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
             throw new ClienteException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.GENERAL);
         }
     }
     
@@ -104,35 +67,15 @@ public class ServicoCliente extends Servico<Cliente> {
         try
         {
             Cliente dominio = dao.obterPorId(id);
-            this.excluir(dominio);
+            super.excluir(dominio);
         }
-        catch(SQLException sqlex)
+        catch(DaoException de)
         {
-            sqlex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.SPECIFIC_SELECT);
+            throw new ClienteException(ExceptionTypesEnum.DATABASE);
         }
-        catch(Exception ex)
+        catch(ServicoException se)
         {
-            ex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.GENERAL);
-        }
-    }
-
-    @Override
-    protected void excluir(Cliente dominio) throws ClienteException {
-        try
-        {
-            dao.excluir(dominio);
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
             throw new ClienteException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.GENERAL);
         }
     }
     
@@ -141,15 +84,10 @@ public class ServicoCliente extends Servico<Cliente> {
         {
             return dao.obterClientes(nome, cpf);
         }
-        catch(SQLException sqlex)
+        catch(DaoException sqlex)
         {
             sqlex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.GENERAL);
+            throw new ClienteException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
     }
     
@@ -158,15 +96,10 @@ public class ServicoCliente extends Servico<Cliente> {
         {
             return dao.obterPorId(id);
         }
-        catch(SQLException sqlex)
+        catch(DaoException sqlex)
         {
             sqlex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.SPECIFIC_CRUD);
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new ClienteException(ExceptionTypesEnum.GENERAL);
+            throw new ClienteException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
     }
 }
