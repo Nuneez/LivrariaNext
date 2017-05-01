@@ -23,7 +23,7 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Titulo</label>
-                        <input id="nomecomun" type="text" name="nome"/>
+                        <input id="nomecomum" type="text" name="nome"/>
                         <label for="nome">Ativo</label>
                          <select name="ativo" id="ativo">
                             <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
@@ -46,7 +46,7 @@
                       <c:forEach items="${Produtos}" var="produto">
                         <tr>
                           <td><c:out value="${produto.id}" /></td>
-                          <td><c:out value="${protudo.nomecomun}" /></td>                       
+                          <td><c:out value="${protudo.nomecomum}" /></td>                       
                           <td><c:out value="${produto.ativo?'SIM':'NÃO'}" /></td>
                           <td><c:out value="${protudo.descricao}" /></td>
                           <td><input type="button" class="btn-editar" data-id="${produto.id}" Value="Editar" /></td>

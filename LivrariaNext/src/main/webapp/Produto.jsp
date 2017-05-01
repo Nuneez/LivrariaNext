@@ -22,7 +22,7 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Titulo</label>
-                        <input id="nome" type="text" name="titulo" value="${produto.nomecomun}" />
+                        <input id="nome" type="text" name="titulo" value="${produto.nomecomum}" />
                     </div>
                     <div class="row">
                         <label for="ean">EAN</label>
