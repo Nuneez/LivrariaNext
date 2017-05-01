@@ -17,11 +17,11 @@
     </servlet>
     <servlet>
         <servlet-name>Loja</servlet-name>
-        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Loja</servlet-class>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ManterLojas</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Lojas</servlet-name>
-        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Lojas</servlet-class>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ListarLojas</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Vendas</servlet-name>

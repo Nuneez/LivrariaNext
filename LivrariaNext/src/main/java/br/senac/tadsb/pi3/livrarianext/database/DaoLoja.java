@@ -33,18 +33,19 @@ public class DaoLoja extends Dao<Loja> {
     public void incluir(Loja dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("insert into loja (nome, ehfilial, cnpj, razaosocial, ie, endereco, numero, cidade, estado, telefone, ativo) values (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement stt = obterStatement("insert into loja (nome, filial, cnpj, razao_social, inscricao_estadual, endereco, numero, cidade, estado, telefone, email, ativo) values (?,?,?,?,?,?,?,?,?,?,?,?)");
             stt.setString(1, dominio.getNome());
             stt.setBoolean(2, dominio.getEhFilial());
             stt.setString(3, dominio.getCnpj());
             stt.setString(4, dominio.getRazaoSocial());
-            stt.setString(5, dominio.getEndereco());
-            stt.setString(6, dominio.getNumero());
-            stt.setString(7, dominio.getCidade());
-            stt.setString(8, dominio.getEstado());
-            stt.setString(9, dominio.getTelefone());
-
-            stt.setBoolean(10, dominio.getAtivo());
+            stt.setString(5, dominio.getInscricaoEstadual());
+            stt.setString(6, dominio.getEndereco());
+            stt.setString(7, dominio.getNumero());
+            stt.setString(8, dominio.getCidade());
+            stt.setString(9, dominio.getEstado());
+            stt.setString(10, dominio.getTelefone());
+            stt.setString(11, dominio.getEmail());
+            stt.setBoolean(12, true);
 
             stt.execute();
         }
@@ -64,20 +65,22 @@ public class DaoLoja extends Dao<Loja> {
     public void alterar(Loja dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("update loja set nome = ?, ehFilial = ?, cnpj = ?,  razaoSocial = ?,  endereco = ?, numero = ?, cidade = ?, estado = ?, telefone = ?, ativo = ? where id = ?");
+            PreparedStatement stt = obterStatement("update loja set nome = ?, filial = ?, cnpj = ?,  razao_social = ?, inscricao_estadual = ?, endereco = ?, numero = ?, cidade = ?, estado = ?, telefone = ?, email = ?, ativo = ? where id = ?");
 
             stt.setString(1, dominio.getNome());
             stt.setBoolean(2, dominio.getEhFilial());
             stt.setString(3, dominio.getCnpj());
             stt.setString(4, dominio.getRazaoSocial());
-            stt.setString(5, dominio.getEndereco());
-            stt.setString(6, dominio.getNumero());
-            stt.setString(7, dominio.getCidade());
-            stt.setString(8, dominio.getEstado());
-            stt.setString(9, dominio.getTelefone());
-            stt.setBoolean(10, dominio.getAtivo());
+            stt.setString(5, dominio.getInscricaoEstadual());
+            stt.setString(6, dominio.getEndereco());
+            stt.setString(7, dominio.getNumero());
+            stt.setString(8, dominio.getCidade());
+            stt.setString(9, dominio.getEstado());
+            stt.setString(10, dominio.getTelefone());
+            stt.setString(11, dominio.getEmail());
+            stt.setBoolean(12, true);
 
-            stt.setInt(11, dominio.getId());
+            stt.setInt(13, dominio.getId());
 
             stt.execute();
         }
@@ -119,7 +122,7 @@ public class DaoLoja extends Dao<Loja> {
     public Loja obterPorId(int id) throws DaoException {
         try
         {
-            ResultSet rs = getList("select * from loja where id = " + id);
+            ResultSet rs = getList(queryPadrao + " where id = " + id);
 
             while (rs.next())
                 return obterDominio(rs);
@@ -138,7 +141,7 @@ public class DaoLoja extends Dao<Loja> {
         }            
     }
 
-    public List<Loja> obterLojas(String nome, String cnpj) throws SQLException, Exception {
+    public List<Loja> obterLojas(String nome, String cnpj) throws DaoException {
         try
         {
             String query = queryPadrao;
@@ -177,14 +180,16 @@ public class DaoLoja extends Dao<Loja> {
             return new Loja(
                     rs.getInt("id"),
                     rs.getString("nome"),
-                    rs.getBoolean("ehFilial"),
+                    rs.getBoolean("filial"),
                     rs.getString("cnpj"),
-                    rs.getString("razaoSocial"),
+                    rs.getString("razao_social"),
+                    rs.getString("telefone"),
                     rs.getString("endereco"),
                     rs.getString("numero"),
                     rs.getString("cidade"),
                     rs.getString("estado"),
-                    rs.getString("telefone")
+                    rs.getString("email"),
+                    rs.getString("inscricao_estadual")
             );         
         }
         catch(SQLException sqlex)

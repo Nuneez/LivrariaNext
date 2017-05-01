@@ -11,16 +11,16 @@ import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
  *
  * @author roger
  */
-public class ClienteException extends LivrariaException {
-    public ClienteException(String message){
+public class LojaException extends LivrariaException {
+    public LojaException(String message){
         super(message);
     }
     
-    public ClienteException(String message, ExceptionTypesEnum type){
+    public LojaException(String message, ExceptionTypesEnum type){
         super(message, type);
     }
 
-    public ClienteException(ExceptionTypesEnum exceptionTypesEnum) {
+    public LojaException(ExceptionTypesEnum exceptionTypesEnum) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
