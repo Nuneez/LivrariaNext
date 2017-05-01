@@ -33,7 +33,7 @@ public class DaoLoja extends Dao<Loja> {
     public void incluir(Loja dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("insert into loja (nome, ehFilial, cnpj, razaoSocial, endereco, numero, cidade, estado, email, telefone, ativo) values (?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement stt = obterStatement("insert into loja (nome, ehfilial, cnpj, razaosocial, ie, endereco, numero, cidade, estado, telefone, ativo) values (?,?,?,?,?,?,?,?,?,?)");
             stt.setString(1, dominio.getNome());
             stt.setBoolean(2, dominio.getEhFilial());
             stt.setString(3, dominio.getCnpj());

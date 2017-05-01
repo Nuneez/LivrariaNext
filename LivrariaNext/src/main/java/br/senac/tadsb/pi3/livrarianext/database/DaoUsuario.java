@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class DaoUsuario extends Dao<Usuario> {
     
-    final String queryPadrao = "select u.id, u.nome, u.sobrenome, u.username, u.password, u.email, u.ativo, p.id p_id, p.nome p_nome, p.ativo p_ativo from usuario u inner join perfil p on (p.id = u.perfil) ";
+    final String queryPadrao = "select u.id, u.nome, u.sobrenome, u.username, u.password, u.email, u.ativo, p.id p_id, p.nome p_nome, p.ativo p_ativo from usuario u inner join perfil p on (p.id = u.perfil_id) ";
     
     public DaoUsuario() throws SQLException, Exception {
         super(new ConnectionUtils());
@@ -36,7 +36,7 @@ public class DaoUsuario extends Dao<Usuario> {
         {
             usuario.gerarPassword();
         
-            PreparedStatement stt = obterStatement("insert into usuario (nome, sobrenome, username, password, email, perfil, ativo) values (?,?,?,?,?,?,?)");
+            PreparedStatement stt = obterStatement("insert into usuario (nome, sobrenome, username, password, email, perfil_id, ativo) values (?,?,?,?,?,?,?)");
             stt.setString(1, usuario.getNome());
             stt.setString(2, usuario.getSobrenome());
             stt.setString(3, usuario.getUsername());
@@ -63,7 +63,7 @@ public class DaoUsuario extends Dao<Usuario> {
     public void alterar(Usuario usuario) throws DaoException {        
         try
         {
-            PreparedStatement stt = obterStatement("update usuario set nome = ?, sobrenome = ?, username = ?, email = ?, perfil = ?, ativo = ? where id = ?");
+            PreparedStatement stt = obterStatement("update usuario set nome = ?, sobrenome = ?, username = ?, email = ?, perfil_id = ?, ativo = ? where id = ?");
             stt.setString(1, usuario.getNome());
             stt.setString(2, usuario.getSobrenome());
             stt.setString(3, usuario.getUsername());

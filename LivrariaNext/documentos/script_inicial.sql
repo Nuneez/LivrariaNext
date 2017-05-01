@@ -8,18 +8,26 @@
  * Created: 29/04/2017
  */
 
+DROP TABLE ESTOQUE;
+DROP TABLE SERVICO;
+DROP TABLE PRODUTO;
+DROP TABLE LOJA;
+DROP TABLE CLIENTE;
+DROP TABLE USUARIO;
+DROP TABLE PERFIL;
+
 CREATE TABLE PERFIL
 (
     ID INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     NOME VARCHAR(100) not null,
-    ATIVO INTEGER not null with default 1
+    ATIVO BOOLEAN not null with default TRUE
 );
 
-insert into perfil (nome, ativo) values ('ADMINISTRADOR', 1);
-insert into perfil (nome, ativo) values ('GERENTE', 1);
-insert into perfil (nome, ativo) values ('BACKOFFICE', 1);
-insert into perfil (nome, ativo) values ('VENDEDOR', 1);
-insert into perfil (nome, ativo) values ('TI', 1);
+insert into perfil (nome, ativo) values ('ADMINISTRADOR', TRUE);
+insert into perfil (nome, ativo) values ('GERENTE', TRUE);
+insert into perfil (nome, ativo) values ('BACKOFFICE', TRUE);
+insert into perfil (nome, ativo) values ('VENDEDOR', TRUE);
+insert into perfil (nome, ativo) values ('TI', TRUE);
 
 create table USUARIO 
 (
@@ -31,7 +39,7 @@ create table USUARIO
     USERNAME VARCHAR(10) not null,
     PASSWORD VARCHAR(10) not null,
     EMAIL VARCHAR(50) not null,
-    PERFIL INTEGER,
+    PERFIL_ID INTEGER NOT NULL references PERFIL(ID),
     LOJA INTEGER,
     ATIVO BOOLEAN not null
 );
@@ -60,7 +68,7 @@ create table PRODUTO
             GENERATED ALWAYS AS IDENTITY
             (START WITH 1, INCREMENT BY 1),
     NOMECOMUM VARCHAR(100) not null,
-    DESCRICAO VARCHAR(100) null,
+    DESCRICAO VARCHAR(100) not null,
     CUSTO DOUBLE not null,
     PRECOMEDIO DOUBLE not null,
     EAN VARCHAR(13) not null,
@@ -73,24 +81,32 @@ create table SERVICO
             GENERATED ALWAYS AS IDENTITY
             (START WITH 1, INCREMENT BY 1),
     NOME VARCHAR(100) not null,
-    DESCRICAO VARCHAR(100) null,
+    DESCRICAO VARCHAR(100) not null,
     PRECOMEDIO DOUBLE not null,
-    MATERIAIS VARCHAR(255) null
+    MATERIAIS VARCHAR(255) not null
 );
 
 create table LOJA
 (
-    ID INTEGER not null primary key
-            GENERATED ALWAYS AS IDENTITY
-            (START WITH 1, INCREMENT BY 1),
+    ID INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     NOME VARCHAR(100) not null,
-    EHFILIAL BOOLEAN not null,
+    FILIAL BOOLEAN not null,
     CNPJ VARCHAR(15) not null,
-    RAZAOSOCIAL VARCHAR(150) not null,
-    IE VARCHAR(100) not null,
+    RAZAO_SOCIAL VARCHAR(150) not null,
+    INSCRICAO_ESTADUAL VARCHAR(100) not null,
     ENDERECO VARCHAR (150) not null,
     NUMERO VARCHAR (10) not null,
     CIDADE VARCHAR (50) not null,
     ESTADO VARCHAR (50) not null,
-    TELEFONE VARCHAR(14) not null
+    TELEFONE VARCHAR(14) not null,
+    EMAIL VARCHAR(20) NOT NULL,
+    ATIVO BOOLEAN NOT NULL WITH DEFAULT TRUE
+);
+
+create table ESTOQUE
+(
+    ID INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    ID_LOJA INTEGER NOT NULL references LOJA(ID),
+    ID_PRODUTO INTEGER NOT NULL references PRODUTO(ID),
+    QTD_SALDO DOUBLE NOT NULL
 );
