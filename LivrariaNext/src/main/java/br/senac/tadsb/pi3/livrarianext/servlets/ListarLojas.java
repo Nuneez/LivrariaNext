@@ -64,7 +64,7 @@ public class ListarLojas extends HttpServlet {
                 
             //tratando os atributos            
             Boolean ativos = ativo == null || ativo.isEmpty() ? true : Boolean.parseBoolean(ativo);            
-            
+                        
             //Setando atributos para o jsp
             request.setAttribute("lojas", obterLojas(nome, cnpj, ativos));
             request.setAttribute("ativo", ativos);
@@ -102,6 +102,31 @@ public class ListarLojas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+   
+        String action = request.getParameter("action");
+                
+        try
+        {            
+            switch (action) {
+                case "excluir":
+                    String id = request.getParameter("id");
+                    servico.excluir(Integer.parseInt(id));
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluída com sucesso.\" }");
+        }
+        catch(LojaException ux)
+        {
+            System.out.println(ux.getMessage());
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operação. Detalhes: " + ux.getMessage() + "' }");
+        }
     }
     
     private List<Loja> obterLojas(String nome, String cnpj, Boolean ativos) throws LojaException {

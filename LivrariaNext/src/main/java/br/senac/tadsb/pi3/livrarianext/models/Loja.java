@@ -30,6 +30,10 @@ public class Loja {
     
     private List<Vendedor> funcionarios;
     
+    public Loja(){
+        this.ativo = true;
+    }
+    
     public Loja(String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String email, String inscricaoEstadual){
         this.nome = nome;
         this.ehFilial = ehFilial;
@@ -48,9 +52,10 @@ public class Loja {
         this.estado = estado;        
     }
     
-    public Loja(int id, String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual){
+    public Loja(int id, String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual, Boolean ativo){
         this(nome, ehFilial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
         this.id = id;
+        this.ativo = ativo;
         //this.funcionarios = funcionarios;
     }
     

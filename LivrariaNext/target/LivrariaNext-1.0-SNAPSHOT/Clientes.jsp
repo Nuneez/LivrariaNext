@@ -19,7 +19,6 @@
         <jsp:include page="/shared/menu.jsp"></jsp:include>
         <div class="content">            
             <form action="/LivrariaNext/ListarClientes" method="get">
-                <input type="hidden" id="edit" Value="ManterCliente"/>
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>
@@ -37,7 +36,7 @@
                         <th>Sobrenome</th>
                         <th>CPF</th>
                         <th>Ativo</th>
-                        <th></th>
+                        <th colspan="2"></th>
                       </tr>
                       <c:forEach items="${clientes}" var="cliente">
                         <tr>

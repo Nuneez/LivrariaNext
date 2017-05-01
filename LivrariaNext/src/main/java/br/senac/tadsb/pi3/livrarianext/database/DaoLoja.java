@@ -78,7 +78,7 @@ public class DaoLoja extends Dao<Loja> {
             stt.setString(9, dominio.getEstado());
             stt.setString(10, dominio.getTelefone());
             stt.setString(11, dominio.getEmail());
-            stt.setBoolean(12, true);
+            stt.setBoolean(12, dominio.getAtivo());
 
             stt.setInt(13, dominio.getId());
 
@@ -189,7 +189,8 @@ public class DaoLoja extends Dao<Loja> {
                     rs.getString("cidade"),
                     rs.getString("estado"),
                     rs.getString("email"),
-                    rs.getString("inscricao_estadual")
+                    rs.getString("inscricao_estadual"),
+                    rs.getBoolean("ativo")
             );         
         }
         catch(SQLException sqlex)

@@ -16,11 +16,11 @@
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ManterUsuarios</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Loja</servlet-name>
+        <servlet-name>ManterLojas</servlet-name>
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ManterLojas</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Lojas</servlet-name>
+        <servlet-name>ListarLojas</servlet-name>
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ListarLojas</servlet-class>
     </servlet>
     <servlet>
@@ -40,12 +40,12 @@
         <url-pattern>/ManterUsuarios</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Loja</servlet-name>
-        <url-pattern>/Loja</url-pattern>
+        <servlet-name>ManterLojas</servlet-name>
+        <url-pattern>/ManterLojas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Lojas</servlet-name>
-        <url-pattern>/Lojas</url-pattern>
+        <servlet-name>ListarLojas</servlet-name>
+        <url-pattern>/ListarLojas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Vendas</servlet-name>
