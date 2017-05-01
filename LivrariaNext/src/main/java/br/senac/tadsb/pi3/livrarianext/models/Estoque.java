@@ -13,6 +13,7 @@ import br.senac.tadsb.pi3.livrarianext.exceptions.LojaException;
  * @author roger
  */
 public class Estoque {
+    
     private int id;
     private Loja loja;
     private Produto produto;
