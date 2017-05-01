@@ -67,7 +67,7 @@
                 <hr>
                 <div class="row">
                     <input type="submit" value="Enviar">
-                    <input type='reset' value='Cancelar'>
+                    <input id="cancelar" name="cancelar" type='reset' value='Cancelar'>
                 </div>
             </form>
         </div>
