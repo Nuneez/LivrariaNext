@@ -14,12 +14,12 @@ import java.util.List;
 public class Servico extends Item {    
     private List<String> materiais;
     
-    public Servico(String nome, String descricao, double custo, double preco){
-        super(nome, descricao, custo, preco);
+    public Servico(String nome, String descricao, double custo, double preco, Boolean ativo){
+        super(nome, descricao, custo, preco, ativo);
     }
     
-    public Servico(int id, String nome, String descricao, double custo, double preco, List<String> materiais){
-        super(id, nome, descricao, custo, preco);
+    public Servico(int id, String nome, String descricao, double custo, double preco, Boolean ativo, List<String> materiais){
+        super(id, nome, descricao, custo, preco, ativo);
         this.materiais = materiais;
     }
 }

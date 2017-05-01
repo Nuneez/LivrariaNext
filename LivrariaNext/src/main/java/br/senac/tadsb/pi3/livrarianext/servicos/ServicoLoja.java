@@ -22,8 +22,7 @@ public class ServicoLoja extends Servico<Loja> {
     public ServicoLoja(Dao dao) {
         super(dao);
         this.dao = (DaoLoja)dao;
-    }
-    
+    }    
     
     public void incluir(String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual)  throws LojaException {
         try

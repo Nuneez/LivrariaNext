@@ -27,7 +27,6 @@ public class Loja {
     private String email;
     private Boolean ativo;
     
-    
     private List<Vendedor> funcionarios;
     
     public Loja(){
