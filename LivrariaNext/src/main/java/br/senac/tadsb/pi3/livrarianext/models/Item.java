@@ -17,14 +17,14 @@ public class Item {
     private double preco;
     private Boolean ativo;
     
-    public Item(){}
+    public Item(){ this.ativo = true; }
     
-    public Item(String nome, String descricao, double custo, double preco, Boolean ativo){
+    public Item(String nome, String descricao, double custo, double preco, Boolean ativo){        
+        this();
         this.nome = nome;
         this.descricao = descricao;
         this.custo = custo;
         this.preco = preco;
-        this.ativo = ativo;
     }
     
     public Item(int id, String nome, String descricao, double custo, double preco, Boolean ativo){

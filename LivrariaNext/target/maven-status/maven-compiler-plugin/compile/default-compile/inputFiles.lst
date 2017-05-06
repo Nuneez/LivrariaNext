@@ -1,12 +1,15 @@
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\enums\TipoMovimento.java
+C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\exceptions\ParserHelperException.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\database\Dao.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\models\Servico.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\exceptions\DaoException.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\models\Usuario.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servicos\ServicoProduto.java
+C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\helpers\Parser.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\models\Cliente.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\models\Estoque.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servlets\ManterClientes.java
+C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servlets\ManterProdutos.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\exceptions\UsuarioException.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servlets\Vendas.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\database\ConnectionUtils.java
@@ -24,7 +27,7 @@ C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\models\Loja.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\database\DaoEstoque.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servicos\ServicoUsuario.java
-C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\livrarianext\helpers\Parser.java
+C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servlets\ListarProdutos.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servlets\ListarClientes.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servlets\ListarUsuarios.java
 C:\Users\roger\Documents\Pessoal\Senac\Projeto PI\LivrariaNext\LivrariaNext\src\main\java\br\senac\tadsb\pi3\livrarianext\servlets\ManterUsuarios.java

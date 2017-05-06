@@ -6,10 +6,9 @@
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.database.*;
-import br.senac.tadsb.pi3.livrarianext.exceptions.*;
-import br.senac.tadsb.pi3.livrarianext.models.Usuario;
-import br.senac.tadsb.pi3.livrarianext.servicos.ServicoUsuario;
-import br.senac.tadsb.pi3.livrarianext.helpers.Parser;
+import br.senac.tadsb.pi3.livrarianext.exceptions.ProdutoException;
+import br.senac.tadsb.pi3.livrarianext.models.Produto;
+import br.senac.tadsb.pi3.livrarianext.servicos.ServicoProduto;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,19 +22,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class ListarUsuarios extends HttpServlet {
+public class ListarProdutos extends HttpServlet {
+
+    private ServicoProduto servico;
     
-    private ServicoUsuario servico;
-    
-    public ListarUsuarios(){
+    public ListarProdutos(){
         try
         {
             ConnectionUtils util = new ConnectionUtils();            
-            servico = new ServicoUsuario(new DaoUsuario(util), new DaoPerfil(util));
+            servico = new ServicoProduto(new DaoProduto(util));
         }
-        catch(UsuarioException ux){
-             System.out.println(ux.getMessage());
-         }
          catch(SQLException sqlex){
              System.out.println(sqlex.getMessage());
          }
@@ -43,7 +39,7 @@ public class ListarUsuarios extends HttpServlet {
              System.out.println(ex.getMessage());
          }
     }
-    
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -55,24 +51,22 @@ public class ListarUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         try
         {
             //Obtendo parametros
             String nome = request.getParameter("nome");
+            String cnpj = request.getParameter("cnpj");
             String ativo = request.getParameter("ativo");
-            String perfil = request.getParameter("perfil");
                 
             //tratando os atributos            
             Boolean ativos = ativo == null || ativo.isEmpty() ? true : Boolean.parseBoolean(ativo);            
-            
+                        
             //Setando atributos para o jsp
-            request.setAttribute("perfis", servico.obterPerfis());
-            request.setAttribute("usuarios", obterUsuarios(nome, ativos, Parser.tryParseInt(perfil)));
+            request.setAttribute("produtos", obterProdutos(nome, cnpj, ativos));
             request.setAttribute("ativo", ativos);
 
             //Despachando a requisição
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Produtos.jsp");
 
             try
             {
@@ -80,17 +74,17 @@ public class ListarUsuarios extends HttpServlet {
             }
             catch(IOException ex)
             {
-                throw new UsuarioException("Não foi possível enviar a requisição.");
+                throw new ProdutoException("Não foi possível enviar a requisição.");
             }
         }
-        catch(UsuarioException ux)
+        catch(ProdutoException ux)
         {
             System.out.println(ux.getMessage());
         }        
         catch(Exception ex)
         {
             System.out.println(ex.getMessage());
-        }
+        }        
     }
 
     /**
@@ -103,16 +97,16 @@ public class ListarUsuarios extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-   
+            throws ServletException, IOException {   
+        
         String action = request.getParameter("action");
                 
         try
         {            
             switch (action) {
                 case "excluir":
-                    String usuarioId = request.getParameter("id");
-                    servico.excluir(Integer.parseInt(usuarioId));
+                    String id = request.getParameter("id");
+                    servico.excluir(Integer.parseInt(id));
                     break;
                 default:
                     throw new AssertionError();
@@ -122,16 +116,16 @@ public class ListarUsuarios extends HttpServlet {
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"OperaÃ§Ã£o concluÃ­da com sucesso.\" }");
         }
-        catch(UsuarioException ux)
+        catch(ProdutoException ux)
         {
             System.out.println(ux.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operaÃ§Ã£o. Detalhes: " + ux.getMessage() + "' }");
-        }        
+        }
     }
-    
-    private List<Usuario> obterUsuarios(String nome, Boolean ativos, int perfil) throws UsuarioException {
-        return servico.obterUsuarios(nome, ativos, perfil);
-    }    
+   
+    private List<Produto> obterProdutos(String nome, String cnpj, Boolean ativos) throws ProdutoException {
+        return servico.obterProdutos(nome, cnpj);
+    }  
 }

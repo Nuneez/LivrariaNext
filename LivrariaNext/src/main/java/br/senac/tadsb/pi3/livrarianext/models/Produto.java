@@ -13,8 +13,11 @@ public class Produto extends Item {
     private double precoMedio;
     private String ean;
         
-    public Produto(String nome, String descricao, double custo, double preco){
+    public Produto(){ super(); }
+    
+    public Produto(String nome, String descricao, double custo, double preco, String ean){
         super(nome, descricao, custo, preco, true);
+        this.ean = ean;
     }
     
     public Produto(int id, String nome, String descricao, double custo, double preco, String ean, Boolean ativo){

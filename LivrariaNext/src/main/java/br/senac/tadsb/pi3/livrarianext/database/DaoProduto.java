@@ -37,8 +37,9 @@ public class DaoProduto extends Dao<Produto> {
             stt.setString(1, dominio.getNome());
             stt.setString(2, dominio.getDescricao());
             stt.setDouble(3, dominio.getCusto());
-            stt.setDouble(4, dominio.getPrecoMedio());
-            stt.setBoolean(5, true);
+            stt.setDouble(4, dominio.getPreco());
+            stt.setString(5, dominio.getEan());
+            stt.setBoolean(6, true);
 
             stt.execute();
         }
@@ -58,15 +59,16 @@ public class DaoProduto extends Dao<Produto> {
     public void alterar(Produto dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("update produto set NOMECOMUM = ?, DESCRICAO = ?, CUSTO = ?,  CUSTO = ?, EAN = ?, ativo = ? where id = ?");
+            PreparedStatement stt = obterStatement("update produto set NOMECOMUM = ?, DESCRICAO = ?, CUSTO = ?,  precomedio = ?, EAN = ?, ativo = ? where id = ?");
 
             stt.setString(1, dominio.getNome());
             stt.setString(2, dominio.getDescricao());
             stt.setDouble(3, dominio.getCusto());
-            stt.setDouble(4, dominio.getPrecoMedio());
-            stt.setBoolean(5, dominio.getAtivo());
+            stt.setDouble(4, dominio.getPreco());
+            stt.setString(5, dominio.getEan());
+            stt.setBoolean(6, dominio.getAtivo());
 
-            stt.setInt(6, dominio.getId());
+            stt.setInt(7, dominio.getId());
 
             stt.execute();
         }
@@ -140,12 +142,12 @@ public class DaoProduto extends Dao<Produto> {
 
             ResultSet rs = getList(query);
 
-            List<Produto> lojas = new ArrayList<>();
+            List<Produto> dominios = new ArrayList<>();
 
             while (rs.next())
-                lojas.add(obterDominio(rs));
+                dominios.add(obterDominio(rs));
 
-            return lojas;
+            return dominios;
         }        
         catch(SQLException sqlex)
         {

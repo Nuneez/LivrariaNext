@@ -21,8 +21,8 @@
                     <input type="hidden" name="id" value="${produto.id}" />
                 <div class="session">
                     <div class="row">
-                        <label for="nome">Titulo</label>
-                        <input id="nome" type="text" name="titulo" value="${produto.nomecomum}" />
+                        <label for="nome">Nome</label>
+                        <input id="nome" type="text" name="nome" value="${produto.nome}" />
                     </div>
                     <div class="row">
                         <label for="ean">EAN</label>
@@ -41,8 +41,7 @@
                 <hr>
                 <div class="row">
                     <label for="descricao">Descrição</label>
-                    <textarea rows="4" cols="50" name="descriacao" id="descricao" value="${produto.descricao}">
-                    </textarea>
+                    <textarea rows="4" cols="50" name="descricao" id="descricao" value="${produto.descricao}"></textarea>
                 </div>                         
                 <hr> 
                 <div class="row">
