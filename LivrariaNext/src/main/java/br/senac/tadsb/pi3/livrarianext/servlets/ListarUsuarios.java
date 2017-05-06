@@ -9,7 +9,7 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Usuario;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoUsuario;
-import br.senac.tadsb.livrarianext.helpers.Parser;
+import br.senac.tadsb.pi3.livrarianext.helpers.Parser;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;

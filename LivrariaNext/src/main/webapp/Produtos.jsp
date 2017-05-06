@@ -19,7 +19,6 @@
         <jsp:include page="/shared/menu.jsp"></jsp:include>
         <div class="content">            
             <form action="/LivrariaNext/ListarProdutos" method="get">
-                <input type="hidden" id="edit" Value="ManterProdutos"/>
                 <div class="session">
                     <div class="row">
                         <label for="nome">Titulo</label>
@@ -43,12 +42,12 @@
                         <th>Descrição</th>
                         <th></th>
                       </tr>
-                      <c:forEach items="${Produtos}" var="produto">
+                      <c:forEach items="${produtos}" var="produto">
                         <tr>
                           <td><c:out value="${produto.id}" /></td>
-                          <td><c:out value="${protudo.nomecomum}" /></td>                       
+                          <td><c:out value="${produto.nome}" /></td>                       
                           <td><c:out value="${produto.ativo?'SIM':'NÃO'}" /></td>
-                          <td><c:out value="${protudo.descricao}" /></td>
+                          <td><c:out value="${produto.descricao}" /></td>
                           <td><input type="button" class="btn-editar" data-id="${produto.id}" Value="Editar" /></td>
                           <td><input type="button" class="btn-excluir" data-id="${produto.id}" Value="Excluir" /></td>
                         </tr>

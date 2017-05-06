@@ -22,14 +22,12 @@ public class ServicoProduto extends Servico<Produto> {
     public ServicoProduto(Dao dao) {
         super(dao);
         this.dao = (DaoProduto)dao;
-    }
+    }        
     
-        
-    
-    public void incluir(String nome, String descricao, Double custo, Double preco)  throws ProdutoException {
+    public void incluir(String nome, String descricao, Double custo, Double preco, String ean)  throws ProdutoException {
         try
         {
-            Produto novo = new Produto(nome, descricao, custo, preco);
+            Produto novo = new Produto(nome, descricao, custo, preco, ean);
             super.incluir(novo);
         }
         catch(ServicoException se)
@@ -38,7 +36,7 @@ public class ServicoProduto extends Servico<Produto> {
         }
     }
     
-    public void alterar(int id, String nome, String descricao, Double custo, Double preco, Boolean ativo) throws ProdutoException {
+    public void alterar(int id, String nome, String descricao, Double custo, Double preco, String ean, Boolean ativo) throws ProdutoException {
         try
         {
             Produto dominio = dao.obterPorId(id);
@@ -46,6 +44,7 @@ public class ServicoProduto extends Servico<Produto> {
             dominio.setDescricao(descricao);
             dominio.setCusto(custo);
             dominio.setPreco(preco);
+            dominio.setEan(ean);
             dominio.setAtivo(ativo);
             
             super.alterar(dominio);
@@ -88,7 +87,7 @@ public class ServicoProduto extends Servico<Produto> {
         }
     }
     
-    public Produto obterLojaPorId(int id) throws ProdutoException  {
+    public Produto obterProdutoPorId(int id) throws ProdutoException  {
         try
         {
             return dao.obterPorId(id);
@@ -98,5 +97,5 @@ public class ServicoProduto extends Servico<Produto> {
             sqlex.printStackTrace();
             throw new ProdutoException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
-    }
+    }    
 }
