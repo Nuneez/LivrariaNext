@@ -13,6 +13,7 @@
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lista.css">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/lista.js"></script>
+        <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/listaLoja.js"></script>
         <title>Lojas</title>
     </head>
     <body>
@@ -40,7 +41,7 @@
                         <th>Cidade</th>
                         <th>CNPJ</th>
                         <th>Ativo</th>
-                        <th colspan="2"></th>
+                        <th colspan="3"></th>
                       </tr>
                       <c:forEach items="${lojas}" var="loja">
                         <tr>
@@ -51,6 +52,7 @@
                           <td><c:out value="${loja.ativo?'SIM':'NÃO'}" /></td>
                           <td><input type="button" class="btn-editar" data-id="${loja.id}" Value="Editar" /></td>
                           <td><input type="button" class="btn-excluir" data-id="${loja.id}" Value="Excluir" /></td>
+                          <td><input type="button" class="btn-estoque" data-id="${loja.id}" Value="Estoque" /></td>
                         </tr>
                       </c:forEach>
                     </table>                        

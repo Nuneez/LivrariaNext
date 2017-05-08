@@ -5,8 +5,8 @@
  */
 package br.senac.tadsb.pi3.livrarianext.models;
 
-import  br.senac.tadsb.pi3.livrarianext.enums.TipoMovimento;
-import br.senac.tadsb.pi3.livrarianext.exceptions.LojaException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,17 +16,19 @@ public class Estoque {
     
     private int id;
     private Loja loja;
-    private Produto produto;
-    private Double saldo;
+    private Boolean ativo;
+    private List<EstoqueProduto> produtos;
     
-    public Estoque(Loja loja, Produto produto, Double saldo){
+    public Estoque(){ ativo = true; }
+    
+    public Estoque(Loja loja){
         this.loja = loja;
-        this.produto = produto;
-        this.saldo = saldo;
+        this.ativo = true;
     }
     
-    public Estoque(int id, Loja loja, Produto produto, Double saldo){
-        this(loja, produto, saldo);
+    public Estoque(int id, Loja loja, Boolean ativo){
+        this(loja);
+        this.ativo = ativo;
         this.id = id;
     }
 
@@ -59,42 +61,37 @@ public class Estoque {
     }
 
     /**
-     * @return the produto
+     * @return the ativo
      */
-    public Produto getProduto() {
-        return produto;
+    public Boolean getAtivo() {
+        return ativo;
     }
 
     /**
-     * @param produto the produto to set
+     * @param ativo the ativo to set
      */
-    public void setProduto(Produto produto) {
-        this.produto = produto;
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     /**
-     * @return the saldo
+     * @return the produtos
      */
-    public Double getSaldo() {
-        return saldo;
+    public List<EstoqueProduto> getProdutos() {
+        return produtos;
     }
 
     /**
-     * @param saldo the saldo to set
+     * @param produtos the produtos to set
      */
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
+    public void setProdutos(List<EstoqueProduto> produtos) {
+        this.produtos = produtos;
     }
     
-    public void atualizarSaldo(TipoMovimento tipo, Double quantidade) throws LojaException {
-        if (tipo == TipoMovimento.ENTRADA){
-            this.saldo += quantidade;
-            return;
-        }
+    public void adicionarNovoProduto(EstoqueProduto produto) {
+        if (this.produtos == null)
+            this.produtos = new ArrayList<>();
         
-        if (this.saldo - quantidade < 0)
-            throw new LojaException("Saldo insuficiente para realizar a saída!");
-        
-        this.saldo -= quantidade;
+        this.produtos.add(produto);
     }
 }
