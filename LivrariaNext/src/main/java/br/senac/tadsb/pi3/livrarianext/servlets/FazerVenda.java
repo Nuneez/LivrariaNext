@@ -7,7 +7,7 @@ package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.exceptions.UsuarioException;
 import br.senac.tadsb.pi3.livrarianext.models.Usuario;
-import br.senac.tadsb.pi3.livrarianext.servicos.ServicoVenda;
+//import br.senac.tadsb.pi3.livrarianext.servicos.ServicoVenda;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Thiago
  */
 public class FazerVenda extends HttpServlet {
-    ServicoVenda servico;
+    //ServicoVenda servico;
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -68,29 +68,29 @@ public class FazerVenda extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //Obtendo parametros
-        String id = request.getParameter("id");
-        String nome = request.getParameter("nome");
-        String sobrenome = request.getParameter("sobrenome");
-        String username  = request.getParameter("username");
-        String email  = request.getParameter("email");
-        String ativo = request.getParameter("ativo");
-        String perfil = request.getParameter("perfil");
-        
-        try
-        {            
-            if (id.isEmpty() || id.equals("0"))            
-                servico.incluir(nome, sobrenome, username, email, Integer.parseInt(perfil));
-            else
-                servico.alterar(Integer.parseInt(id), nome, sobrenome, Boolean.parseBoolean(ativo), Integer.parseInt(perfil));
-                        
-            response.sendRedirect("ListarUsuarios");
-        }
-        catch(UsuarioException ue)
-        {
-            
-        } catch (Exception ex) {
-            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        String id = request.getParameter("id");
+//        String nome = request.getParameter("nome");
+//        String sobrenome = request.getParameter("sobrenome");
+//        String username  = request.getParameter("username");
+//        String email  = request.getParameter("email");
+//        String ativo = request.getParameter("ativo");
+//        String perfil = request.getParameter("perfil");
+//        
+//        try
+//        {            
+//            if (id.isEmpty() || id.equals("0"))            
+//                servico.incluir(nome, sobrenome, username, email, Integer.parseInt(perfil));
+//            else
+//                servico.alterar(Integer.parseInt(id), nome, sobrenome, Boolean.parseBoolean(ativo), Integer.parseInt(perfil));
+//                        
+//            response.sendRedirect("ListarUsuarios");
+//        }
+//        catch(UsuarioException ue)
+//        {
+//            
+//        } catch (Exception ex) {
+//            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     /**
