@@ -22,7 +22,8 @@ public class DaoEstoque extends Dao<Estoque> {
     final String queryPadrao = "select "
             + "e.*, l.*, p.* from estoque e "
             + "inner join loja l on (l.id == e.id_loja) "
-            + "inner join produto p on (p.id == e.id_produto) ";
+            + "inner join estoque_produto ep on (ep.id_estoque == e.id) "
+            + "inner join produto p on (p.id == ep.id_produto) ";
     
     public DaoEstoque() throws SQLException, Exception {
         super(new ConnectionUtils());
@@ -36,10 +37,9 @@ public class DaoEstoque extends Dao<Estoque> {
     public void incluir(Estoque dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("insert into estoque (ID_LOJA, ID_PRODUTO, QTD_SALDO) values (?,?,?)");
+            PreparedStatement stt = obterStatement("insert into estoque (ID_LOJA, ATIVO) values (?,?)");
             stt.setInt(1, dominio.getLoja().getId());
-            stt.setInt(2, dominio.getProduto().getId());
-            stt.setDouble(3, dominio.getSaldo());
+            stt.setBoolean(2, true);
 
             stt.execute();
         }
@@ -57,15 +57,16 @@ public class DaoEstoque extends Dao<Estoque> {
 
     @Override
     public void alterar(Estoque dominio) throws DaoException {
+        throw new DaoException("Entidade Estoque não pode ser atualizada.");
+    }     
+
+    @Override
+    public void excluir(Estoque dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("update estoque set QTD_SALDO = ? where id = ?");
-
-            stt.setInt(1, dominio.getLoja().getId());
-            stt.setInt(2, dominio.getProduto().getId());
-            stt.setDouble(3, dominio.getSaldo());
-
-            stt.setInt(4, dominio.getId());
+            PreparedStatement stt = obterStatement("update estoque set aivo = ? where id = ?");
+            stt.setBoolean(1, false);
+            stt.setInt(2, dominio.getId());
 
             stt.execute();
         }
@@ -157,16 +158,7 @@ public class DaoEstoque extends Dao<Estoque> {
                         rs.getString("inscricao_estadual"),
                         rs.getBoolean("ativo")
                     ),
-                    new Produto(
-                        rs.getInt("id"),
-                        rs.getString("NOMECOMUM"),
-                        rs.getString("DESCRICAO"),
-                        rs.getDouble("CUSTO"),
-                        rs.getDouble("PRECOMEDIO"),
-                        rs.getString("EAN"),
-                        rs.getBoolean("ativo")
-                    ),
-                    rs.getDouble("CUSTO")
+                    rs.getBoolean("ativo")
             );         
         }
         catch(SQLException sqlex)
@@ -174,10 +166,5 @@ public class DaoEstoque extends Dao<Estoque> {
             sqlex.printStackTrace();
             throw new DaoException();
         }
-    }    
-
-    @Override
-    public void excluir(Estoque dominio) throws DaoException {
-        throw new UnsupportedOperationException("Não é permitido excluir um estoque."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }   
 }

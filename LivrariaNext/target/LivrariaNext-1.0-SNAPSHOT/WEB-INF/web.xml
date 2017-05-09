@@ -35,6 +35,10 @@
         <servlet-name>FazerPedido</servlet-name>
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.FazerPedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarEstoques</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ListarEstoques</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarUsuarios</servlet-name>
         <url-pattern>/ListarUsuarios</url-pattern>
@@ -64,8 +68,13 @@
         <url-pattern>/ManterProdutos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>FazerPedido</servlet-name>
         <url-pattern>/FazerPedido</url-pattern>
+=======
+        <servlet-name>ListarEstoques</servlet-name>
+        <url-pattern>/ListarEstoques</url-pattern>
+>>>>>>> fdaa52bca88d7d05017fe54cca116b69edc94d83
     </servlet-mapping>
     <session-config>
         <session-timeout>
