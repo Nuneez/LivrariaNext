@@ -12,7 +12,7 @@
     <nav>  
         <a href="/LivrariaNext/ListarClientes">Clientes</a>
         <a href="/LivrariaNext/ListarProdutos">Produtos</a>
-        <a href="/LivrariaNext/Vendas">Vendas</a>
+        <a href="/LivrariaNext/FazerPedido">Vendas</a>
         <a href="/LivrariaNext/ListarUsuarios">Usuários</a>
         <a href="/LivrariaNext/ListarLojas">Lojas</a>
     </nav>

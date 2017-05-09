@@ -5,6 +5,7 @@
  */
 package br.senac.tadsb.pi3.livrarianext.servicos;
 
+import br.senac.tadsb.pi3.livrarianext.database.Dao;
 import br.senac.tadsb.pi3.livrarianext.database.DaoCliente;
 import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;

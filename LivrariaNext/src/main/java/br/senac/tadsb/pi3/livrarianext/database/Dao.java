@@ -29,7 +29,7 @@ public abstract class Dao<T> {
     public abstract void incluir(T dominio) throws DaoException;
     public abstract void alterar(T dominio) throws DaoException;
     public abstract void excluir(T dominio) throws DaoException;
-    protected abstract T obterPorId(int id) throws DaoException;
+    public abstract T obterPorId(int id) throws DaoException;
     protected abstract T obterDominio(ResultSet rs) throws DaoException;
     
     protected PreparedStatement obterStatementRetornaId(String command) throws java.sql.SQLException, Exception {
