@@ -65,6 +65,10 @@ public class Pedido {
         this.total = 0;
     }
 
+    public Pedido(Cliente cliente, Usuario vendedor, Loja loja) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId() {
         return id;
     }

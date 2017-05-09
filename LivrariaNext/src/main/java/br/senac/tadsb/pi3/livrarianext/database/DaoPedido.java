@@ -5,12 +5,9 @@
  */
 package br.senac.tadsb.pi3.livrarianext.database;
 
-import br.senac.tadsb.pi3.livrarianext.models.Perfil;
-import br.senac.tadsb.pi3.livrarianext.models.Usuario;
 import br.senac.tadsb.pi3.livrarianext.exceptions.DaoException;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.models.Pedido;
-import br.senac.tadsb.pi3.livrarianext.models.Produto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +21,7 @@ import java.util.List;
 public class DaoPedido extends Dao<Pedido> {
     private String queryPadrao = "SELECT * FROM pedido ";
     
-    public DaoPedido() throws SQLException, Exception {
+    public DaoPedido() throws SQLException {
         super(new ConnectionUtils());
     }    
     

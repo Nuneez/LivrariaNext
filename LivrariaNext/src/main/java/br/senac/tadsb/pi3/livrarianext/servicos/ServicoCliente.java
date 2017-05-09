@@ -20,9 +20,9 @@ public class ServicoCliente extends Servico<Cliente> {
 
     final DaoCliente dao;
     
-    public ServicoCliente(DaoCliente dao) throws ClienteException {
+    public ServicoCliente(DaoCliente dao) {
         super(dao);
-        this.dao = dao;
+        this.dao = (DaoCliente) dao;
     }
     
     public void incluir(String nome, String sobrenome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro)  throws ClienteException {

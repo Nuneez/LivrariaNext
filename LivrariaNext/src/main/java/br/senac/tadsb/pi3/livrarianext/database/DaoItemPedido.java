@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 public class DaoItemPedido extends Dao<ItemPedido> {
     private String queryPadrao = "SELECT * FROM item_pedido ";
     
-    public DaoItemPedido() throws SQLException, Exception {
+    public DaoItemPedido() throws SQLException {
         super(new ConnectionUtils());
     }    
     
@@ -40,9 +40,9 @@ public class DaoItemPedido extends Dao<ItemPedido> {
         try {                   
             PreparedStatement stt = obterStatement("INSERT INTO item_pedido (id_pedido, id_produto, qtd_produto, val_unitario) VALUES (?,?,?,?)");
             stt.setInt(1, itemPedido.getIdPedido());
-            stt.setInt(2, itemPedido.getProduto().getId());
+            stt.setInt(2, itemPedido.getProduto());
             stt.setInt(3, itemPedido.getQuantidade());
-            stt.setDouble(4, itemPedido.getProduto().getPreco());
+            stt.setDouble(4, itemPedido.getValor());
             stt.execute();
         }
         catch(SQLException sqlex)
@@ -63,9 +63,9 @@ public class DaoItemPedido extends Dao<ItemPedido> {
         {
             PreparedStatement stt = obterStatement("UPDATE item_pedido SET id_pedido = ?, id_produto = ?, qtn_produto = ?, val_unitario = ? where id = ?");
             stt.setInt(1, itemPedido.getIdPedido());
-            stt.setInt(2, itemPedido.getProduto().getId());
+            stt.setInt(2, itemPedido.getProduto());
             stt.setInt(3, itemPedido.getQuantidade());
-            stt.setDouble(4, itemPedido.getProduto().getPreco());
+            stt.setDouble(4, itemPedido.getValor());
             stt.setInt(5, itemPedido.getId());
 
             stt.execute();
@@ -164,7 +164,7 @@ public class DaoItemPedido extends Dao<ItemPedido> {
             final int idProduto = rs.getInt("id_produto");
             final int qtdProduto = rs.getInt("qtn_produto");
             final double val_unitario = rs.getDouble("val_unitario");
-            return new ItemPedido(id, idPedido, qtdProduto, idProduto);
+            return new ItemPedido(id, idPedido, qtdProduto, idProduto, val_unitario);
         }  catch(SQLException sqlex) {
             sqlex.printStackTrace();
             throw new DaoException();
