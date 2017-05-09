@@ -68,13 +68,13 @@
         <url-pattern>/ManterProdutos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>FazerPedido</servlet-name>
         <url-pattern>/FazerPedido</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
+
         <servlet-name>ListarEstoques</servlet-name>
         <url-pattern>/ListarEstoques</url-pattern>
->>>>>>> fdaa52bca88d7d05017fe54cca116b69edc94d83
     </servlet-mapping>
     <session-config>
         <session-timeout>
