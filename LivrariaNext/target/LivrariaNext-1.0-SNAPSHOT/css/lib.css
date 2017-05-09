@@ -3,13 +3,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 16/04/2017, 06:41:34
     Author     : Thiago
 */
 
 body{
-    font-family: tahoma;    
+    font-family: tahoma;
     font-size: 13px;
 }
 
@@ -17,13 +17,9 @@ body{
     height: 90px;
     width: 100%;
     /* TODO: Remover depois */
-    border-bottom: 1px solid black; 
+    border-bottom: 1px solid black;
     display: flex;
     align-items: flex-end;
-}
-
-#logo-space {
-    margin: auto;
 }
 #logo-space img {
     max-height: 85px;
@@ -76,14 +72,14 @@ nav a {
     float: right;
 }
 
-input, select {
+input, select, button {
     margin-left: 5px;
-    border:solid 1px #2d2d2d;  
-    text-align:center; 
-    background: white; 
+    border:solid 1px #2d2d2d;
+    text-align:center;
+    background: white;
     padding: 5px;
     border-radius: 3px;
     /* Fazer o border radius funcionar no firefox e chrome */
-    -moz-border-radius: 3px;  
-    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
 }

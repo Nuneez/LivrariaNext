@@ -122,7 +122,7 @@ public class DaoPedido extends Dao<Pedido> {
             
             ResultSet rs = getList(query);
 
-            List<Pedido> pedidos = new ArrayList<>();        
+            List<Pedido> pedidos = new ArrayList<Pedido>();        
 
             while (rs.next()) {
                 pedidos.add(this.extrairPedido(rs));
