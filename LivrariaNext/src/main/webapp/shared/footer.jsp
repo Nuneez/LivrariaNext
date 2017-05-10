@@ -6,4 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<footer></footer>
+<footer>
+    <p>Desenvolvido por Next</p>
+</footer>

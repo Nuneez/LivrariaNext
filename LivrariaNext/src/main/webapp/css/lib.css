@@ -9,8 +9,8 @@ and open the template in the editor.
 */
 
 body{
-    font-family: tahoma;
-    font-size: 13px;
+    font-family: Times New Roman;
+    font-size: 16px;
 }
 
 #header-space {
@@ -22,7 +22,7 @@ body{
     align-items: flex-end;
 }
 #logo-space img {
-    max-height: 85px;
+    max-height: 100px;
 }
 
 nav {
@@ -36,7 +36,7 @@ nav a {
 }
 
 #logo-space {
-    max-height: 80px;
+    max-height: 100px;
 }
 
 .content {

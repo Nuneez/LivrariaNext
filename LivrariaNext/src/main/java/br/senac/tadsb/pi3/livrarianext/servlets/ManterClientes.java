@@ -9,6 +9,8 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
+import br.senac.tadsb.pi3.livrarianext.validar.Email;
+import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,6 +107,21 @@ public class ManterClientes extends HttpServlet {
         //String nascimento = request.getParameter("nascimento");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
+       
+        Email e = new Email(email);
+        Telefone tell = new Telefone(telefone);
+        String mensagemDeErro = null;
+        if(!e.validarEmail()){
+            System.out.println("E-mail invalido, digite novamente !");
+            mensagemDeErro = "E-mail invalido, digite novamente !";
+        }
+        if(!tell.validarTelefone()){
+            System.out.println("Telefone invalido, digite novamente !");
+            mensagemDeErro = "Telefone invalido, digite novamente !";
+            //JOptionPane.showMessageDialog(null, mensagemDeErro);
+        }
+        
+        request.setAttribute("erro", mensagemDeErro);
         
         try
         {
@@ -112,7 +130,11 @@ public class ManterClientes extends HttpServlet {
             else
                 servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
                         
-            response.sendRedirect("ListarClientes");
+            //response.sendRedirect("ListarClientes");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+            request.setAttribute("nome", nome);
+            dispatcher.forward(request, response);
+           
         }
         catch(ClienteException ue)
         {

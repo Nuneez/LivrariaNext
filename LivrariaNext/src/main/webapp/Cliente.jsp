@@ -16,6 +16,7 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
+        <div>${erro == null? '': erro }</div>
         <div class="content">
             <form action="/LivrariaNext/ManterClientes" method="post">
                 <input type="hidden" name="id" value="${cliente.id}" />
@@ -46,10 +47,11 @@
                 <div class="row">
                     <label for="endereco">Endereço</label>
                     <input type="text" name="endereco" id="endereco" value="${cliente.endereco}"/>
+                    <label for="numero">Numero</label>
+                    <input type="number" name="numero" id="numero" value="${cliente.numero}"/>
                     <label for="bairro">Bairro</label>
                     <input type="text" name="bairro" id="bairro" value="${cliente.bairro}"/>
-                    <label for="numero">N</label>
-                    <input type="number" name="numero" id="numero" value="${cliente.numero}"/>
+                    
                 </div>
                 <div class="row">
                     <label for="email">Email</label>
