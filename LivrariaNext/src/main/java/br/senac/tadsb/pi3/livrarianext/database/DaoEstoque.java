@@ -20,10 +20,8 @@ import java.util.List;
 public class DaoEstoque extends Dao<Estoque> {
 
     final String queryPadrao = "select "
-            + "e.*, l.*, p.* from estoque e "
-            + "inner join loja l on (l.id == e.id_loja) "
-            + "inner join estoque_produto ep on (ep.id_estoque == e.id) "
-            + "inner join produto p on (p.id == ep.id_produto) ";
+            + "e.*, l.* from estoque e "
+            + "inner join loja l on (l.id == e.id_loja) ";
     
     public DaoEstoque() throws SQLException, Exception {
         super(new ConnectionUtils());
@@ -62,28 +60,11 @@ public class DaoEstoque extends Dao<Estoque> {
 
     @Override
     public void excluir(Estoque dominio) throws DaoException {
-        try
-        {
-            PreparedStatement stt = obterStatement("update estoque set aivo = ? where id = ?");
-            stt.setBoolean(1, false);
-            stt.setInt(2, dominio.getId());
-
-            stt.execute();
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
-            throw new DaoException();
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new DaoException();
-        }
+        throw new DaoException("Entidade Estoque não pode ser excluida.");
     }
 
     @Override
-    protected Estoque obterPorId(int id) throws DaoException {
+    public Estoque obterPorId(int id) throws DaoException {
         try
         {
             ResultSet rs = getList(queryPadrao + " and id = " + id);
@@ -105,25 +86,70 @@ public class DaoEstoque extends Dao<Estoque> {
         }  
     }
     
-    public List<Estoque> obterEstoques(int lojaId, int produtoId) throws DaoException {
+    public Estoque obterPorLoja(int lojaId) throws DaoException {
         try
         {
-            String query = queryPadrao;
+            ResultSet rs = getList(queryPadrao + " and l.id = " + lojaId);
 
-            if (lojaId != 0)
-                query = tratarQuery(query) + " l.id_loja = " + lojaId;
+            while (rs.next())
+            {
+                Estoque dominio = obterDominio(rs);                
+                dominio.setProdutos(obterProdutos(dominio));                
+                return dominio;
+            }
 
-            if (produtoId != 0)
-                query = tratarQuery(query) + " l.id_produto = " + produtoId;
+            return null;
+        }        
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }  
+    }
+    
+    private List<EstoqueProduto> obterProdutos(Estoque estoque) throws DaoException {
+        try
+        {            
+            String query = 
+                    "select"
+                    + "ep.id, "
+                    + "ep.saldo, "
+                    + "p.id as id_produto, "
+                    + "p.nome,"
+                    + "p.descricao, "
+                    + "p.preco, "
+                    + "p.ean "
+                    + "from "
+                    + "left outer join estoque_produto ep on (ep.id_estoque = e.id) "
+                    + "left outer join produto p on (p.id = ep.id_produto) "
+                    + "where"
+                    + "l.id = " + estoque.getLoja().getId();
 
             ResultSet rs = getList(query);
 
-            List<Estoque> lojas = new ArrayList<>();
+            List<EstoqueProduto> produtos = new ArrayList<>();
 
             while (rs.next())
-                lojas.add(obterDominio(rs));
+                produtos.add(new EstoqueProduto(
+                                rs.getInt("id"),
+                                estoque,
+                                new Produto(
+                                        rs.getInt("id_produto"), 
+                                        rs.getString("nome"), 
+                                        rs.getString("descricao"), 
+                                        0f, 
+                                        rs.getDouble("preco"), 
+                                        rs.getString("ean"), 
+                                        true),
+                                rs.getDouble("saldo")
+                        ));
 
-            return lojas;
+            return produtos;
         }        
         catch(SQLException sqlex)
         {

@@ -15,6 +15,7 @@ import br.senac.tadsb.pi3.livrarianext.exceptions.LojaException;
 public class EstoqueProduto {
     private int id;
     private Estoque estoque;
+    private Produto produto;
     private Double saldo;
     
     public EstoqueProduto(Estoque estoque){
@@ -22,9 +23,10 @@ public class EstoqueProduto {
         this.saldo = 0.0;
     }
     
-    public EstoqueProduto(int id, Estoque estoque, Double saldo){
+    public EstoqueProduto(int id, Estoque estoque, Produto produto, Double saldo){
         this(estoque);
         this.id = id;
+        this.produto = produto;
         this.saldo = saldo;
     }
 
@@ -73,5 +75,19 @@ public class EstoqueProduto {
             throw new LojaException("Saldo insuficiente para realizar a saída!");
         
         this.saldo -= quantidade;
+    }
+
+    /**
+     * @return the produto
+     */
+    public Produto getProduto() {
+        return produto;
+    }
+
+    /**
+     * @param produto the produto to set
+     */
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 }
