@@ -1,57 +1,42 @@
-function mokProdutos() {
-  return [
-    {
-      id: 1,
-      descricao: "Produto 1",
-      valor:"21.5"
+window.onload = function() {
+  window.liveSearch({
+    cliente: function(element, callback) {
+      console.log("Cliente");
+      if (element.value.length > 3) {
+        // window.ajaxGet();
+        callback([{
+            name: 'aaaaaa',
+            id: 1
+          },
+          {
+            name: 'bbbbbb',
+            id: 2
+          },
+          {
+            name: 'cccccccc',
+            id: 3
+          }
+        ], element);
+      }
     },
-    {
-      id: 2,
-      descricao: "Produto 2",
-      valor:"55.5"
-    },
-    {
-      id: 3,
-      descricao: "Produto 3",
-      valor:"15"
-    }
-  ];
-}
-
-function mokUsuarios() {
-  return [
-    {
-      id: 1,
-      cpf: "111 111 111 11"
-    },
-    {
-      id: 2,
-      cpf: "222 222 222 22"
-    }
-  ];
-}
-
-function listarUsuarios(cpf) {
-  var resultadosPossiveis = [];
-  mokUsuarios().forEach(function(item, index) {
-    if(item.cpf.indexOf(cpf) >= 0) {
-      resultadosPossiveis.push(item);
+    produto: function(element, callback) {
+      console.log("Produto");
+      if (element.value.length > 3) {
+        // window.ajaxGet();
+        callback([{
+            name: 'aaaaaa',
+            id: 1
+          },
+          {
+            name: 'bbbbbb',
+            id: 2
+          },
+          {
+            name: 'cccccccc',
+            id: 3
+          }
+        ], element);
+      }
     }
   });
-  return resultadosPossiveis;
-}
-
-function listarProduto(codigo) {
-  var resultadosPossiveis = [];
-  mokProdutos().forEach(function(item, index) {
-    if(item.id.indexOf(codigo) >= 0) {
-      resultadosPossiveis.push(item);
-    }
-  });
-  return resultadosPossiveis;
-}
-
-function buscarProduto(codigo) {
-  var resultados = listarProduto(codigo);
-  var field = document.querySelector("#produto");
-}
+};

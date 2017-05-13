@@ -21,13 +21,13 @@
           <form method="post">
             <div class="row">
               <label for="cliente">CPF Cliente</label>
-              <input type="number" id="cliente" name="cliente" />
+              <input id="cliente" name="cliente" live-search="cliente"/>
               <button name="procurar_usuario">Procurar</button>
             </div>
 
             <div class="row">
               <label for="produto">Produto</label>
-              <input type="text" name="produto" id="produto"/>
+              <input name="produto" id="produto" live-search="produto"/>
 
               <label for="quantidade_produto">Quantidade Produto</label>
               <input type="number" name="quantidade_produto" id="quantidade_produto"/>
