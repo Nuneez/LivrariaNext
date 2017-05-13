@@ -18,52 +18,53 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-        <div class="content">
-            <form action="/LivrariaNext/ListarLojas" method="get">
-                <div class="session">
-                    <div class="row">
-                        <label for="nome">Nome</label>
-                        <input id="nome" type="text" name="nome"/>
-                        <label for="nome">CNPJ</label>
-                        <input id="cnpj" type="text" name="cnpj"/>
-                        <label for="atividade">Ativo: </label>
-                        <select name="ativo" id="ativo">
-                            <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
+            <div class="content">
+                <form action="/LivrariaNext/ListarLojas" method="get">
+                    <div class="session">
+                        <div class="row">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text" name="nome"/>
+                            <label for="nome">CNPJ</label>
+                            <input id="cnpj" type="text" name="cnpj"/>
+                            <label for="atividade">Ativo: </label>
+                            <select name="ativo" id="ativo">
+                                <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
                             <option value="false" ${!ativo ? 'selected' : ''}>Não</option>
                         </select>
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                     <div class="session">
-                    <table>
-                      <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Cidade</th>
-                        <th>CNPJ</th>
-                        <th>Ativo</th>
-                        <th colspan="3"></th>
-                      </tr>
-                      <c:forEach items="${lojas}" var="loja">
-                        <tr>
-                          <td><c:out value="${loja.id}" /></td>
-                          <td><c:out value="${loja.nome}" /></td>
-                          <td><c:out value="${loja.cidade}" /></td>                          
-                          <td><c:out value="${loja.cnpj}" /></td>
-                          <td><c:out value="${loja.ativo?'SIM':'NÃO'}" /></td>
-                          <td><input type="button" class="btn-editar" data-id="${loja.id}" Value="Editar" /></td>
-                          <td><input type="button" class="btn-excluir" data-id="${loja.id}" Value="Excluir" /></td>
-                          <td><input type="button" class="btn-estoque" data-id="${loja.id}" Value="Estoque" /></td>
-                        </tr>
-                      </c:forEach>
-                    </table>                        
-                </div>
-                <div class="session">
-                    <div class="row">
-                        <input id="btn-novo" type="button" value="Nova Loja" />
+                        <table>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Cidade</th>
+                                <th>CNPJ</th>
+                                <th>Ativo</th>
+                                <th colspan="3"></th>
+                            </tr>
+                            <c:forEach items="${lojas}" var="loja">
+                                <tr>
+                                    <td><c:out value="${loja.id}" /></td>
+                                    <td><c:out value="${loja.nome}" /></td>
+                                    <td><c:out value="${loja.cidade}" /></td>                          
+                                    <td><c:out value="${loja.cnpj}" /></td>
+                                    <td><c:out value="${loja.ativo?'SIM':'NÃO'}" /></td>
+                                    <td><input type="button" class="btn-editar" data-id="${loja.id}" Value="Editar" /></td>
+                                    <td><input type="button" class="btn-excluir" data-id="${loja.id}" Value="Excluir" /></td>
+                                    <td><input type="button" class="btn-estoque" data-id="${loja.id}" Value="Estoque" /></td>
+                                </tr>
+                            </c:forEach>
+                        </table>                        
                     </div>
-                </div>
+                    <div class="session">
+                        <div class="row">
+                            <input id="btn-novo" type="button" value="Nova Loja" />
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
+        <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
 </html>

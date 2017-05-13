@@ -61,5 +61,6 @@
                 </div>
             </form>
         </div>
+                <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
 </html>

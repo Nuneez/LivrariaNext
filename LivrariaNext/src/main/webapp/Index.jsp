@@ -15,5 +15,6 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
+        <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
 </html>
