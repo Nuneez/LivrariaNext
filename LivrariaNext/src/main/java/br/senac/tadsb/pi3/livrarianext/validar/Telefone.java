@@ -17,11 +17,7 @@ public class Telefone {
     }
     
     public boolean validarTelefone(){
-        return telefone.matches(".((10)|([1-9][1-9]).)\\s9?[6-9][0-9]{3}-[0-9]{4}")||
-               telefone.matches(".((10)|([1-9][1-9]).)\\s[2-5][0-9]{3}-[0-9]{4}")||
-               telefone.matches(".((10)|([1-9][1-9]).)\\s[2-5][0-9]{4}-[0-9]{4}")||
-               telefone.matches(".((10)|[1-9][1-9].)\\s[2-5][0-9]{3}[0-9]{4}")||
-               telefone.matches(".((10)|[1-9][1-9].)\\s[2-5][0-9]{3}-[0-9]{4}");
+        return true;
     }
     
 }

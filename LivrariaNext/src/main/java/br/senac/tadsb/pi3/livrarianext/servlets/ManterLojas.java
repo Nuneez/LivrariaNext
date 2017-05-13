@@ -10,6 +10,9 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.LojaException;
 import br.senac.tadsb.pi3.livrarianext.models.Loja;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoLoja;
+import br.senac.tadsb.pi3.livrarianext.validar.Cnpj;
+import br.senac.tadsb.pi3.livrarianext.validar.Email;
+import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -104,15 +107,33 @@ public class ManterLojas extends HttpServlet {
         String estado = request.getParameter("estado");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
-        
-        try
-        {
+        String mensagemDeErro = null;
+        Email e = new Email(email);
+        Telefone tell = new Telefone(telefone);
+        Cnpj c = new Cnpj(cnpj);
+        if (!c.validarCnpj(cnpj)) {
+            mensagemDeErro = "CPF invalido, digite novamente !";
+        }
+        if (!e.validarEmail()) {
+            mensagemDeErro = "E-mail invalido, digite novamente !";
+        }
+        if (!tell.validarTelefone()) {
+            mensagemDeErro = "Telefone invalido, digite novamente !";
+            //JOptionPane.showMessageDialog(null, mensagemDeErro);
+        }
+
+        request.setAttribute("erro", mensagemDeErro);
+
+        try {
+            if (mensagemDeErro == null) {
             if (id.isEmpty() || id.equals("0"))        
                 servico.incluir(nome, Boolean.parseBoolean(filial), cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
             else
                 servico.alterar(Integer.parseInt(id), nome, Boolean.parseBoolean(filial), cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
-                        
-            response.sendRedirect("ListarLojas");
+
+            }   
+            else{
+            response.sendRedirect("Loja.jsp");}
         }
         catch(LojaException ue)
         {

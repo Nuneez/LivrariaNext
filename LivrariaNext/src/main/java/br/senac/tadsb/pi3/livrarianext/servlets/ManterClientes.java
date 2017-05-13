@@ -9,6 +9,7 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
+import br.senac.tadsb.pi3.livrarianext.validar.Cpf;
 import br.senac.tadsb.pi3.livrarianext.validar.Email;
 import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
 import java.io.IOException;
@@ -29,24 +30,20 @@ import javax.swing.JOptionPane;
  */
 @WebServlet(name = "ManterClientes", urlPatterns = {"/ManterClientes"})
 public class ManterClientes extends HttpServlet {
-    
+
     ServicoCliente servico;
-    
-    public ManterClientes(){
-        try
-         {  
-            ConnectionUtils util = new ConnectionUtils();             
+
+    public ManterClientes() {
+        try {
+            ConnectionUtils util = new ConnectionUtils();
             servico = new ServicoCliente(new DaoCliente(util));
-         }
-         catch(UsuarioException ux){
-             System.out.println(ux.getMessage());
-         }
-         catch(SQLException sqlex){
-             System.out.println(sqlex.getMessage());
-         }
-         catch(Exception ex){
-             System.out.println(ex.getMessage());
-         }
+        } catch (UsuarioException ux) {
+            System.out.println(ux.getMessage());
+        } catch (SQLException sqlex) {
+            System.out.println(sqlex.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -59,25 +56,19 @@ public class ManterClientes extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try
-        {            
+        try {
             String id = request.getParameter("id");
-            Cliente cliente = (id != null && !id.isEmpty()) ? servico.obterClientePorId(Integer.parseInt(id)) : new Cliente();                
+            Cliente cliente = (id != null && !id.isEmpty()) ? servico.obterClientePorId(Integer.parseInt(id)) : new Cliente();
             request.setAttribute("cliente", cliente);
-        }
-        catch(ClienteException ce)
-        {
+        } catch (ClienteException ce) {
             request.setAttribute("erro", ce.getMessage());
-        }               
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");        
-        
-        try
-        {
-            dispatcher.forward(request, response);
         }
-        catch(IOException ex)
-        {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (IOException ex) {
 
         }
     }
@@ -93,7 +84,7 @@ public class ManterClientes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         //Obtendo parametros
         String id = request.getParameter("id");
         String nome = request.getParameter("nome");
@@ -107,40 +98,48 @@ public class ManterClientes extends HttpServlet {
         //String nascimento = request.getParameter("nascimento");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
-       
+
+        String mensagemDeErro = null;
+
         Email e = new Email(email);
         Telefone tell = new Telefone(telefone);
-        String mensagemDeErro = null;
-        if(!e.validarEmail()){
-            System.out.println("E-mail invalido, digite novamente !");
+        Cpf c = new Cpf(cpf);
+        //c.removeCaracterEspecial(cpf);
+        if (!c.validarCpf(cpf)) {
+            mensagemDeErro = "CPF invalido, digite novamente !";
+        }
+        if (!e.validarEmail()) {
             mensagemDeErro = "E-mail invalido, digite novamente !";
         }
-        if(!tell.validarTelefone()){
-            System.out.println("Telefone invalido, digite novamente !");
+        if (!tell.validarTelefone()) {
             mensagemDeErro = "Telefone invalido, digite novamente !";
             //JOptionPane.showMessageDialog(null, mensagemDeErro);
         }
-        
+
         request.setAttribute("erro", mensagemDeErro);
-        
-        try
-        {
-            if (id.isEmpty() || id.equals("0"))        
-                servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
-            else
-                servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
-                        
+
+        try {
+            if (mensagemDeErro == null) {
+
+                if (id.isEmpty() || id.equals("0")) {
+                    servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
+                } else {
+                    servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
+                }
+            } else {
+                response.sendRedirect("Cliente.jsp");
+                
+            }
+                RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+                request.setAttribute("nome", nome);
+                dispatcher.forward(request, response);
             //response.sendRedirect("ListarClientes");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-            request.setAttribute("nome", nome);
-            dispatcher.forward(request, response);
-           
-        }
-        catch(ClienteException ue)
-        {
             
+            
+        } catch (ClienteException ue) {
+
         } catch (Exception ex) {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
     }
 }
