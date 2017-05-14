@@ -8,7 +8,9 @@ package br.senac.tadsb.pi3.livrarianext.servicos;
 import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
+import br.senac.tadsb.pi3.livrarianext.models.NameValue;
 import br.senac.tadsb.pi3.livrarianext.models.Produto;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -73,6 +75,17 @@ public class ServicoProduto extends Servico<Produto> {
         {
             throw new ProdutoException(ExceptionTypesEnum.SPECIFIC_CRUD);
         }
+    }
+    
+    public List<NameValue> obterProdutos(String texto) throws ProdutoException {
+        
+        List<Produto> produtos = obterProdutos(texto, null);
+        List<NameValue> colecao = new ArrayList<>();
+
+        for (Produto p : produtos)
+            colecao.add(new NameValue(String.valueOf(p.getId()), p.getNome()));            
+        
+        return colecao;
     }
     
     public List<Produto> obterProdutos(String nome, String cnpj) throws ProdutoException  {

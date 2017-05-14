@@ -13,7 +13,7 @@
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lista.css">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/lista.js"></script>
-        <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/listaLoja.js"></script>
+        <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/ListaLoja.js"></script>
         <title>Lojas</title>
     </head>
     <body>
