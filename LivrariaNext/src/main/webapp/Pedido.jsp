@@ -18,7 +18,7 @@
         <jsp:include page="/shared/menu.jsp"></jsp:include>
 
         <div class="content">
-          <form method="post">
+          <form method="post" action="/LivrariaNext/ManterPedidos">
             <div class="row">
               <label for="cliente">CPF Cliente</label>
               <input id="cliente" name="cliente" live-search="cliente"/>

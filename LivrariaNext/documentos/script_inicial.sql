@@ -76,7 +76,16 @@ create table PRODUTO
     ATIVO BOOLEAN not null with DEFAULT TRUE
 );
 
-create table SERVICO
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('IPHONE SE', 'SMARTPHONE 2GB DE MEMÓRIA BLUETOOTH ETC', 2000, 2000, '123456789123', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('IPHONE 6', 'SMARTPHONE 2GB DE MEMÓRIA SEM BLUETOOTH ETC', 3000, 3000, '123456789124', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SAMSUNG GALAXY S7', 'SMARTPHONE 4GB DE MEMÓRIA BLUETOOTH ETC', 2000, 2000, '123456789125', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SAMSUNG GALAXY S8', 'SMARTPHONE 8GB DE MEMÓRIA BLUETOOTH ETC', 4000, 4000, '123456789126', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SONY PLAYSTATION 4', 'VIDEOGAME DE ULTIMA GERAÇÃO', 1700, 1700, '123456789127', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('MICROSOFT XBOX ONE', 'VIDEOGAME DE ULTIMA GERAÇÃO', 1500, 1500, '123456789128', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('NOTEBOOK DELL VOSTRO 3000', 'NOTEBOOK I7', 4000, 4000, '123456789129', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('NOTEBOOK MACBOOK PRO', 'NOTEBOOK', 6000, 6000, '123456789130', true);
+
+create table SERVICO 
 (
     ID INTEGER not null primary key
             GENERATED ALWAYS AS IDENTITY

@@ -1,2 +1,3 @@
 /LivrariaNext/target/
-/LivrariaNext/target2/
+*.class
+*.war

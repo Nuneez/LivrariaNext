@@ -32,12 +32,16 @@
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ManterProdutos</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListarEstoques</servlet-name>
-        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ListarEstoques</servlet-class>
+        <servlet-name>Produtos</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Produtos</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Pedido</servlet-name>
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Pedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ManterEstoques</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.ManterEstoques</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListarUsuarios</servlet-name>
@@ -68,12 +72,16 @@
         <url-pattern>/ManterProdutos</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListarEstoques</servlet-name>
-        <url-pattern>/ListarEstoques</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Pedido</servlet-name>
         <url-pattern>/Pedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ManterEstoques</servlet-name>
+        <url-pattern>/ManterEstoques</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Produtos</servlet-name>
+        <url-pattern>/Produtos</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

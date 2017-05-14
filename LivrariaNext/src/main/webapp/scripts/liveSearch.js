@@ -48,7 +48,7 @@ function activatedLiveSearch(options, element) {
   } else {
     console.error("Erro ao adicionar montar lista de opções.");
   }
-}
+};
 
 /**
  * Adiciona todos os elementos live-search para ações padrão e
@@ -65,8 +65,8 @@ function activeLiveSearch(element, callbacks) {
     if (typeof callbacks[attr] != undefined && typeof callbacks[attr] != null) {
       callbacks[attr](element, activatedLiveSearch);
     }
-  }
-}
+  };
+};
 
 /**
  * Adiciona todos os elementos live-search para ações padrão e
@@ -78,7 +78,7 @@ function addLiveSearchListeners(callbacks) {
   selectors.forEach(function(selector) {
     selector.addEventListener("keyup", activeLiveSearch(selector, callbacks));
   });
-}
+};
 
 /**
 * Inicializa o live-search
@@ -87,4 +87,4 @@ function addLiveSearchListeners(callbacks) {
  */
 window.liveSearch = function (keyDownCallBack) {
   addLiveSearchListeners(keyDownCallBack);
-}
+};

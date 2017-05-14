@@ -33,7 +33,7 @@ public class DaoLoja extends Dao<Loja> {
     public void incluir(Loja dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("insert into loja (nome, filial, cnpj, razao_social, inscricao_estadual, endereco, numero, cidade, estado, telefone, email, ativo) values (?,?,?,?,?,?,?,?,?,?,?,?)");
+            PreparedStatement stt = obterStatementRetornaId("insert into loja (nome, filial, cnpj, razao_social, inscricao_estadual, endereco, numero, cidade, estado, telefone, email, ativo) values (?,?,?,?,?,?,?,?,?,?,?,?)");
             stt.setString(1, dominio.getNome());
             stt.setBoolean(2, dominio.getEhFilial());
             stt.setString(3, dominio.getCnpj());
@@ -46,6 +46,33 @@ public class DaoLoja extends Dao<Loja> {
             stt.setString(10, dominio.getTelefone());
             stt.setString(11, dominio.getEmail());
             stt.setBoolean(12, true);
+
+            stt.execute();
+            
+            ResultSet rs = stt.getGeneratedKeys();
+            
+            rs.next();                        
+            int id = rs.getInt(1);            
+            incluirEstoque(id);
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
+    
+    private void incluirEstoque(int lojaId) throws DaoException { 
+        try
+        {
+            PreparedStatement stt = obterStatement("insert into estoque (id_loja, ativo) values (?,?)");
+            stt.setInt(1, lojaId);
+            stt.setBoolean(2, true);
 
             stt.execute();
         }

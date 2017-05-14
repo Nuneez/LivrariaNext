@@ -46,7 +46,7 @@ public class Perfil {
      */
     public String getNome() {
         return nome;
-    }
+    } 
 
     /**
      * @return the permissoes

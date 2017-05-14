@@ -4,10 +4,11 @@
  * and open the template in the editor.
  */
 
-var estoque = function() { return document.forms[0].action.replace("Lojas", "Estoques"); };
+var estoque = function() { return document.forms[0].action.replace("ListarLojas", "ManterEstoques"); };
 
 var init = function(){    
-    document.querySelectorAll(".btn-estoque").map(b => b.addEventListener("click", abrirEstoques));
+    var btns = document.querySelectorAll(".btn-estoque");
+    btns.forEach(b => b.addEventListener("click", abrirEstoques));
 };
 
 var abrirEstoques = function(evt){

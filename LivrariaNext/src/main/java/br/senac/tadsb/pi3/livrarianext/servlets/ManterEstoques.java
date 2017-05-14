@@ -7,9 +7,8 @@ package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
-import br.senac.tadsb.pi3.livrarianext.models.Cliente;
-import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
-import br.senac.tadsb.pi3.livrarianext.validar.Cpf;
+import br.senac.tadsb.pi3.livrarianext.models.Estoque;
+import br.senac.tadsb.pi3.livrarianext.servicos.ServicoEstoque;
 import br.senac.tadsb.pi3.livrarianext.validar.Email;
 import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
 import java.io.IOException;
@@ -22,28 +21,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author roger
  */
-@WebServlet(name = "ManterClientes", urlPatterns = {"/ManterClientes"})
-public class ManterClientes extends HttpServlet {
-
-    ServicoCliente servico;
-
-    public ManterClientes() {
-        try {
-            ConnectionUtils util = new ConnectionUtils();
-            servico = new ServicoCliente(new DaoCliente(util));
-        } catch (UsuarioException ux) {
-            System.out.println(ux.getMessage());
-        } catch (SQLException sqlex) {
-            System.out.println(sqlex.getMessage());
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+@WebServlet(name = "ManterEstoques", urlPatterns = {"/ManterEstoques"})
+public class ManterEstoques extends HttpServlet {
+    
+    ServicoEstoque servico;
+    
+    public ManterEstoques(){
+        try
+         {  
+            ConnectionUtils util = new ConnectionUtils();             
+            servico = new ServicoEstoque(new DaoEstoque(util));
+         }
+         catch(SQLException sqlex){
+             System.out.println(sqlex.getMessage());
+         }
+         catch(Exception ex){
+             System.out.println(ex.getMessage());
+         }
     }
 
     /**
@@ -56,19 +55,25 @@ public class ManterClientes extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
+        try
+        {            
             String id = request.getParameter("id");
-            Cliente cliente = (id != null && !id.isEmpty()) ? servico.obterClientePorId(Integer.parseInt(id)) : new Cliente();
-            request.setAttribute("cliente", cliente);
-        } catch (ClienteException ce) {
-            request.setAttribute("erro", ce.getMessage());
+            Estoque dominio = servico.obterEstoquePorLojaId(Integer.parseInt(id));                
+            request.setAttribute("estoque", dominio);
         }
+        catch(EstoqueException ce)
+        {
+            request.setAttribute("erro", ce.getMessage());
+        }               
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-
-        try {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Estoque.jsp");        
+        
+        try
+        {
             dispatcher.forward(request, response);
-        } catch (IOException ex) {
+        }
+        catch(IOException ex)
+        {
 
         }
     }
@@ -84,7 +89,7 @@ public class ManterClientes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         //Obtendo parametros
         String id = request.getParameter("id");
         String nome = request.getParameter("nome");
@@ -95,50 +100,41 @@ public class ManterClientes extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String bairro = request.getParameter("bairro");
         String numero = request.getParameter("numero");
-        String nascimento = request.getParameter("nascimento");
+        //String nascimento = request.getParameter("nascimento");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
-
-        String mensagemDeErro = null;
-
+       
         Email e = new Email(email);
         Telefone tell = new Telefone(telefone);
-        Cpf c = new Cpf(cpf);
-        //c.removeCaracterEspecial(cpf);
-        if (!c.validarCpf(cpf)) {
-            mensagemDeErro = "CPF invalido, digite novamente !";
-        }
-        if (!e.validarEmail()) {
+        String mensagemDeErro = null;
+        if(!e.validarEmail()){
+            System.out.println("E-mail invalido, digite novamente !");
             mensagemDeErro = "E-mail invalido, digite novamente !";
         }
-        if (!tell.validarTelefone()) {
+        if(!tell.validarTelefone()){
+            System.out.println("Telefone invalido, digite novamente !");
             mensagemDeErro = "Telefone invalido, digite novamente !";
+            //JOptionPane.showMessageDialog(null, mensagemDeErro);
         }
-
+        
         request.setAttribute("erro", mensagemDeErro);
-
-        try {
-            if (mensagemDeErro == null) {
-
-                if (id.isEmpty() || id.equals("0")) {
-                    servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
-                } else {
-                    servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
-                }
-            } else {
-                response.sendRedirect("Cliente.jsp");
-                
-            }
-                RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-                request.setAttribute("nome", nome);
-                dispatcher.forward(request, response);
+        
+        try
+        {
+            
+                        
             //response.sendRedirect("ListarClientes");
-            
-            
-        } catch (ClienteException ue) {
-
-        } catch (Exception ex) {
-            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+            request.setAttribute("nome", nome);
+            dispatcher.forward(request, response);
+           
         }
+//        catch(EstoqueException ue)
+//        {
+//            
+//        } 
+        catch (Exception ex) {
+            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }        
     }
 }

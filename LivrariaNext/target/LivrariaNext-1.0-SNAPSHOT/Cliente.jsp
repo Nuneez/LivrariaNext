@@ -26,18 +26,17 @@
                         <input id="nome" type="text" name="nome" value="${cliente.nome}" />
                         <label for="sobrenome">Sobrenome</label>
                         <input id="sobrenome" type="text" name="sobrenome" value="${cliente.sobreNome}"/>
-                    </div>
-                    <div class="row">
                         <label for="sexo">Sexo</label>
                         <select name="sexo" id="sexo">
                             <option value="I" ${cliente.sexo == null ? 'Selected' : ''} >[Selecione...]</option>
                             <option value="M" ${cliente.sexo == "M" ? 'Selected' : ''} >Masculino</option>
                             <option value="F" ${cliente.sexo == "F" ? 'Selected' : ''} >Feminino</option>
+                            <option value="F" ${cliente.sexo == "I" ? 'Selected' : ''} >Indefinido</option>
                         </select>
                     </div>
                     <div class="row">
                         <label for="cpf">CPF</label>
-                        <input type="number" name="cpf" id="cpf" value="${cliente.cpf}">
+                        <input type="text" name="cpf" id="cpf" value="${cliente.cpf}">
                         <label for="rg">RG</label>
                         <input type="text" name="rg" id="rg" value="${cliente.rg}">
                     </div>
@@ -47,8 +46,8 @@
                 <div class="row">
                     <label for="endereco">Endereço</label>
                     <input type="text" name="endereco" id="endereco" value="${cliente.endereco}"/>
-                    <label for="numero">Numero</label>
-                    <input type="number" name="numero" id="numero" value="${cliente.numero}"/>
+                    <label for="text">Numero</label>
+                    <input type="text" name="numero" id="numero" value="${cliente.numero}"/>
                     <label for="bairro">Bairro</label>
                     <input type="text" name="bairro" id="bairro" value="${cliente.bairro}"/>
                     

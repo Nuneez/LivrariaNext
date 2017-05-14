@@ -21,7 +21,7 @@ public class DaoEstoque extends Dao<Estoque> {
 
     final String queryPadrao = "select "
             + "e.*, l.* from estoque e "
-            + "inner join loja l on (l.id == e.id_loja) ";
+            + "inner join loja l on (l.id = e.id_loja) ";
     
     public DaoEstoque() throws SQLException, Exception {
         super(new ConnectionUtils());
@@ -116,19 +116,20 @@ public class DaoEstoque extends Dao<Estoque> {
         try
         {            
             String query = 
-                    "select"
-                    + "ep.id, "
-                    + "ep.saldo, "
-                    + "p.id as id_produto, "
-                    + "p.nome,"
-                    + "p.descricao, "
-                    + "p.preco, "
-                    + "p.ean "
+                    "select "
+                    + "ep.ID as estoque_produto_id, "
+                    + "ep.qtd_saldo as estoque_produto_saldo, "
+                    + "p.ID as produto_id, "
+                    + "p.NOMECOMUM as produto_nome, "
+                    + "p.descricao as produto_descricao, "
+                    + "p.PRECOMEDIO as produto_preco, "
+                    + "p.ean as produto_ean "
                     + "from "
-                    + "left outer join estoque_produto ep on (ep.id_estoque = e.id) "
-                    + "left outer join produto p on (p.id = ep.id_produto) "
-                    + "where"
-                    + "l.id = " + estoque.getLoja().getId();
+                    + "estoque e "
+                    + "left outer join estoque_produto ep on (ep.ID_ESTOQUE = e.id) "
+                    + "left outer join produto p on (p.id = ep.ID_PRODUTO) "
+                    + "where "
+                    + "e.ID_LOJA = " + estoque.getLoja().getId();
 
             ResultSet rs = getList(query);
 
@@ -136,17 +137,17 @@ public class DaoEstoque extends Dao<Estoque> {
 
             while (rs.next())
                 produtos.add(new EstoqueProduto(
-                                rs.getInt("id"),
+                                rs.getInt("estoque_produto_id"),
                                 estoque,
                                 new Produto(
-                                        rs.getInt("id_produto"), 
-                                        rs.getString("nome"), 
-                                        rs.getString("descricao"), 
+                                        rs.getInt("produto_id"), 
+                                        rs.getString("produto_nome"), 
+                                        rs.getString("produto_descricao"), 
                                         0f, 
-                                        rs.getDouble("preco"), 
-                                        rs.getString("ean"), 
+                                        rs.getDouble("produto_preco"), 
+                                        rs.getString("produto_ean"), 
                                         true),
-                                rs.getDouble("saldo")
+                                rs.getDouble("estoque_produto_saldo")
                         ));
 
             return produtos;
