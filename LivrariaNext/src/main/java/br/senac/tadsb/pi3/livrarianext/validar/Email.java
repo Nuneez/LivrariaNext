@@ -5,6 +5,9 @@
  */
 package br.senac.tadsb.pi3.livrarianext.validar;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Nuneez
@@ -18,6 +21,9 @@ public class Email {
     }
     
     public boolean validarEmail(){
-        return(this.email.indexOf('@')>0);
+        String regex = "^(.+)@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(this.email);
+        return matcher.matches();
     }
 }

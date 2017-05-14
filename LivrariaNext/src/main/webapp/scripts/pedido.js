@@ -2,10 +2,9 @@ window.onload = function() {
   window.liveSearch({
     cliente: function(element, callback) {
       var url = '/LivrariaNext/ListarClientes?';
-      if (element.value)
       if (element.value.length > 3) {
-        window.ajaxGet(, function() {
-          console.log()
+        window.ajaxGet(url, function(response) {
+          console.log(response);
           // callback(, element);
         });
       }

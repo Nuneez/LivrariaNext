@@ -23,52 +23,41 @@ import javax.servlet.http.HttpServletResponse;
  * @author Thiago
  */
 public class ListarClientes extends HttpServlet {
-    
+
     ServicoCliente servico;
-    
-    public ListarClientes(){
-        try
-         {  
-            ConnectionUtils util = new ConnectionUtils();             
+
+    public ListarClientes() {
+        try {
+            ConnectionUtils util = new ConnectionUtils();
             servico = new ServicoCliente(new DaoCliente(util));
-         }
-         catch(UsuarioException ux){
-             System.out.println(ux.getMessage());
-         }
-         catch(SQLException sqlex){
-             System.out.println(sqlex.getMessage());
-         }
-         catch(Exception ex){
-             System.out.println(ex.getMessage());
-         }
+        } catch (UsuarioException ux) {
+            System.out.println(ux.getMessage());
+        } catch (SQLException sqlex) {
+            System.out.println(sqlex.getMessage());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                
-        try
-        {
-            String nome = request.getParameter("nome");
-            String cpf = request.getParameter("cpf");
-
-            List<Cliente> clientes = servico.obterClientes(nome, cpf);
-            request.setAttribute("clientes", clientes);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Clientes.jsp");
-
-            try
-            {
-                dispatcher.forward(request, response);
-            }
-            catch(IOException ex)
-            {
-
+        String nome = request.getParameter("nome");
+        String cpf = request.getParameter("cpf");
+        if (cpf != null) {
+            try {   
+                List<Cliente> clientes = servico.obterClientes(nome == null? "" : nome, cpf);
+                request.setAttribute("clientes", clientes);
+            } catch (ClienteException ux) {
+                System.out.println(ux.getMessage());
             }
         }
-        catch(ClienteException ux)
-        {
-            System.out.println(ux.getMessage());
-        }        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Clientes.jsp");
+
+        try {
+            dispatcher.forward(request, response);
+        } catch (IOException ex) {
+        }
+
     }
 
     /**
@@ -83,9 +72,8 @@ public class ListarClientes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-                
-        try
-        {            
+
+        try {
             switch (action) {
                 case "excluir":
                     String clienteId = request.getParameter("cliente_id");
@@ -94,17 +82,15 @@ public class ListarClientes extends HttpServlet {
                 default:
                     throw new AssertionError();
             }
-            
+
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluída com sucesso.\" }");
-        }
-        catch(ClienteException ux)
-        {
+        } catch (ClienteException ux) {
             System.out.println(ux.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operação. Detalhes: " + ux.getMessage() + "' }");
-        }   
+        }
     }
 }
