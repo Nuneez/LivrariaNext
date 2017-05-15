@@ -140,7 +140,7 @@ public class DaoCliente extends Dao<Cliente>  {
             String query = "select * from cliente c ";
         
             if (nome != null && !nome.isEmpty())
-                    query = tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
+                query = tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
 
             if (cpf != null && !cpf.isEmpty())
                 query = tratarQuery(query) + " c.cpf like ('%" + cpf + "%')";

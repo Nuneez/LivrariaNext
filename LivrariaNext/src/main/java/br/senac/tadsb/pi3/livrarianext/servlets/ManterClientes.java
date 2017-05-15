@@ -95,7 +95,7 @@ public class ManterClientes extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String bairro = request.getParameter("bairro");
         String numero = request.getParameter("numero");
-        //String nascimento = request.getParameter("nascimento");
+        String nascimento = request.getParameter("nascimento");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
 
@@ -113,7 +113,6 @@ public class ManterClientes extends HttpServlet {
         }
         if (!tell.validarTelefone()) {
             mensagemDeErro = "Telefone invalido, digite novamente !";
-            //JOptionPane.showMessageDialog(null, mensagemDeErro);
         }
 
         request.setAttribute("erro", mensagemDeErro);

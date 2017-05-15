@@ -29,7 +29,7 @@ insert into perfil (nome, ativo) values ('BACKOFFICE', TRUE);
 insert into perfil (nome, ativo) values ('VENDEDOR', TRUE);
 insert into perfil (nome, ativo) values ('TI', TRUE);
 
-create table USUARIO 
+create table USUARIO
 (
     ID INTEGER not null primary key
             GENERATED ALWAYS AS IDENTITY
@@ -44,7 +44,7 @@ create table USUARIO
     ATIVO BOOLEAN not null with DEFAULT TRUE
 );
 
-create table CLIENTE 
+create table CLIENTE
 (
     ID INTEGER not null primary key
             GENERATED ALWAYS AS IDENTITY
@@ -63,7 +63,7 @@ create table CLIENTE
     ATIVO BOOLEAN not null with DEFAULT TRUE
 );
 
-create table PRODUTO 
+create table PRODUTO
 (
     ID INTEGER not null primary key
             GENERATED ALWAYS AS IDENTITY
@@ -123,7 +123,7 @@ create table ESTOQUE
 
 create table ESTOQUE_PRODUTO
 (
-    ID INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),    
+    ID INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     ID_ESTOQUE INTEGER NOT NULL references ESTOQUE(ID),
     ID_PRODUTO INTEGER NOT NULL references PRODUTO(ID),
     QTD_SALDO DOUBLE NOT NULL
