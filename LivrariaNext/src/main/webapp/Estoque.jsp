@@ -19,7 +19,7 @@
         <div>${erro == null? '': erro }</div>
         <div class="content">
             <form action="/LivrariaNext/ManterEstoques" method="post">
-                <input type="hidden" name="id" value="${estoque.id}" />
+                <input type="hidden" id="id" name="id" value="${estoque.id}" />
                 <div class="session">
                     <div class="row">
                         <label for="nome"><b>Loja</b> ${estoque.loja.nome}</label>
@@ -33,29 +33,40 @@
                         <input id="ean_produto" type="text" name="ean_produto" />
                         <button id="btn-buscar">Buscar</button>
                     </div>
-                    <div class="row">
-                        <input type="text" id="search-produto" /><input type="button" id="btn-add-produto" name="btn-add-produto" Value="Adicionar Produto" />
+                </div>
+                <div id="div-novo-item" class="content" style="text-align: center;">
+                    <p>Incluir novo Produto &#8628;</p> 
+                    <div class="row" style="display: none;">
+                        
+                        Produto: <input type="text" id="search-produto" live-search="produto" />
+                        Saldo Inicial: <input type="number" id="qtd-produto" />
+                        <input type="button" id="btn-add-produto" name="btn-add-produto" Value="Adicionar Produto" />
                     </div>
                 </div>
                 <div class="session">
                     <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Produto</th>
-                            <th>Saldo</th>
-                        </tr>
-                        <c:forEach items="${estoque.produtos}" var="produto">
+                        <thead>
                             <tr>
-                                <td><c:out value="${produto.produto.id}" /></td>
-                                <td><c:out value="${produto.produto.nome}" /></td>
-                                <td><c:out value="${produto.saldo}" /></td>                          
+                                <th>ID</th>
+                                <th>Produto</th>
+                                <th>Saldo</th>
                             </tr>
-                        </c:forEach>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${estoque.produtos}" var="produto">
+                                <tr data-id="${produto.id}" data-produtoid="${produto.produto.id}" data-action="none">
+                                    <td><c:out value="${produto.produto.id}" /></td>
+                                    <td><c:out value="${produto.produto.nome}" /></td>
+                                    <td><input type="number" value="${produto.saldo}" /></td>
+                                    <td><input type="button" Value="Excluir" /></td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
                     </table>   
                 </div>
                 <div class="session">
                     <div class="row">
-                        <input type="submit" value="Salvar">
+                        <input id="btn-salvar" type="button" value="Salvar">
                         <input id="cancelar" type='reset' value='Cancelar'>
                     </div>
                 </div>

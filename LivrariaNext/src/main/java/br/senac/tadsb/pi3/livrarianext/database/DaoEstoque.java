@@ -52,6 +52,72 @@ public class DaoEstoque extends Dao<Estoque> {
             throw new DaoException();
         }
     }
+    
+    public void incluirProduto(int estoqueId, int produtoId, double saldo) throws DaoException {
+        try
+        {
+            PreparedStatement stt = obterStatement("insert into estoque_produto  (ID_ESTOQUE, ID_PRODUTO, QTD_SALDO, ATIVO) values (?,?,?,?)");
+            stt.setInt(1, estoqueId);
+            stt.setInt(2, produtoId);
+            stt.setDouble(3, saldo);            
+            stt.setBoolean(3, true);
+
+            stt.execute();
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
+    
+    public void alterarProduto(int id, double saldo, Boolean ativo) throws DaoException {
+        try
+        {
+            PreparedStatement stt = obterStatement("update estoque_produto set QTD_SALDO = ?, ATIVO = ?) where ID = ?");
+            stt.setDouble(1, saldo);
+            stt.setBoolean(2, ativo);
+            stt.setInt(3, id);
+
+            stt.execute();
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
+    
+    public void excluirProduto(int id) throws DaoException {
+        try
+        {
+            PreparedStatement stt = obterStatement("update estoque_produto set ATIVO = ?) where ID = ?");
+            stt.setBoolean(1, false);
+            stt.setInt(2, id);
+
+            stt.execute();
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
 
     @Override
     public void alterar(Estoque dominio) throws DaoException {

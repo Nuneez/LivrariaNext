@@ -6,7 +6,7 @@
 package br.senac.tadsb.pi3.livrarianext.servicos;
 
 import br.senac.tadsb.pi3.livrarianext.database.*;
-import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
+import br.senac.tadsb.pi3.livrarianext.enums.*;
 import br.senac.tadsb.pi3.livrarianext.models.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 
@@ -27,6 +27,29 @@ public class ServicoEstoque extends Servico<Estoque> {
         try
         {
             return dao.obterPorLoja(lojaId);
+        }
+        catch(DaoException de)
+        {
+            throw new EstoqueException(ExceptionTypesEnum.DATABASE);
+        }
+    }
+    
+    public void alterarEstoque(int id, int estoqueId, int produtoId, double saldo, Acao acao) throws EstoqueException {
+        try
+        {
+            switch (acao) {
+                case INSERT:
+                    dao.incluirProduto(estoqueId, produtoId, saldo);
+                    break;
+                case EDIT:
+                    dao.alterarProduto(id, saldo, Boolean.TRUE);
+                    break;
+                case DELETE:
+                    dao.excluirProduto(id);
+                    break;    
+                default:
+                    throw new AssertionError();
+            }
         }
         catch(DaoException de)
         {

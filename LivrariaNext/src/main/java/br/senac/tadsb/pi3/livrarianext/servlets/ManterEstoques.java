@@ -6,21 +6,22 @@
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.database.*;
+import br.senac.tadsb.pi3.livrarianext.enums.Acao;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Estoque;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoEstoque;
-import br.senac.tadsb.pi3.livrarianext.validar.Email;
-import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+import java.util.List;
 
 /**
  *
@@ -30,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ManterEstoques extends HttpServlet {
     
     ServicoEstoque servico;
+    Gson gson = new Gson();
     
     public ManterEstoques(){
         try
@@ -91,50 +93,42 @@ public class ManterEstoques extends HttpServlet {
             throws ServletException, IOException {
         
         //Obtendo parametros
-        String id = request.getParameter("id");
-        String nome = request.getParameter("nome");
-        String sobrenome = request.getParameter("sobrenome");
-        String sexo = request.getParameter("sexo");
-        String cpf = request.getParameter("cpf");
-        String rg = request.getParameter("rg");
-        String endereco = request.getParameter("endereco");
-        String bairro = request.getParameter("bairro");
-        String numero = request.getParameter("numero");
-        //String nascimento = request.getParameter("nascimento");
-        String email = request.getParameter("email");
-        String telefone = request.getParameter("telefone");
-       
-        Email e = new Email(email);
-        Telefone tell = new Telefone(telefone);
-        String mensagemDeErro = null;
-        if(!e.validarEmail()){
-            System.out.println("E-mail invalido, digite novamente !");
-            mensagemDeErro = "E-mail invalido, digite novamente !";
-        }
-        if(!tell.validarTelefone()){
-            System.out.println("Telefone invalido, digite novamente !");
-            mensagemDeErro = "Telefone invalido, digite novamente !";
-            //JOptionPane.showMessageDialog(null, mensagemDeErro);
-        }
-        
-        request.setAttribute("erro", mensagemDeErro);
-        
         try
         {
-            
+            String id = request.getParameter("id");
+            String json = request.getParameter("produtos");
+            Type colType = new TypeToken<List<ProdutoTemporario>>(){}.getType();
+            List<ProdutoTemporario> produtos = gson.fromJson(json, colType);       
                         
-            //response.sendRedirect("ListarClientes");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-            request.setAttribute("nome", nome);
-            dispatcher.forward(request, response);
-           
+            for(ProdutoTemporario p : produtos)
+                if (p.getAction() != Acao.NONE)
+                    servico.alterarEstoque(p.id, Integer.parseInt(id), p.produtoId, p.saldo, p.getAction());
         }
-//        catch(EstoqueException ue)
-//        {
-//            
-//        } 
-        catch (Exception ex) {
-            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    class ProdutoTemporario{
+        
+        public int id;
+        public int produtoId;
+        public double saldo;
+        public String action;
+        
+        public Acao getAction(){
+                       
+            switch (action) {
+                case "insert":
+                    return Acao.INSERT;
+                case "edit":
+                    return Acao.EDIT;
+                case "delete":
+                    return Acao.DELETE;
+            }            
+            
+            return Acao.NONE;
+        }
     }
 }
