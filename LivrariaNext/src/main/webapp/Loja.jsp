@@ -33,10 +33,10 @@
                     </div>
                     <div class="row">
                         <label for="cnpj">CNPJ</label>
-                        <input id="cnpj" type="text" name="cnpj" value="${loja.cnpj}" />
+                        <input id="cnpj" type="text" name="cnpj" placeholder="00.000.000/0000-00" value="${loja.cnpj}"/>
                         <label for="insc">Inscrição Estadual</label>
                         <input id="inscricaoestadual" type="text" name="inscricaoestadual" value="${loja.inscricaoEstadual}" />
-                        <label for="atividade">Filial?</label>
+                        <label for="atividade">Filial</label>
                         <select name="filial" id="filial">
                             <option value="true" ${loja.ehFilial ? 'selected' : ''}>Sim</option>
                             <option value="false" ${!loja.ehFilial ? 'selected' : ''}>Não</option>
@@ -47,10 +47,9 @@
                 <div class="row">
                     <label for="endereco">Endereço</label>
                     <input type="text" name="endereco" id="endereco" value="${loja.endereco}" />
-                    <label for="numero">N</label>
-                    <input type="text" name="numero" id="numero" value="${loja.numero}" />
+                    <label for="numero">Numero</label>
+                    <input type="text" name="numero" id="numero" placeholder="Nº" value="${loja.numero}"/>
                 </div>
-                <hr>
                 <div class="row">
                     <label for="cidade">Cidade</label>
                     <input type="text" name="cidade" id="cidade" value="${loja.cidade}" />
@@ -60,9 +59,9 @@
                 <hr>
                 <div class="row">
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" value="${loja.telefone}" />
-                    <label for="email">EMAIL</label>
-                    <input type="text" name="email" id="email" value="${loja.email}" />
+                    <input type="text" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${loja.telefone}"/>
+                    <label for="email">E-mail</label>
+                    <input type="text" name="email" id="email" placeholder="email@exemplo.com" value="${loja.email}"/>
                 </div>
                 <hr>
                 <div class="row">

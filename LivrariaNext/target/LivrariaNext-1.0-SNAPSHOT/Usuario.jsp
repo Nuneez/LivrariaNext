@@ -30,7 +30,7 @@
                         <label for="username">Username</label>
                         <input id="username" type="text" name="username" value="${usuario.username}"/>
                         <label for="email">Email</label>
-                        <input id="email" type="text" name="email" value="${usuario.email}"/>                        
+                        <input id="email" type="text" name="email" placeholder="email@exemplo.com/" value="${usuario.email}">                        
                     </div>
                     <div class="row">
                         <label for="atividade">Ativo</label>

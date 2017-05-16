@@ -26,7 +26,7 @@
                     </div>
                     <div class="row">
                         <label for="ean">EAN</label>
-                        <input type="number" name="ean" id="ean" value="${produto.ean}">
+                        <input type="text" name="ean" id="ean" value="${produto.ean}">
                         <label for="rg">Preço</label>
                         <input type="text" name="custo" id="custo" value="${produto.custo}">
                     </div>

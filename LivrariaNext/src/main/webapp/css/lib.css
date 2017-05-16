@@ -17,6 +17,13 @@ body{
     margin: 0 auto;
 }
 
+label{
+    display: inline-block;
+    width: 90px;
+    padding-top: 7px;
+    text-align: left;   
+
+}
 footer{
     position: fixed;
     width: 100%;
@@ -24,7 +31,7 @@ footer{
     right:50%;
     bottom:0;
     margin: auto;
-  }
+}
 
 #header-space {
     height: 90px;
@@ -40,7 +47,7 @@ footer{
 
 nav {
     margin-bottom: 40px;
-    }
+}
 nav a {
     border: 1px solid black;
     padding: 10px;
@@ -55,7 +62,9 @@ nav a {
 }
 
 .content {
-    border: 1px solid black;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px black;
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
@@ -88,13 +97,19 @@ nav a {
 }
 
 input, select, button {
-    margin-left: 5px;
+    margin-left:2px;
     border:solid 1px #2d2d2d;
-    text-align:left;
+    -align:right;
     background: white;
-    padding: 5px;
-    border-radius: 3px;
-    /* Fazer o border radius funcionar no firefox e chrome */
+    padding: 4px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+}
+
+input[name = "numero"]{
+    width: 50px;
+}
+::-webkit-input-placeholder {
+   color:rgba(123,123,123,0.4);
+   font: 12px sans-serif;
 }

@@ -24,7 +24,7 @@
                         <label for="nome">Nome</label>
                         <input id="nome" type="text" name="nome"/>
                         <label for="nome">CPF</label>
-                        <input id="cpf" type="text" name="cpf"/>
+                        <input id="cpf" type="text" name="cpf" placeholder="000.000.000-00"/>
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                 </div>

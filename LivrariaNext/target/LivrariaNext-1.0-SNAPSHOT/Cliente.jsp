@@ -23,7 +23,7 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome</label>
-                        <input id="nome" type="text" name="nome" value="${cliente.nome}" />
+                        <input id="nome" type="text" name="nome" value="${cliente.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
                         <input id="sobrenome" type="text" name="sobrenome" value="${cliente.sobreNome}"/>
                         <label for="sexo">Sexo</label>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="row">
                         <label for="cpf">CPF</label>
-                        <input type="text" name="cpf" id="cpf" value="${cliente.cpf}">
+                        <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
                         <label for="rg">RG</label>
                         <input type="text" name="rg" id="rg" value="${cliente.rg}">
                     </div>
@@ -46,15 +46,15 @@
                 <div class="row">
                     <label for="endereco">Endereço</label>
                     <input type="text" name="endereco" id="endereco" value="${cliente.endereco}"/>
-                    <label for="text">Numero</label>
-                    <input type="text" name="numero" id="numero" value="${cliente.numero}"/>
                     <label for="bairro">Bairro</label>
                     <input type="text" name="bairro" id="bairro" value="${cliente.bairro}"/>
+                       <label for="text">Numero</label>
+                    <input type="text" name="numero" id="numero" placeholder="Nº"value="${cliente.numero}"/>
                     
                 </div>
                 <div class="row">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" value="${cliente.email}"/>
+                    <input type="text" name="email" id="email" placeholder="email@exemplo.com" value="${cliente.email}"/>
                     <label for="telefone">Telefone</label>
                     <input type="text" name="telefone" id="telefone" value="${cliente.telefone}"/>
                 </div>
