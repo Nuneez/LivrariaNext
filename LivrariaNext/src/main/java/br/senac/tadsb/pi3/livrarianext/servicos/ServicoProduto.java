@@ -83,7 +83,7 @@ public class ServicoProduto extends Servico<Produto> {
         List<NameValue> colecao = new ArrayList<>();
 
         for (Produto p : produtos)
-            colecao.add(new NameValue(String.valueOf(p.getId()), p.getNome()));            
+            colecao.add(new NameValue(String.valueOf(p.getId()), p.getNome(), p.getPreco()));            
         
         return colecao;
     }
