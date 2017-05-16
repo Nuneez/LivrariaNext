@@ -34,7 +34,7 @@ public class ServicoEstoque extends Servico<Estoque> {
         }
     }
     
-    public void alterarEstoque(int id, int estoqueId, int produtoId, double saldo, Acao acao) throws EstoqueException {
+    public void alterarEstoque(int id, int estoqueId, int produtoId, double saldo, CrudActions acao) throws EstoqueException {
         try
         {
             switch (acao) {

@@ -9,7 +9,7 @@ package br.senac.tadsb.pi3.livrarianext.enums;
  *
  * @author roger
  */
-public enum Acao {
+public enum CrudActions {
     INSERT,
     EDIT,
     DELETE,
