@@ -60,7 +60,7 @@ public class DaoEstoque extends Dao<Estoque> {
             stt.setInt(1, estoqueId);
             stt.setInt(2, produtoId);
             stt.setDouble(3, saldo);            
-            stt.setBoolean(3, true);
+            stt.setBoolean(4, true);
 
             stt.execute();
         }

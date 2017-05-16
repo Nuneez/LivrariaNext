@@ -49,7 +49,8 @@ function validarProduto(){
 function criarLinha(id, nome, saldo){
     var tbody = document.querySelector("table > tbody");
     var tr = document.createElement("tr");
-    tr.setAttribute("data-id", id)
+    tr.setAttribute("data-id", 0);
+    tr.setAttribute("data-produtoid", id);
     tr.setAttribute("data-action", "insert");
     
     criarTds(id, nome, saldo).map(td => tr.appendChild(td));
