@@ -23,9 +23,9 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome*</label>
-                        <input id="nome" type="text" name="nome" value="${cliente.nome}"/>
+                        <input id="nome" type="text" name="nome"  maxlength="15" value="${cliente.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
-                        <input id="sobrenome" type="text" name="sobrenome" value="${cliente.sobreNome}"/>
+                        <input id="sobrenome" type="text" name="sobrenome" maxlength="30"value="${cliente.sobreNome}"/>
                         <label for="sexo">Sexo</label>
                         <select name="sexo" id="sexo">
                             <option value="I" ${cliente.sexo == null ? 'Selected' : ''} >[Selecione...]</option>
@@ -36,27 +36,29 @@
                     </div>
                     <div class="row">
                         <label for="cpf">CPF*</label>
-                        <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
+                        
+                        <input type="text" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
                         <label for="rg">RG</label>
-                        <input type="text" name="rg" id="rg" value="${cliente.rg}">
+                        <input type="text" maxlength="15" name="rg" id="rg" value="${cliente.rg}">
                     </div>
                 </div>
                 <hr>
                 
                 <div class="row">
                     <label for="endereco">Endereço</label>
-                    <input type="text" name="endereco" id="endereco" value="${cliente.endereco}"/>
+                    <input type="text" name="endereco" maxlength="50" id="endereco" value="${cliente.endereco}"/>
                     <label for="bairro">Bairro</label>
-                    <input type="text" name="bairro" id="bairro" value="${cliente.bairro}"/>
+                    <input type="text" name="bairro" maxlength="30" id="bairro" value="${cliente.bairro}"/>
                        <label for="text">Numero</label>
-                    <input type="text" name="numero" id="numero" placeholder="Nº"value="${cliente.numero}"/>
-                    
+                    <input type="text" name="numero" maxlength="5" id="numero" placeholder="Nº"value="${cliente.numero}"/>
                 </div>
                 <div class="row">
                     <label for="email">Email*</label>
-                    <input type="text" name="email" id="email" placeholder="email@exemplo.com" value="${cliente.email}"/>
+                    <input type="text" name="email" id="email" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}"/>
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" placeholder=" (00)0000-0000"value="${cliente.telefone}"/>
+                    
+                    <input type="tel" required="required" maxlength="11" name="telefone" id="telefone" placeholder="DD00000000"value="${cliente.telefone}" />
+                    <!--<input type="text" name="telefone" id="telefone" placeholder=" (00)0000-0000"value="$cliente.telefone}"/>-->
                 </div>
                 <hr>
                 <div class="row">
