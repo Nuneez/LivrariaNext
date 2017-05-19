@@ -22,7 +22,7 @@
                 <input type="hidden" name="id" value="${cliente.id}" />
                 <div class="session">
                     <div class="row">
-                        <label for="nome">Nome</label>
+                        <label for="nome">Nome*</label>
                         <input id="nome" type="text" name="nome" value="${cliente.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
                         <input id="sobrenome" type="text" name="sobrenome" value="${cliente.sobreNome}"/>
@@ -35,7 +35,7 @@
                         </select>
                     </div>
                     <div class="row">
-                        <label for="cpf">CPF</label>
+                        <label for="cpf">CPF*</label>
                         <input type="text" name="cpf" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
                         <label for="rg">RG</label>
                         <input type="text" name="rg" id="rg" value="${cliente.rg}">
@@ -53,10 +53,10 @@
                     
                 </div>
                 <div class="row">
-                    <label for="email">Email</label>
+                    <label for="email">Email*</label>
                     <input type="text" name="email" id="email" placeholder="email@exemplo.com" value="${cliente.email}"/>
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" value="${cliente.telefone}"/>
+                    <input type="text" name="telefone" id="telefone" placeholder=" (00)0000-0000"value="${cliente.telefone}"/>
                 </div>
                 <hr>
                 <div class="row">

@@ -34,6 +34,7 @@ footer{
 }
 
 #header-space {
+    margin-top: 20px;
     height: 90px;
     width: 100%;
     /* TODO: Remover depois */
@@ -99,7 +100,7 @@ nav a {
 input, select, button {
     margin-left:2px;
     border:solid 1px #2d2d2d;
-    text-align:right;
+    text-align:left;
     background: white;
     padding: 4px;
     -moz-border-radius: 3px;
@@ -109,7 +110,12 @@ input, select, button {
 input[name = "numero"]{
     width: 50px;
 }
-::-webkit-input-placeholder {
+
+input-placeholder {
    color:rgba(123,123,123,0.4);
    font: 12px sans-serif;
+}
+
+input[name = "custo"] {
+    text-align:right;
 }

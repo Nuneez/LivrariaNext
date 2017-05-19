@@ -43,14 +43,14 @@ public class ListarClientes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
-        if (cpf != null) {
-            try {   
-                List<Cliente> clientes = servico.obterClientes(nome == null? "" : nome, cpf);
-                request.setAttribute("clientes", clientes);
-            } catch (ClienteException ux) {
-                System.out.println(ux.getMessage());
-            }
+
+        try {
+            List<Cliente> clientes = servico.obterClientes(nome == null ? "" : nome, cpf);
+            request.setAttribute("clientes", clientes);
+        } catch (ClienteException ux) {
+            System.out.println(ux.getMessage());
         }
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("Clientes.jsp");
 
         try {
@@ -76,7 +76,7 @@ public class ListarClientes extends HttpServlet {
         try {
             switch (action) {
                 case "excluir":
-                    String clienteId = request.getParameter("cliente_id");
+                    String clienteId = request.getParameter("id");
                     servico.excluir(Integer.parseInt(clienteId));
                     break;
                 default:
@@ -85,12 +85,12 @@ public class ListarClientes extends HttpServlet {
 
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluída com sucesso.\" }");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operacao concluida com sucesso.\" }");
         } catch (ClienteException ux) {
             System.out.println(ux.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operação. Detalhes: " + ux.getMessage() + "' }");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operacao. Detalhes: " + ux.getMessage() + "' }");
         }
     }
 }
