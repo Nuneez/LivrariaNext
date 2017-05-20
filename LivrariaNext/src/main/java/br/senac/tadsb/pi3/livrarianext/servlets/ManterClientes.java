@@ -126,15 +126,14 @@ public class ManterClientes extends HttpServlet {
                     servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
                 }
             } else {
-                response.sendRedirect("Cliente.jsp");
+                request.setAttribute("cliente", nome);
                 
             }
-                RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-                request.setAttribute("nome", nome);
-                dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+            request.setAttribute("nome", nome);
+            dispatcher.forward(request, response);
             //response.sendRedirect("ListarClientes");
-            
-            
+
         } catch (ClienteException ue) {
 
         } catch (Exception ex) {
