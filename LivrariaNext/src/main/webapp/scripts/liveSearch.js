@@ -44,9 +44,6 @@ function activatedLiveSearch(options, element) {
       Object.keys(option).forEach(function(op) {
         if (op === 'id') {
           elOption.setAttribute("value", option.id);
-        } else if(op === 'name') {
-          elOption.setAttribute("name", option.name);
-          elOption.append(option.name);
         } else {
           elOption.setAttribute(op, option[op]);
         }

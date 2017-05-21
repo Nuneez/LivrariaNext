@@ -51,7 +51,7 @@
             </div>
             <div class="row">
               <div class="right">
-                <button type="submit"  name="concluir" id="submit">Concluir</button>
+                <button type="button"  name="concluir" id="submit">Concluir</button>
                 <button name="cancel" type="reset" id="reset">Cancelar</button>
               </div>
             </div>
