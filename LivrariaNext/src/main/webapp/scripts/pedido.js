@@ -141,13 +141,24 @@ function calcTotal() {
  * Envia todos os dados preenchidos para a API
  */
 function postData() {
+  if (document.listaProdutos.length < 1) {
+    alert("Não é possível concluir o pedido! Lista de produtos está vazia");
+    return false;
+  }
   var cliente = document.querySelector('#cliente').value;
-  var produtos = document.listaProdutos;
+  var produtos = [];
+  document.listaProdutos.forEach(function(produto) {
+    produtos.push({
+      id: produto.id,
+      qnt: produto.qnt
+    });
+  });
   ajaxPost(window.location.href, {
     cliente,
     produtos
   }, function() {
     alert("Venda efetuada com sucesso!");
+    window.location.pathname = window.location.pathname;
   });
 }
 
