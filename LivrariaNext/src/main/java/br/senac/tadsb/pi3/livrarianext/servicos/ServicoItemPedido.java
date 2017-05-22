@@ -31,26 +31,20 @@ public class ServicoItemPedido extends Servico<ItemPedido> {
         this.daoItem = (DaoItemPedido)dao;
     }
     
-    public void incluir(int id_produto, int id_pedido, int quantidade, double valor)  throws PedidoException {
+    public void incluir(int qnt, int idProduto, int lastPedido, double preco) throws DaoException, PedidoException {
         try {
-            ItemPedido novo = new ItemPedido(id_pedido, id_produto, quantidade, valor);
-            super.incluir(novo);
+            ItemPedido dominio = new ItemPedido(qnt, idProduto, lastPedido, preco);
+            super.incluir(dominio);
         } catch(ServicoException se) {
             throw new PedidoException(ExceptionTypesEnum.SPECIFIC_CRUD);
         }
     }
     
-    public void alterar(int id, int id_produto, int id_pedido, int quantidade, double valor) throws PedidoException {
+    public void alterar(int id, int qnt, int idProduto, int lastPedido, double preco) throws PedidoException {
         try {
-            ItemPedido itemPedido = daoItem.obterPorId(id);
-            itemPedido.setIdPedido(id_pedido);
-            itemPedido.setProduto(id_produto);
-            itemPedido.setQuantidade(quantidade);
-            itemPedido.setValor(valor);
-            super.alterar(itemPedido);
+            ItemPedido dominio = new ItemPedido(id, qnt, idProduto, lastPedido, preco);
+            super.alterar(dominio);
         } catch (ServicoException ex) {
-            Logger.getLogger(ServicoItemPedido.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DaoException ex) {
             Logger.getLogger(ServicoItemPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

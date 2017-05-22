@@ -8,6 +8,7 @@ package br.senac.tadsb.pi3.livrarianext.servlets;
 import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.ProdutoException;
 import br.senac.tadsb.pi3.livrarianext.models.NameValue;
+import br.senac.tadsb.pi3.livrarianext.models.Produto;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoProduto;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -55,7 +56,7 @@ public class Produtos extends ExtendedHttpServlet {
         {
             //Obtendo parametros
             String search = request.getParameter("search");                        
-            List<NameValue> lista = servico.obterProdutos(search);            
+            List<Produto> lista = servico.obterProdutos(search);
             writeJsonResponse(response, gson.toJson(lista));
         }
         catch(ProdutoException ux)

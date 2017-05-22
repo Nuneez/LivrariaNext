@@ -76,16 +76,14 @@ public class ServicoProduto extends Servico<Produto> {
             throw new ProdutoException(ExceptionTypesEnum.SPECIFIC_CRUD);
         }
     }
-    
-    public List<NameValue> obterProdutos(String texto) throws ProdutoException {
+    public List<Produto> obterProdutos(String texto) throws ProdutoException {
         
-        List<Produto> produtos = obterProdutos(texto, null);
+        List<Produto> produtos = obterProdutos(texto.trim(), null);
         List<NameValue> colecao = new ArrayList<>();
 
         for (Produto p : produtos)
-            colecao.add(new NameValue(String.valueOf(p.getId()), p.getNome(), p.getPreco()));            
-        
-        return colecao;
+            colecao.add(new NameValue(String.valueOf(p.getId()), p.getNome()));
+        return produtos;
     }
     
     public List<Produto> obterProdutos(String nome, String cnpj) throws ProdutoException  {

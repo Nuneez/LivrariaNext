@@ -9,10 +9,16 @@ import br.senac.tadsb.pi3.livrarianext.database.Dao;
 import br.senac.tadsb.pi3.livrarianext.database.DaoPedido;
 import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
+import static br.senac.tadsb.pi3.livrarianext.helpers.Parser.tryParseInt;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
+import br.senac.tadsb.pi3.livrarianext.models.ItemPedido;
 import br.senac.tadsb.pi3.livrarianext.models.Loja;
 import br.senac.tadsb.pi3.livrarianext.models.Pedido;
 import br.senac.tadsb.pi3.livrarianext.models.Usuario;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,5 +88,15 @@ public class ServicoPedido extends Servico<Pedido> {
             Logger.getLogger(ServicoPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+    
+    public Pedido obterUltimo() throws Exception {
+        try {
+            Pedido dominion = dao.getLastPedido();
+            return dominion;
+        } catch (DaoException ex) {
+            Logger.getLogger(ServicoPedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;        
     }
 }

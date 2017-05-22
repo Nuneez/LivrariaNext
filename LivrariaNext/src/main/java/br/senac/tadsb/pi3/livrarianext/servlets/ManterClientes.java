@@ -101,21 +101,21 @@ public class ManterClientes extends HttpServlet {
 
         String mensagemDeErro = null;
 
-        Email e = new Email(email);
-        Telefone tell = new Telefone(telefone);
-        Cpf c = new Cpf(cpf);
-        //c.removeCaracterEspecial(cpf);
-        if (!c.validarCpf(cpf)) {
-            mensagemDeErro = "CPF invalido, digite novamente !";
-        }
-        if (!e.validarEmail()) {
-            mensagemDeErro = "E-mail invalido, digite novamente !";
-        }
-        if (!tell.validarTelefone()) {
-            mensagemDeErro = "Telefone invalido, digite novamente !";
-        }
-
-        request.setAttribute("erro", mensagemDeErro);
+//        Email e = new Email(email);
+//        Telefone tell = new Telefone(telefone);
+//        Cpf c = new Cpf(cpf);
+//        //c.removeCaracterEspecial(cpf);
+//        if (!c.validarCpf(cpf)) {
+//            mensagemDeErro = "CPF invalido, digite novamente !";
+//        }
+//        if (!e.validarEmail()) {
+//            mensagemDeErro = "E-mail invalido, digite novamente !";
+//        }
+//        if (!tell.validarTelefone()) {
+//            mensagemDeErro = "Telefone invalido, digite novamente !";
+//        }
+//
+//        request.setAttribute("erro", mensagemDeErro);
 
         try {
             if (mensagemDeErro == null) {
@@ -131,8 +131,8 @@ public class ManterClientes extends HttpServlet {
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
             request.setAttribute("nome", nome);
-            dispatcher.forward(request, response);
-            //response.sendRedirect("ListarClientes");
+//            dispatcher.forward(request, response);
+            response.sendRedirect("ListarClientes");
 
         } catch (ClienteException ue) {
 

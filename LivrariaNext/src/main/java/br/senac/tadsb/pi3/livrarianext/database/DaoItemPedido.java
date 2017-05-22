@@ -39,21 +39,13 @@ public class DaoItemPedido extends Dao<ItemPedido> {
     public void incluir(ItemPedido itemPedido) throws DaoException {     
         try {                   
             PreparedStatement stt = obterStatement("INSERT INTO item_pedido (id_pedido, id_produto, qtd_produto, val_unitario) VALUES (?,?,?,?)");
-            stt.setInt(1, itemPedido.getIdPedido());
-            stt.setInt(2, itemPedido.getProduto());
+            stt.setInt(1, itemPedido.getIdVenda());
+            stt.setInt(2, itemPedido.getIdProduto());
             stt.setInt(3, itemPedido.getQuantidade());
             stt.setDouble(4, itemPedido.getValor());
             stt.execute();
-        }
-        catch(SQLException sqlex)
-        {
-            sqlex.printStackTrace();
-            throw new DaoException();
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-            throw new DaoException();
+        } catch (Exception ex) {
+            Logger.getLogger(DaoItemPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -62,8 +54,8 @@ public class DaoItemPedido extends Dao<ItemPedido> {
         try
         {
             PreparedStatement stt = obterStatement("UPDATE item_pedido SET id_pedido = ?, id_produto = ?, qtn_produto = ?, val_unitario = ? where id = ?");
-            stt.setInt(1, itemPedido.getIdPedido());
-            stt.setInt(2, itemPedido.getProduto());
+            stt.setInt(1, itemPedido.getIdVenda());
+            stt.setInt(2, itemPedido.getIdProduto());
             stt.setInt(3, itemPedido.getQuantidade());
             stt.setDouble(4, itemPedido.getValor());
             stt.setInt(5, itemPedido.getId());

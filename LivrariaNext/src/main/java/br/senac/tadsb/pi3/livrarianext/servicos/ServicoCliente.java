@@ -24,7 +24,7 @@ public class ServicoCliente extends Servico<Cliente> {
         super(dao);
         this.dao = (DaoCliente) dao;
     }
-    
+
     public void incluir(String nome, String sobrenome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro)  throws ClienteException {
         try
         {
@@ -91,7 +91,17 @@ public class ServicoCliente extends Servico<Cliente> {
             throw new ClienteException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
     }
-    
+    public Cliente obterClientePorCpf( String cpf) throws ClienteException  {
+        try
+        {
+            return dao.obterPorCPF(cpf);
+        }
+        catch(DaoException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new ClienteException(ExceptionTypesEnum.SPECIFIC_SELECT);
+        }
+    }
     public Cliente obterClientePorId(int id) throws ClienteException  {
         try
         {

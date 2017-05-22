@@ -9,6 +9,7 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Thiago
  */
-public class ListarClientes extends HttpServlet {
+public class ListarClientes extends ExtendedHttpServlet {
 
     ServicoCliente servico;
 
@@ -43,19 +44,36 @@ public class ListarClientes extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
+        String search = request.getParameter("search");
 
-        try {
-            List<Cliente> clientes = servico.obterClientes(nome == null ? "" : nome, cpf);
-            request.setAttribute("clientes", clientes);
-        } catch (ClienteException ux) {
-            System.out.println(ux.getMessage());
-        }
+        if (search == null) {
+            try {
+                List<Cliente> clientes = servico.obterClientes(nome == null ? "" : nome, cpf);
+                request.setAttribute("clientes", clientes);
+            } catch (ClienteException ux) {
+                System.out.println(ux.getMessage());
+            }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Clientes.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Clientes.jsp");
 
-        try {
-            dispatcher.forward(request, response);
-        } catch (IOException ex) {
+            try {
+                dispatcher.forward(request, response);
+            } catch (IOException ex) {
+            }
+        } else {
+            Gson gson = new Gson();
+            List<Cliente> lista = null;
+            try {
+                if (search.matches("[0-9]+")) {
+                    lista = servico.obterClientes(null, search.trim());   
+                } else {
+                    lista = servico.obterClientes(search.trim(), null);
+                }
+                
+                writeJsonResponse(response, gson.toJson(lista));
+            } catch (ClienteException ux) {
+                System.out.println(ux.getMessage());
+            }
         }
 
     }
