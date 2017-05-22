@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:750px;">
+                    <table  style="width:850px;">
                       <tr>
                         <th>ID</th>
                         <th>Titulo</th>

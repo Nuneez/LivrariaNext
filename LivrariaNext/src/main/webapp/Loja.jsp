@@ -21,8 +21,8 @@
                     <input id="id" name="id" type="hidden" value="${loja.id}" />
                 <div class="session">
                     <div class="row">
-                        <label for="codigo">Nome</label>
-                        <input id="nome" type="text" name="nome" maxlength="50" value="${loja.nome}" />
+                        <label for="codigo">Nome*</label>
+                        <input id="nome" type="text" name="nome" required="required" maxlength="50" value="${loja.nome}" />
                         <label for="razao">Razao Social</label>
                         <input id="razao" type="text" name="razaosocial" maxlength="50" value="${loja.razaoSocial}" />
                         <label for="atividade">Ativo</label>
@@ -58,10 +58,10 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" maxlength="11" placeholder="(99)9999-9999" value="${loja.telefone}"/>
-                    <label for="email">E-mail</label>
-                    <input type="text" name="email" id="email" maxlength="50"placeholder="email@exemplo.com" value="${loja.email}"/>
+                    <label for="telefone">Telefone*</label>
+                    <input type="text" name="telefone" id="telefone" required="required" maxlength="11" placeholder="(99)9999-9999" value="${loja.telefone}"/>
+                    <label for="email">E-mail*</label>
+                    <input type="text" name="email" id="email" required="required" maxlength="50"placeholder="email@exemplo.com" value="${loja.email}"/>
                 </div>
                 <hr>
                 <div class="row">

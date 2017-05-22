@@ -21,14 +21,14 @@
                     <input type="hidden" name="id" value="${produto.id}" />
                 <div class="session">
                     <div class="row">
-                        <label for="nome">Nome</label>
-                        <input id="nome" type="text" maxlength="100"name="nome" value="${produto.nome}" />
+                        <label for="nome">Nome*</label>
+                        <input id="nome" type="text" required="required" maxlength="100"name="nome" value="${produto.nome}" />
                     </div>
                     <div class="row">
-                        <label for="ean">EAN</label>
-                        <input type="text" name="ean" id="ean" maxlength="5"value="${produto.ean}">
-                        <label for="rg">Preço</label>
-                        <input type="text" name="custo" id="custo"maxlength="7" placeholder="0.0"value="${produto.custo}">
+                        <label for="ean">EAN*</label>
+                        <input type="text" name="ean" required="required" id="ean" maxlength="5"value="${produto.ean}">
+                        <label for="rg">Preço*</label>
+                        <input type="text" name="custo" required="required" id="custo"maxlength="7" placeholder="0.0"value="${produto.custo}">
                     </div>
                     <div class="row">
                         <label for="atividade">Ativo</label>
