@@ -49,7 +49,7 @@ public class Cliente {
     }
     
     public Cliente(int id, String nome, String sobreNome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro, Loja loja, Boolean ativo){
-        this(nome, sobreNome, cpf, nascimento, sexo, rg, email, telefone, endereco, numero, bairro, ativo);
+        this(nome, sobreNome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro, ativo);
         this.id = id;
         this.loja = loja;
     }

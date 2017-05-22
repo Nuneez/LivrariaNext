@@ -16,15 +16,15 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-        <div class="content">
-            <form action="/LivrariaNext/ManterLojas" method="post">
-                <input id="id" name="id" type="hidden" value="${loja.id}" />
+            <div class="content">
+                <form action="/LivrariaNext/ManterLojas" method="post">
+                    <input id="id" name="id" type="hidden" value="${loja.id}" />
                 <div class="session">
                     <div class="row">
                         <label for="codigo">Nome</label>
-                        <input id="nome" type="text" name="nome" value="${loja.nome}" />
+                        <input id="nome" type="text" name="nome" maxlength="50" value="${loja.nome}" />
                         <label for="razao">Razao Social</label>
-                        <input id="razao" type="text" name="razaosocial" value="${loja.razaoSocial}" />
+                        <input id="razao" type="text" name="razaosocial" maxlength="50" value="${loja.razaoSocial}" />
                         <label for="atividade">Ativo</label>
                         <select name="ativo" id="ativo">
                             <option value="true" ${loja.ativo ? 'selected' : ''}>Sim</option>
@@ -33,9 +33,9 @@
                     </div>
                     <div class="row">
                         <label for="cnpj">CNPJ</label>
-                        <input id="cnpj" type="text" name="cnpj" placeholder="00.000.000/0000-00" value="${loja.cnpj}"/>
+                        <input id="cnpj" type="text" name="cnpj" maxlength="14"placeholder="00.000.000/0000-00" value="${loja.cnpj}"/>
                         <label for="insc">Inscrição Estadual</label>
-                        <input id="inscricaoestadual" type="text" name="inscricaoestadual" value="${loja.inscricaoEstadual}" />
+                        <input id="inscricaoestadual" type="text" maxlength="30" name="inscricaoestadual" value="${loja.inscricaoEstadual}" />
                         <label for="atividade">Filial</label>
                         <select name="filial" id="filial">
                             <option value="true" ${loja.ehFilial ? 'selected' : ''}>Sim</option>
@@ -52,16 +52,16 @@
                 </div>
                 <div class="row">
                     <label for="cidade">Cidade</label>
-                    <input type="text" name="cidade" id="cidade" value="${loja.cidade}" />
+                    <input type="text" name="cidade" maxlength="30" id="cidade" value="${loja.cidade}" />
                     <label for="estado">UF</label>
-                    <input type="text" name="estado" id="estado" value="${loja.estado}" />
+                    <input type="text" name="estado" maxlength="2" id="estado" value="${loja.estado}" />
                 </div>
                 <hr>
                 <div class="row">
                     <label for="telefone">Telefone</label>
-                    <input type="text" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${loja.telefone}"/>
+                    <input type="text" name="telefone" id="telefone" maxlength="11" placeholder="(99)9999-9999" value="${loja.telefone}"/>
                     <label for="email">E-mail</label>
-                    <input type="text" name="email" id="email" placeholder="email@exemplo.com" value="${loja.email}"/>
+                    <input type="text" name="email" id="email" maxlength="50"placeholder="email@exemplo.com" value="${loja.email}"/>
                 </div>
                 <hr>
                 <div class="row">

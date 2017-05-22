@@ -23,42 +23,39 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome*</label>
-                        <input id="nome" type="text" name="nome"  maxlength="15" value="${cliente.nome}"/>
+                        <input id="nome" type="text" name="nome" required="required" maxlength="15" value="${cliente.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
                         <input id="sobrenome" type="text" name="sobrenome" maxlength="30"value="${cliente.sobreNome}"/>
                         <label for="sexo">Sexo</label>
                         <select name="sexo" id="sexo">
-                            <option value="I" ${cliente.sexo == null ? 'Selected' : ''} >[Selecione...]</option>
+                            <option value="N" ${cliente.sexo == null ? 'Selected' : ''} >[Selecione...]</option>
                             <option value="M" ${cliente.sexo == "M" ? 'Selected' : ''} >Masculino</option>
                             <option value="F" ${cliente.sexo == "F" ? 'Selected' : ''} >Feminino</option>
-                            <option value="F" ${cliente.sexo == "I" ? 'Selected' : ''} >Indefinido</option>
+                            <option value="I" ${cliente.sexo == "I" ? 'Selected' : ''} >Indefinido</option>
                         </select>
                     </div>
                     <div class="row">
                         <label for="cpf">CPF*</label>
-                        
                         <input type="text" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
                         <label for="rg">RG</label>
                         <input type="text" maxlength="15" name="rg" id="rg" value="${cliente.rg}">
                     </div>
                 </div>
                 <hr>
-                
+
                 <div class="row">
                     <label for="endereco">Endereço</label>
                     <input type="text" name="endereco" maxlength="50" id="endereco" value="${cliente.endereco}"/>
                     <label for="bairro">Bairro</label>
                     <input type="text" name="bairro" maxlength="30" id="bairro" value="${cliente.bairro}"/>
-                       <label for="text">Numero</label>
+                    <label for="text">Numero</label>
                     <input type="text" name="numero" maxlength="5" id="numero" placeholder="Nº"value="${cliente.numero}"/>
                 </div>
                 <div class="row">
                     <label for="email">Email*</label>
-                    <input type="text" name="email" id="email" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}"/>
-                    <label for="telefone">Telefone</label>
-                    
-                    <input type="tel" required="required" maxlength="11" name="telefone" id="telefone" placeholder="DD00000000"value="${cliente.telefone}" />
-                    <!--<input type="text" name="telefone" id="telefone" placeholder=" (00)0000-0000"value="$cliente.telefone}"/>-->
+                    <input type="text" name="email" id="email" required="required" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}"/>
+                    <label for="telefone">Telefone*</label>
+                    <input type="text" required="required" maxlength="11" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${cliente.telefone}" />
                 </div>
                 <hr>
                 <div class="row">
