@@ -27,10 +27,9 @@ label{
 footer{
     position: fixed;
     width: 100%;
-    left:50%;
-    right:50%;
+    width:800px;
+    text-align: center;  
     bottom:0;
-    margin: auto;
 }
 
 #header-space {
@@ -112,8 +111,8 @@ input[name = "numero"]{
 }
 
 input-placeholder {
-   color:rgba(123,123,123,0.4);
-   font: 12px sans-serif;
+    color:rgba(123,123,123,0.4);
+    font: 12px sans-serif;
 }
 
 input[name = "custo"] {

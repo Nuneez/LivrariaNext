@@ -7,5 +7,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <footer>
-    <a>Desenvolvido por Next</a>
+    <p>Desenvolvido por Next</p>
 </footer>
