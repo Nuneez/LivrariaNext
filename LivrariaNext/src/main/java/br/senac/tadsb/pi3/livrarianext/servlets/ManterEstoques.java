@@ -6,7 +6,7 @@
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import br.senac.tadsb.pi3.livrarianext.database.*;
-import br.senac.tadsb.pi3.livrarianext.enums.Acao;
+import br.senac.tadsb.pi3.livrarianext.enums.AcaoCrud;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Estoque;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoEstoque;
@@ -101,7 +101,7 @@ public class ManterEstoques extends HttpServlet {
             List<ProdutoTemporario> produtos = gson.fromJson(json, colType);       
                         
             for(ProdutoTemporario p : produtos)
-                if (p.getAction() != Acao.NONE)
+                if (p.getAction() != AcaoCrud.NONE)
                     servico.alterarEstoque(p.id, Integer.parseInt(id), p.produtoId, p.saldo, p.getAction());
         }
         catch(Exception ex)
@@ -117,18 +117,18 @@ public class ManterEstoques extends HttpServlet {
         public double saldo;
         public String action;
         
-        public Acao getAction(){
+        public AcaoCrud getAction(){
                        
             switch (action) {
                 case "insert":
-                    return Acao.INSERT;
+                    return AcaoCrud.INSERT;
                 case "edit":
-                    return Acao.EDIT;
+                    return AcaoCrud.EDIT;
                 case "delete":
-                    return Acao.DELETE;
+                    return AcaoCrud.DELETE;
             }            
             
-            return Acao.NONE;
+            return AcaoCrud.NONE;
         }
     }
 }
