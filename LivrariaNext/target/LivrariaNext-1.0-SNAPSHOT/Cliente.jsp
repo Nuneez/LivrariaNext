@@ -38,7 +38,7 @@
                         <label for="cpf">CPF*</label>
                         <input type="text" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
                         <label for="rg">RG</label>
-                        <input type="text" maxlength="15" name="rg" id="rg" value="${cliente.rg}">
+                        <input type="text" maxlength="9" name="rg" id="rg" value="${cliente.rg}">
                     </div>
                 </div>
                 <hr>
@@ -55,7 +55,7 @@
                     <label for="email">Email*</label>
                     <input type="text" name="email" id="email" required="required" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}"/>
                     <label for="telefone">Telefone*</label>
-                    <input type="text" required="required" maxlength="11" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${cliente.telefone}" />
+                    <input type="text" required="required" maxlength="10" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${cliente.telefone}" />
                 </div>
                 <hr>
                 <div class="row">

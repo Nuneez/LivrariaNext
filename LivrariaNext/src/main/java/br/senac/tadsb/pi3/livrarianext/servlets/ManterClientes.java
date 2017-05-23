@@ -101,38 +101,39 @@ public class ManterClientes extends HttpServlet {
 
         String mensagemDeErro = null;
 
-//        Email e = new Email(email);
-//        Telefone tell = new Telefone(telefone);
-//        Cpf c = new Cpf(cpf);
-//        //c.removeCaracterEspecial(cpf);
-//        if (!c.validarCpf(cpf)) {
-//            mensagemDeErro = "CPF invalido, digite novamente !";
-//        }
-//        if (!e.validarEmail()) {
-//            mensagemDeErro = "E-mail invalido, digite novamente !";
-//        }
-//        if (!tell.validarTelefone()) {
-//            mensagemDeErro = "Telefone invalido, digite novamente !";
-//        }
-//
-//        request.setAttribute("erro", mensagemDeErro);
+        Email e = new Email(email);
+        Telefone tell = new Telefone(telefone);
+        Cpf c = new Cpf(cpf);
+        //c.removeCaracterEspecial(cpf);
+        if (!c.validarCpf()) {
+            mensagemDeErro = "CPF invalido, digite novamente !";
+        }
+        if (!e.validarEmail()) {
+            mensagemDeErro = "E-mail invalido, digite novamente !";
+        }
+        if (!tell.validarTelefone()) {
+            mensagemDeErro = "Telefone invalido, digite novamente !";
+        }
+        
+        request.setAttribute("erro", mensagemDeErro);
 
         try {
-            if (mensagemDeErro == null) {
-
+            if (mensagemDeErro == null) 
+            {
                 if (id.isEmpty() || id.equals("0")) {
                     servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
                 } else {
                     servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
                 }
-            } else {
-                request.setAttribute("cliente", nome);
                 
+                response.sendRedirect("ListarClientes");
+                
+            } else {
+                Cliente cliente = new Cliente( nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro);
+                request.setAttribute("cliente", cliente);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+                dispatcher.forward(request, response);                
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-            request.setAttribute("nome", nome);
-//            dispatcher.forward(request, response);
-            response.sendRedirect("ListarClientes");
 
         } catch (ClienteException ue) {
 
