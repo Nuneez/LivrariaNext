@@ -124,7 +124,7 @@ function salvar(){
 //            alert("sucesso!") : 
 //            alert(json.erro)
 //        )
-        ;
+//        ;
 };
 
 function obterProdutos(){

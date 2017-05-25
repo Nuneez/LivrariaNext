@@ -237,7 +237,7 @@ public class DaoEstoque extends Dao<Estoque> {
             return new Estoque(
                     rs.getInt("id"),
                     new Loja(
-                        rs.getInt("id"),
+                        rs.getInt("id_loja"),
                         rs.getString("nome"),
                         rs.getBoolean("filial"),
                         rs.getString("cnpj"),
