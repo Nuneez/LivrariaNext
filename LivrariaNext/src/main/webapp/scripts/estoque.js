@@ -1,23 +1,19 @@
 function init(){    
-    
-    document.querySelector("#div-novo-item > p").addEventListener("click", toogleNovoItem);
+    document.querySelector("#btn-popup").addEventListener("click", abrirPopup);
     document.querySelector("#btn-add-produto").addEventListener("click", incluirProduto);
-    document.querySelector("#btn-salvar").addEventListener("click", salvar);
-    
-    window.liveSearch({
-        produto: function(element, callback) {
-            if (element.value.length >= 3) {        
-                var url = document.forms[0].action.replace('ManterEstoques', 'Produtos') + "?search=" + document.querySelector("#search-produto").value;
-                fetch(url).then(rsps => rsps.json()).then(json => callback(json, element));
-            }
-        }
-    });
+    document.querySelector("#btn-fechar-popup").addEventListener("click", fecharPopup);
+    document.querySelector("#btn-salvar").addEventListener("click", salvar);    
+    document.querySelector("#btn-buscar-novo").addEventListener("click", getProdutos);
 };
 
-function toogleNovoItem(){
-    var div = document.querySelector("#div-novo-item > .row");
-    div.style["display"] = (div.style["display"] === "none") ? "block" : "none";
-    focarNovoProduto();
+function abrirPopup(){
+    var div = document.querySelector("#div-novo-item");
+    div.style["display"] = "block";    
+};
+
+function fecharPopup(){
+    var div = document.querySelector("#div-novo-item");
+    div.style["display"] = "none";    
 };
 
 function incluirProduto(){
@@ -29,13 +25,6 @@ function incluirProduto(){
     var saldo = document.querySelector("#qtd-produto").value;
     
     criarLinha(id, nome, saldo);
-    
-    limparInputsNovoProduto();
-    focarNovoProduto();
-};
-
-function focarNovoProduto(){
-    document.querySelector("#search-produto").focus();
 };
 
 function validarProduto(){
@@ -98,10 +87,43 @@ function editar(evt){
     tr.setAttribute("data-action", "edit");
 };
 
-function limparInputsNovoProduto(){
-    document
-        .querySelectorAll("#div-novo-item > .row > input:not([type='button'])")
-        .forEach(i => i.value = "");
+function getProdutos(){    
+    
+    document.querySelector("#lista-novos-produtos > tbody").innerHTML = "";
+    
+    fetch(document.forms[0].action.replace("ManterEstoques", "Produtos") + "?search=" + document.querySelector("#search-produto").value)
+    .then(res => res.json())
+    .then(json => json.forEach(j => document.querySelector("#lista-novos-produtos > tbody").appendChild(addLinhaProduto(j))))
+        ;
+};
+
+function addLinhaProduto(produto){
+    var tr = document.createElement("tr");
+        
+    var ean = document.createElement("td");
+    var nome = document.createElement("td");
+    var saldo = document.createElement("td");
+    var excluir = document.createElement("td");
+        
+    var id = document.createElement("input");
+    var inputSaldo = document.createElement("input");
+    
+    id.setAttribute("type", "hidden");
+    id.value = produto.id;
+    
+    inputSaldo.setAttribute("type", "text");
+    
+    ean.appendChild(id);
+    ean.innerHTML = produto.ean;
+    nome.innerHTML = produto.nome;
+    saldo.appendChild(inputSaldo);
+    
+    tr.appendChild(ean);
+    tr.appendChild(nome);
+    tr.appendChild(saldo);
+    tr.appendChild(excluir);
+    
+    return tr;
 };
 
 function salvar(){
@@ -124,23 +146,6 @@ function salvar(){
 //            alert(json.erro)
 //        )
         ;
-};
-
-function obterProdutos(){
-    var produtos = [];
-    
-    document
-        .querySelectorAll("tbody > tr")
-        .forEach(tr => 
-            produtos.push(
-            { 
-                id: tr.getAttribute("data-id"), 
-                produtoId: tr.getAttribute("data-produtoid"), 
-                saldo: tr.children[2].children[0].value, 
-                action: tr.getAttribute("data-action")  
-            }));
-            
-    return produtos;
 };
 
 window.addEventListener("load", init);

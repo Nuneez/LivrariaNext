@@ -34,15 +34,6 @@
                         <button id="btn-buscar">Buscar</button>
                     </div>
                 </div>
-                <div id="div-novo-item" class="content" style="text-align: center;">
-                    <p>Incluir novo Produto &#8628;</p> 
-                    <div class="row" style="display: none;">
-                        
-                        Produto: <input id="search-produto" live-search="produto" />
-                        Saldo Inicial: <input type="number" id="qtd-produto" />
-                        <input type="button" id="btn-add-produto" name="btn-add-produto" Value="Adicionar Produto" />
-                    </div>
-                </div>
                 <div class="session">
                     <table>
                         <thead>
@@ -68,9 +59,37 @@
                     <div class="row">
                         <input id="btn-salvar" type="button" value="Salvar">
                         <input id="cancelar" type='reset' value='Cancelar'>
+                        <input id="btn-popup" type="button" value="Adicionar Produto">
                     </div>
                 </div>
             </form>
+                        
+            <div id="div-novo-item" class="content popup">
+                <p>Incluir Produtos</p> 
+                <div class="row">
+                    Produto: <input type="text" id="search-produto" style="width: 400px" />
+                    <input type="button" value="Buscar" id="btn-buscar-novo" />
+                </div>
+                <div class="row">
+                    <table id="lista-novos-produtos">
+                        <thead>
+                            <th style="width:100px;">EAN</th>
+                            <th style="width:300px;">NOME</th>
+                            <th style="width:100px;">SALDO</th>
+                            <th style="width: 50px;"></th>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">                    
+                    <input type="button" id="btn-add-produto" name="btn-add-produto" Value="Adicionar Produtos" />
+                    <input type="button" id="btn-fechar-popup" name="btn-cancelar-add-produto" Value="Cancelar" />
+                </div>
+            </div>
+                    
+                    
         </div>
     </body>
 </html>

@@ -122,3 +122,16 @@ input-placeholder {
 input[name = "custo"] {
     text-align:right;
 }
+
+.popup{
+    display:none; 
+    position:fixed;
+    margin: 0 auto;
+    top: 25%;
+    bottom: 25% ;
+    right: 0;
+    left: 0;
+    background-color: white;
+    width: 700px;
+    height: 300px;
+}
