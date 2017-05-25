@@ -27,6 +27,12 @@ public class Pedido {
     private List<ItemPedido> itensPedidos;
     private String dataPedido;
 
+    public Pedido(Cliente cliente, Usuario vendedor, Loja loja) {
+        this.cliente = cliente;
+        this.vendedor = vendedor;
+        this.loja = loja;
+    }
+    
     public Pedido(Cliente cliente, Usuario vendedor, Loja loja, List<ItemPedido> itensPedidos) {
         this.cliente = cliente;
         this.vendedor = vendedor;
@@ -63,10 +69,6 @@ public class Pedido {
 
     public Pedido() {
         this.total = 0;
-    }
-
-    public Pedido(Cliente cliente, Usuario vendedor, Loja loja) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

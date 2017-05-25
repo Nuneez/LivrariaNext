@@ -9,6 +9,7 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
+import br.senac.tadsb.pi3.livrarianext.validar.CaracteresEspeciais;
 import br.senac.tadsb.pi3.livrarianext.validar.Cpf;
 import br.senac.tadsb.pi3.livrarianext.validar.Email;
 import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
@@ -100,12 +101,10 @@ public class ManterClientes extends HttpServlet {
         String telefone = request.getParameter("telefone");
 
         String mensagemDeErro = null;
-
-        Email e = new Email(email);
-        Telefone tell = new Telefone(telefone);
+        Email e = new Email(email);       
         Cpf c = new Cpf(cpf);
-        //c.removeCaracterEspecial(cpf);
-        if (!c.validarCpf(cpf)) {
+        Telefone tell = new Telefone(telefone);
+        if (!c.validarCpf()) {
             mensagemDeErro = "CPF invalido, digite novamente !";
         }
         if (!e.validarEmail()) {
@@ -114,27 +113,27 @@ public class ManterClientes extends HttpServlet {
         if (!tell.validarTelefone()) {
             mensagemDeErro = "Telefone invalido, digite novamente !";
         }
-
+        
         request.setAttribute("erro", mensagemDeErro);
 
         try {
-            if (mensagemDeErro == null) {
-
+            if (mensagemDeErro == null) 
+            {
                 if (id.isEmpty() || id.equals("0")) {
                     servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
                 } else {
                     servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
                 }
-            } else {
-                response.sendRedirect("Cliente.jsp");
                 
-            }
+                response.sendRedirect("ListarClientes");
+                
+            } else {
+                Cliente cliente = new Cliente( nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro);
+                request.setAttribute("cliente", cliente);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-                request.setAttribute("nome", nome);
-                dispatcher.forward(request, response);
-            //response.sendRedirect("ListarClientes");
-            
-            
+                dispatcher.forward(request, response);                
+            }
+
         } catch (ClienteException ue) {
 
         } catch (Exception ex) {

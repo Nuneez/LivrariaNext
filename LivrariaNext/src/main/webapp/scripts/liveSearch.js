@@ -41,9 +41,14 @@ function activatedLiveSearch(options, element) {
     insertAfter(datalist, element);
     options.forEach(function(option) {
       var elOption = document.createElement("option");
-      elOption.setAttribute("value", option.id);
-      elOption.append(option.name);
-      datalist.appendChild(elOption);
+      Object.keys(option).forEach(function(op) {
+        if (op === 'id') {
+          elOption.setAttribute("value", option.id);
+        } else {
+          elOption.setAttribute(op, option[op]);
+        }
+        datalist.appendChild(elOption);
+      })
     });
   } else {
     console.error("Erro ao adicionar montar lista de opções.");

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.senac.tadsb.pi3.livrarianext.models;
 
 /**
@@ -52,6 +47,21 @@ public class Cliente {
         this(nome, sobreNome, cpf, nascimento, sexo, rg, email, telefone, endereco, numero, bairro, ativo);
         this.id = id;
         this.loja = loja;
+    }
+
+    public Cliente(String nome, String sobrenome, String cpf, String rg, String nascimento, String sexo, String email, String telefone, String endereco, String numero, String bairro) {
+        //this.id = Integer.parseInt(id);
+        this.nome = nome;
+        this.sobreNome = sobrenome;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.nascimento = nascimento;
+        this.sexo = sexo;
+        this.email = email;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.numero = numero;
+        this.bairro = bairro;
     }
 
     public void setId(int id) {

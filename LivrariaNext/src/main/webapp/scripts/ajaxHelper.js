@@ -1,10 +1,10 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-var ajaxGet = function(url, success){
+function ajaxGet(url, success){
     var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     xhr.open('GET', url);
     xhr.onreadystatechange = function() {
@@ -12,12 +12,20 @@ var ajaxGet = function(url, success){
     };
     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     xhr.send();
-    return xhr;    
+    return xhr;
 };
 
-function ajaxPost(url, data, success) {    
+function prepareData(data)  {
+  if (typeof data === 'object') {
+    return JSON.stringify(data);
+  } else {
+    return data;
+  }
+}
+
+function ajaxPost(url, data, success) {
     var params = typeof data == 'string' ? data : Object.keys(data).map(
-            function(k){ return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) }
+            function(k) { return encodeURIComponent(k) + '=' + encodeURIComponent(prepareData(data[k])) }
         ).join('&');
 
     var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");

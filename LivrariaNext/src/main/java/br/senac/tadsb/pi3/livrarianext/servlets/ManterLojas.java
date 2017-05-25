@@ -111,7 +111,7 @@ public class ManterLojas extends HttpServlet {
         Email e = new Email(email);
         Telefone tell = new Telefone(telefone);
         Cnpj c = new Cnpj(cnpj);
-        if (!c.validarCnpj(cnpj)) {
+        if (!c.validarCnpj()) {
             mensagemDeErro = "CPF invalido, digite novamente !";
         }
         if (!e.validarEmail()) {
@@ -126,14 +126,23 @@ public class ManterLojas extends HttpServlet {
 
         try {
             if (mensagemDeErro == null) {
-            if (id.isEmpty() || id.equals("0"))        
+            if (id.isEmpty() || id.equals("0")) {            
+                if (numero == null || numero.isEmpty() || numero.equals("0"))
+                    numero= "";
                 servico.incluir(nome, Boolean.parseBoolean(filial), cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
-            else
+            }        
+//                servico.incluir(nome, Boolean.parseBoolean(filial), cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
+            else{
                 servico.alterar(Integer.parseInt(id), nome, Boolean.parseBoolean(filial), cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
-
+            }
+             response.sendRedirect("ListarLojas");
             }   
             else{
-            response.sendRedirect("Loja.jsp");}
+                Loja loja = new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
+                request.setAttribute("loja", loja);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("Loja.jsp");
+                dispatcher.forward(request, response);
+            }
         }
         catch(LojaException ue)
         {

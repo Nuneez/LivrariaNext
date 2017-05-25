@@ -34,9 +34,8 @@
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                     <div class="session">
-                        <table>
+                        <table  style="width:1200px;">
                             <tr>
-                                <th>ID</th>
                                 <th>Nome</th>
                                 <th>Cidade</th>
                                 <th>CNPJ</th>
@@ -45,7 +44,6 @@
                             </tr>
                             <c:forEach items="${lojas}" var="loja">
                                 <tr>
-                                    <td><c:out value="${loja.id}" /></td>
                                     <td><c:out value="${loja.nome}" /></td>
                                     <td><c:out value="${loja.cidade}" /></td>                          
                                     <td><c:out value="${loja.cnpj}" /></td>

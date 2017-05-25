@@ -134,6 +134,21 @@ public class DaoCliente extends Dao<Cliente>  {
         }
     }
 
+    public Cliente obterPorCPF(String cpf) throws DaoException {
+        try
+        {
+            ResultSet rs = getList(queryPadrao + " where cpf LIKE ('"+ cpf.trim() +"')");
+                
+            while (rs.next())
+                 return obterDominio(rs);     
+
+            return null;
+        }
+        catch(SQLException sqlex)
+        {
+            throw new DaoException();
+        }
+    }
     public List<Cliente> obterClientes(String nome, String cpf) throws DaoException {
         try
         {

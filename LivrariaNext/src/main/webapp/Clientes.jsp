@@ -24,12 +24,12 @@
                         <label for="nome">Nome</label>
                         <input id="nome" type="text" name="nome"/>
                         <label for="nome">CPF</label>
-                        <input id="cpf" type="text" name="cpf"/>
+                        <input id="cpf" type="text" name="cpf" placeholder="000.000.000-00"/>
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                 </div>
                 <div class="session">
-                    <table>
+                    <table  style="width:1100px;">
                       <tr>
                         <th>ID</th>
                         <th>Nome</th>

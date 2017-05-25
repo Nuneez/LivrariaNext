@@ -38,7 +38,7 @@
                     <p>Incluir novo Produto &#8628;</p> 
                     <div class="row" style="display: none;">
                         
-                        Produto: <input type="text" id="search-produto" live-search="produto" />
+                        Produto: <input id="search-produto" live-search="produto" />
                         Saldo Inicial: <input type="number" id="qtd-produto" />
                         <input type="button" id="btn-add-produto" name="btn-add-produto" Value="Adicionar Produto" />
                     </div>

@@ -18,11 +18,11 @@
         <jsp:include page="/shared/menu.jsp"></jsp:include>
 
         <div class="content">
-          <form method="post" action="/LivrariaNext/ManterPedidos">
+          <form onsubmit="false">
             <div class="row">
               <label for="cliente">CPF Cliente</label>
               <input id="cliente" name="cliente" live-search="cliente"/>
-              <button name="procurar_usuario">Procurar</button>
+              <button name="match_client" type="button">Associar cliente</button>
             </div>
 
             <div class="row">
@@ -30,9 +30,9 @@
               <input name="produto" id="produto" live-search="produto"/>
 
               <label for="quantidade_produto">Quantidade Produto</label>
-              <input type="number" name="quantidade_produto" id="quantidade_produto"/>
+              <input type="number" name="quantidade_produto" id="quantidade_produto" value="1"/>
 
-              <button name="add_produto">Adicionar</button>
+              <button type="button" name="add_produto" id="add_produto">Adicionar</button>
             </div>
 
             <div class="content lst-produtos table">
@@ -42,6 +42,7 @@
                   <th>Quantidade</th>
                   <th>Valor unitario</th>
                   <th>Valor total</th>
+                  <th>Remover</th>
                 </tr>
               </table>
               <div class="row">
@@ -50,8 +51,8 @@
             </div>
             <div class="row">
               <div class="right">
-                <button name="cancel">Cancelar</button>
-                <button name="concluir">Concluir</button>
+                <button type="button"  name="concluir" id="submit">Concluir</button>
+                <button name="cancel" type="reset" id="reset">Cancelar</button>
               </div>
             </div>
           </form>

@@ -16,21 +16,21 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>        
-        <div class="content">
-            <form action="/LivrariaNext/ManterUsuarios" method="post">
-                <input id="id" name="id" type="hidden" value="${usuario.id}" />
+            <div class="content">
+                <form action="/LivrariaNext/ManterUsuarios" method="post">
+                    <input id="id" name="id" type="hidden" value="${usuario.id}" />
                 <div class="session">
                     <div class="row">
-                        <label for="nome">Nome</label>
-                        <input id="nome" type="text" name="nome" value="${usuario.nome}"/>
+                        <label for="nome">Nome*</label>
+                        <input id="nome" type="text" required="required" name="nome" maxlength="20" value="${usuario.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
-                        <input id="sobrenome" type="text" name="sobrenome" value="${usuario.sobrenome}"/>                        
+                        <input id="sobrenome" type="text" name="sobrenome" maxlength="50"value="${usuario.sobrenome}"/>                        
                     </div>
                     <div class="row">
-                        <label for="username">Username</label>
-                        <input id="username" type="text" name="username" value="${usuario.username}"/>
-                        <label for="email">Email</label>
-                        <input id="email" type="text" name="email" value="${usuario.email}"/>                        
+                        <label for="username">Username*</label>
+                        <input id="username" type="text" name="username" required="required" maxlength="15"value="${usuario.username}"/>
+                        <label for="email">Email*</label>
+                        <input id="email" type="text" name="email" required="required" maxlength="50"placeholder="email@exemplo.com/" value="${usuario.email}">                        
                     </div>
                     <div class="row">
                         <label for="atividade">Ativo</label>
@@ -41,14 +41,14 @@
                     </div>
                     <div class="row">
                         <label for="perfil">Perfil: </label>
-                        <select name="perfil" id="perfil">
+                        <select name="perfil"id="perfil">
                             <option value="0" ${usuario.perfil == null ? 'Selected' : ''} >[Selecione...]</option>
                             <c:forEach items="${perfis}" var="perfil">
                                 <option value="${perfil.id}" ${usuario.perfil.id == perfil.id ? 'Selected' : ''} >${perfil.nome}</option>
                             </c:forEach>
                         </select>
                     </div>   
-                        
+
                 </div>
                 <hr>
                 <div class="row">
@@ -61,6 +61,6 @@
                 </div>
             </form>
         </div>
-                <jsp:include page="/shared/footer.jsp"></jsp:include>
+        <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
 </html>

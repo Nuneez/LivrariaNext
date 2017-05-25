@@ -57,6 +57,20 @@ public class Loja {
         this.ativo = ativo;
         //this.funcionarios = funcionarios;
     }
+
+    public Loja(String nome, String filial, String razaoSocial, String cnpj, String inscricaoEstadual, String endereco, String numero, String cidade, String estado, String email, String telefone) {
+      this.nome = nome;
+      this.ehFilial = ehFilial;
+      this.cnpj = cnpj;
+      this.razaoSocial = razaoSocial;
+      this.inscricaoEstadual = inscricaoEstadual;
+      this.endereco = endereco;
+      this.numero = numero;
+      this.cidade = cidade;
+      this.estado = estado;
+      this.telefone = telefone;
+      this.email = email;
+    }
     
     public void adicionarFuncionario(Vendedor funcionario){
         if (getFuncionarios() == null)

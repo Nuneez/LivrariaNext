@@ -93,6 +93,18 @@ public class Usuario{
         this.perfil = perfil;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * @param nome the nome to set
      */
