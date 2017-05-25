@@ -9,6 +9,7 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.models.Cliente;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoCliente;
+import br.senac.tadsb.pi3.livrarianext.validar.CaracteresEspeciais;
 import br.senac.tadsb.pi3.livrarianext.validar.Cpf;
 import br.senac.tadsb.pi3.livrarianext.validar.Email;
 import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
@@ -100,11 +101,9 @@ public class ManterClientes extends HttpServlet {
         String telefone = request.getParameter("telefone");
 
         String mensagemDeErro = null;
-
-        Email e = new Email(email);
-        Telefone tell = new Telefone(telefone);
+        Email e = new Email(email);       
         Cpf c = new Cpf(cpf);
-        //c.removeCaracterEspecial(cpf);
+        Telefone tell = new Telefone(telefone);
         if (!c.validarCpf()) {
             mensagemDeErro = "CPF invalido, digite novamente !";
         }

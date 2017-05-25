@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:850px;">
+                    <table  style="width:1100px;">
                       <tr>
                         <th>ID</th>
                         <th>Nome</th>

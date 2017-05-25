@@ -9,15 +9,17 @@ package br.senac.tadsb.pi3.livrarianext.validar;
  *
  * @author Nuneez
  */
-public class Telefone {
-
+public class Telefone  {
+//extends CaracteresEspeciais
     private String telefone;
 
     public Telefone(String telefone) {
+        //super(telefone);
         this.telefone = telefone;
     }
 
     public boolean validarTelefone() {
+        //telefone = removerCaracter();
         try {
             Integer.parseInt(telefone);
             return true;
