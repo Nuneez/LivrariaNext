@@ -13,11 +13,15 @@ function abrirPopup(){
 
 function fecharPopup(){
     var div = document.querySelector("#div-novo-item");
+    var body = document.querySelector("#div-novo-item table tbody");
+    var input = document.querySelector("#div-novo-item input[type='text']");
+    input.value = "";
+    body.innerHTML = "";
     div.style["display"] = "none";    
 };
 
-function incluirProduto(){
-    if (!validarProduto())
+function incluirProduto(td){
+    if (!validarProduto(td))
         return;
     
     var id = document.querySelector("#search-produto").value;
@@ -27,7 +31,7 @@ function incluirProduto(){
     criarLinha(id, nome, saldo);
 };
 
-function validarProduto(){
+function validarProduto(td){
     /*Acrescentar a regra depois
      *  Deve validar se o produto já pertence a este estoque antes de incluir
      */
@@ -35,46 +39,6 @@ function validarProduto(){
     return true;
 };
 
-function criarLinha(id, nome, saldo){
-    var tbody = document.querySelector("table > tbody");
-    var tr = document.createElement("tr");
-    tr.setAttribute("data-id", id)
-    tr.setAttribute("data-action", "insert");
-    
-    criarTds(id, nome, saldo).map(td => tr.appendChild(td));
-    
-    tbody.appendChild(tr);
-}
-
-function criarTds(id, nome, saldo){
-    var tdId = document.createElement("td");
-    var tdNome = document.createElement("td");
-    var tdSaldo = document.createElement("td");
-    var tdExcluir = document.createElement("td");    
-    
-    tdId.innerHTML = id;
-    tdNome.innerHTML = nome;
-    tdSaldo.appendChild(criarInputSaldo(saldo));    
-    tdExcluir.appendChild(criarBotaoExcluir());
-    
-    return [ tdId, tdNome, tdSaldo, tdExcluir ];
-};
-
-function criarInputSaldo(value){
-    var ipt = document.createElement("input");
-    ipt.setAttribute("type", "number");
-    ipt.value = value;    
-    ipt.addEventListener("keypress", editar);
-    return ipt;
-};
-
-function criarBotaoExcluir(){
-    var btn = document.createElement("input");
-    btn.setAttribute("type", "button");
-    btn.value = "Excluir";
-    btn.addEventListener("click", excluir);    
-    return btn;
-};
 
 function excluir(evt){
     var tr = evt.srcElement.parentNode.parentNode;
@@ -93,35 +57,21 @@ function getProdutos(){
     
     fetch(document.forms[0].action.replace("ManterEstoques", "Produtos") + "?search=" + document.querySelector("#search-produto").value)
     .then(res => res.json())
-    .then(json => json.forEach(j => document.querySelector("#lista-novos-produtos > tbody").appendChild(addLinhaProduto(j))))
+    .then(json => json.forEach(p => document.querySelector("#lista-novos-produtos > tbody").appendChild(addLinhaProduto(p))))
         ;
 };
 
 function addLinhaProduto(produto){
-    var tr = document.createElement("tr");
-        
-    var ean = document.createElement("td");
-    var nome = document.createElement("td");
-    var saldo = document.createElement("td");
-    var excluir = document.createElement("td");
-        
-    var id = document.createElement("input");
-    var inputSaldo = document.createElement("input");
     
-    id.setAttribute("type", "hidden");
-    id.value = produto.id;
-    
-    inputSaldo.setAttribute("type", "text");
-    
-    ean.appendChild(id);
-    ean.innerHTML = produto.ean;
-    nome.innerHTML = produto.nome;
-    saldo.appendChild(inputSaldo);
-    
-    tr.appendChild(ean);
-    tr.appendChild(nome);
-    tr.appendChild(saldo);
-    tr.appendChild(excluir);
+    var tr = createTr(
+                    tds =   [ 
+                                { input: { type: "checkbox", value: false } },
+                                { value: produto.ean }, 
+                                { value: produto.nome },
+                                { input: { type: "text", value: 0 } }
+                            ],
+                    attributes= [{ "produto-id": produto.id }]
+                );
     
     return tr;
 };

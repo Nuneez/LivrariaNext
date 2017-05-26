@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/cliente.css">
+        <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/elementHelper.js"></script>
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/estoque.js"></script>
         <title>Estoque</title>
     </head>
@@ -73,10 +74,10 @@
                 <div class="row">
                     <table id="lista-novos-produtos">
                         <thead>
+                            <th></th>
                             <th style="width:100px;">EAN</th>
                             <th style="width:300px;">NOME</th>
                             <th style="width:100px;">SALDO</th>
-                            <th style="width: 50px;"></th>
                         </thead>
                         <tbody>
                             
@@ -85,7 +86,7 @@
                 </div>
                 <div class="row">                    
                     <input type="button" id="btn-add-produto" name="btn-add-produto" Value="Adicionar Produtos" />
-                    <input type="button" id="btn-fechar-popup" name="btn-cancelar-add-produto" Value="Cancelar" />
+                    <input type="button" id="btn-fechar-popup" name="btn-cancelar-add-produto" Value="Fechar" />
                 </div>
             </div>
                     
