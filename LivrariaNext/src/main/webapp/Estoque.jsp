@@ -27,15 +27,6 @@
                     </div>
                 </div>
                 <div class="session">
-                    <div class="row">
-                        <label for="nome_produto">Produto: </label>
-                        <input id="nome_produto" type="text" name="nome_produto" />
-                        <label for="ean_produto">EAN: </label>
-                        <input id="ean_produto" type="text" name="ean_produto" />
-                        <button id="btn-buscar">Buscar</button>
-                    </div>
-                </div>
-                <div class="session">
                     <table>
                         <thead>
                             <tr>
@@ -46,7 +37,7 @@
                         </thead>
                         <tbody>
                             <c:forEach items="${estoque.produtos}" var="produto">
-                                <tr data-id="${produto.id}" produto-id="${produto.produto.id}" data-action="none">
+                                <tr data-id="${produto.id}" produto-id="${produto.produto.id}" data-action="none" style="display:${produto.ativo ? "table-row" : "none"}">
                                     <td><c:out value="${produto.produto.ean}" /></td>
                                     <td><c:out value="${produto.produto.nome}" /></td>
                                     <td><input type="number" value="${produto.saldo}" /></td>

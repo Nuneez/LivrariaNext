@@ -17,17 +17,19 @@ public class EstoqueProduto {
     private Estoque estoque;
     private Produto produto;
     private Double saldo;
+    private Boolean ativo;
     
     public EstoqueProduto(Estoque estoque){
         this.estoque = estoque;
         this.saldo = 0.0;
     }
     
-    public EstoqueProduto(int id, Estoque estoque, Produto produto, Double saldo){
+    public EstoqueProduto(int id, Estoque estoque, Produto produto, Double saldo, Boolean ativo){
         this(estoque);
         this.id = id;
         this.produto = produto;
         this.saldo = saldo;
+        this.ativo = ativo;
     }
 
     /**
@@ -89,5 +91,19 @@ public class EstoqueProduto {
      */
     public void setProduto(Produto produto) {
         this.produto = produto;
+    }
+
+    /**
+     * @return the ativo
+     */
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 }

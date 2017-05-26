@@ -60,7 +60,7 @@ public class DaoEstoque extends Dao<Estoque> {
             stt.setInt(1, estoqueId);
             stt.setInt(2, produtoId);
             stt.setDouble(3, saldo);            
-            stt.setBoolean(3, true);
+            stt.setBoolean(4, true);
 
             stt.execute();
         }
@@ -79,7 +79,7 @@ public class DaoEstoque extends Dao<Estoque> {
     public void alterarProduto(int id, double saldo, Boolean ativo) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("update estoque_produto set QTD_SALDO = ?, ATIVO = ?) where ID = ?");
+            PreparedStatement stt = obterStatement("update estoque_produto set QTD_SALDO = ?, ATIVO = ? where ID = ?");
             stt.setDouble(1, saldo);
             stt.setBoolean(2, ativo);
             stt.setInt(3, id);
@@ -101,7 +101,7 @@ public class DaoEstoque extends Dao<Estoque> {
     public void excluirProduto(int id) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("update estoque_produto set ATIVO = ?) where ID = ?");
+            PreparedStatement stt = obterStatement("update estoque_produto set ATIVO = ? where ID = ?");
             stt.setBoolean(1, false);
             stt.setInt(2, id);
 
@@ -185,6 +185,7 @@ public class DaoEstoque extends Dao<Estoque> {
                     "select "
                     + "ep.ID as estoque_produto_id, "
                     + "ep.qtd_saldo as estoque_produto_saldo, "
+                    + "ep.ativo as estoque_produto_ativo, "
                     + "p.ID as produto_id, "
                     + "p.NOMECOMUM as produto_nome, "
                     + "p.descricao as produto_descricao, "
@@ -218,7 +219,8 @@ public class DaoEstoque extends Dao<Estoque> {
                                         rs.getDouble("produto_preco"), 
                                         rs.getString("produto_ean"), 
                                         true),
-                                rs.getDouble("estoque_produto_saldo")
+                                rs.getDouble("estoque_produto_saldo"),
+                                rs.getBoolean("estoque_produto_ativo")
                         ));
             }
 

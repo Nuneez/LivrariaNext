@@ -1,9 +1,20 @@
 function init(){    
+    document.querySelector("#cancelar").addEventListener("click", function(){ window.history.back(); })
     document.querySelector("#btn-popup").addEventListener("click", abrirPopup);
     document.querySelector("#btn-add-produto").addEventListener("click", incluirProdutos);
     document.querySelector("#btn-fechar-popup").addEventListener("click", fecharPopup);
     document.querySelector("#btn-salvar").addEventListener("click", salvar);    
     document.querySelector("#btn-buscar-novo").addEventListener("click", getProdutos);
+    atribuirEventoExclusao();
+    atribuirEventoEdicao();
+};
+
+function atribuirEventoEdicao(){    
+    document.querySelectorAll("form table:first-of-type tbody tr input[type='number']").forEach(n => n.addEventListener("keyup", editar));
+};
+
+function atribuirEventoExclusao(){    
+    document.querySelectorAll("form table:first-of-type tbody tr input[type='button']").forEach(b => b.addEventListener("click", excluir));
 };
 
 function abrirPopup(){
@@ -30,7 +41,7 @@ function excluir(evt){
     tr.style["display"] = "none";
 };
 
-function editar(evt){
+function editar(evt){    
     var tr = evt.srcElement.parentNode.parentNode;
     tr.setAttribute("data-action", "edit");
 };
@@ -74,21 +85,32 @@ function incluirProduto(tr){
     if (!validarSaldo(tr))
         return;
     
-    if (!validarProdutoExistente(tr))    
-    {
-        tr.children[0].remove();
-        tr.appendChild(createTdWithInput({ type: "button", value: "Excluir", callback: excluir }))
-        if (tr.getAttribute("data-action") === "none")
-            tr.setAttribute("data-action", "edit");
-        document.querySelector("form table:first-of-type tbody").appendChild(tr);        
-    }
+    if (validarProdutoExistente(tr))    
+        addProdutoExistente(tr);
     else
+        addNovoProduto(tr);
+};
+
+function addNovoProduto(tr){
+    tr.children[0].remove();
+    tr.appendChild(createTdWithInput({ type: "button", value: "Excluir", callback: excluir }));
+
+    tr.setAttribute("data-action", "insert");
+    tr.setAttribute("data-id", "0");
+
+    document.querySelector("form table:first-of-type tbody").appendChild(tr);    
+};
+
+function addProdutoExistente(tr){
+    var tre = document.querySelector("form table:first-of-type tbody tr[produto-id='" + tr.getAttribute("produto-id") + "']");
+        
+    if (tre.getAttribute("data-action") === "none" || tre.getAttribute("data-action") === "delete")
     {
-        var tre = document.querySelector("form table:first-of-type tbody tr[produto-id='" + tr.getAttribute("produto-id") + "']");
-        tre.setAttribute("data-action", "insert");
-        tr.setAttribute("data-id", "0");
-        tre.children[2].children[0].value = tr.children[3].children[0].value;
+        tre.setAttribute("data-action", "edit");
+        tre.style["display"] = "table-row";
     }
+
+    tre.children[2].children[0].value = tr.children[3].children[0].value;       
 };
 
 function validarSaldo(tr){
@@ -114,19 +136,19 @@ function salvar(){
     var produtos = obterProdutos();
     var id = document.querySelector("#id").value;
             
-    ajaxPost(document.forms[0].action, { "id": id, "produtos": JSON.stringify(produtos) }, function(){  });
+    ajaxPost(document.forms[0].action, { "id": id, "produtos": JSON.stringify(produtos) }, function(){ alert("sucesso!") });
 };
 
 function obterProdutos(){
     var produtos = [];
     
     document
-        .querySelectorAll("tbody > tr")
+        .querySelectorAll("form table:first-of-type tbody > tr")
         .forEach(tr => 
             produtos.push(
             { 
                 id: tr.getAttribute("data-id"), 
-                produtoId: tr.getAttribute("data-produtoid"), 
+                produtoId: tr.getAttribute("produto-id"), 
                 saldo: tr.children[2].children[0].value, 
                 action: tr.getAttribute("data-action")  
             }));

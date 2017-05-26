@@ -55,7 +55,7 @@ create table CLIENTE
             (START WITH 1, INCREMENT BY 1),
     NOME VARCHAR(100) not null,
     SOBRENOME VARCHAR(100) not null,
-    CPF VARCHAR (14) not null,
+    CPF VARCHAR (14) not null UNIQUE INDEX,
     RG VARCHAR (13) not null,
     /*DTNASC DATE not null,*/
     SEXO VARCHAR (10) not null,
@@ -66,6 +66,8 @@ create table CLIENTE
     TELEFONE VARCHAR(14) not null,
     ATIVO BOOLEAN not null with DEFAULT TRUE
 );
+
+CREATE UNIQUE INDEX IDX_CLIENTE ON CLIENTE(CPF);
 
 create table PRODUTO
 (
@@ -79,6 +81,8 @@ create table PRODUTO
     EAN VARCHAR(13) not null,
     ATIVO BOOLEAN not null with DEFAULT TRUE
 );
+
+CREATE UNIQUE INDEX IDX_PRODUTO ON PRODUTO(EAN);
 
 insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('IPHONE SE', 'SMARTPHONE 2GB DE MEMÓRIA BLUETOOTH ETC', 2000, 2000, '123456789123', true);
 insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('IPHONE 6', 'SMARTPHONE 2GB DE MEMÓRIA SEM BLUETOOTH ETC', 3000, 3000, '123456789124', true);
@@ -118,6 +122,8 @@ create table LOJA
     ATIVO BOOLEAN NOT NULL WITH DEFAULT TRUE
 );
 
+CREATE UNIQUE INDEX IDX_LOJA ON LOJA(CNPJ);
+
 create table ESTOQUE
 (
     ID INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
@@ -130,7 +136,8 @@ create table ESTOQUE_PRODUTO
     ID INTEGER not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     ID_ESTOQUE INTEGER NOT NULL references ESTOQUE(ID),
     ID_PRODUTO INTEGER NOT NULL references PRODUTO(ID),
-    QTD_SALDO DOUBLE NOT NULL
+    QTD_SALDO DOUBLE NOT NULL,
+    ATIVO BOOLEAN NOT NULL WITH DEFAULT TRUE
 );
 
 create table PEDIDO
