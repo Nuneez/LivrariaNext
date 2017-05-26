@@ -34,9 +34,8 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:850px;">
+                    <table  style="width:825px;">
                       <tr>
-                        <th>ID</th>
                         <th>Titulo</th>
                         <th>Ativo</th>
                         <th>Descrição</th>
@@ -44,7 +43,6 @@
                       </tr>
                       <c:forEach items="${produtos}" var="produto">
                         <tr>
-                          <td><c:out value="${produto.id}" /></td>
                           <td><c:out value="${produto.nome}" /></td>                       
                           <td><c:out value="${produto.ativo?'SIM':'NÃO'}" /></td>
                           <td><c:out value="${produto.descricao}" /></td>

@@ -9,14 +9,12 @@ and open the template in the editor.
 */
 
 body{
-   font-family: Calibri;
+    font-family: Calibri;
     padding: 10px;
     font-size: 16px;
-    width:800px;
-    left:50%;
-    right:50%;
+    width:900px;
     margin: 0 auto;
-    width: 100%;
+
 }
 
 label{
@@ -26,15 +24,22 @@ label{
     text-align: left;   
 
 }
-footer{
-    position: fixed;
-    width: 100%;
-    width:800px;
-    text-align: center;  
-    bottom:0;
+/*-----------------------*/
 
+footer{
+    height:90px;
+    color:#777;
+    background-color:#FFF;
+    text-align:center;
+    margin-bottom:-20px;
+    border-top:1px solid #e5e5e5}
+
+
+@media (min-width:768px){
+    .footer{text-align:left}
 }
 
+/*------------------------------------*/
 #header-space {
     margin-top: 20px;
     height: 90px;
@@ -100,7 +105,7 @@ nav a {
 }
 
 input, select, button {
-    
+
     margin-left:2px;
     border:solid 1px #2d2d2d;
     text-align:left;
@@ -134,4 +139,8 @@ input[name = "custo"] {
     background-color: white;
     width: 700px;
     height: 300px;
+}
+
+table{ 
+    width:825px;
 }

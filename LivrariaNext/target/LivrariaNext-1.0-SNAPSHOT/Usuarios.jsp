@@ -17,16 +17,16 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-        <div class="content">            
-            <form action="/LivrariaNext/ListarUsuarios" method="get">
-                <input type="hidden" id="edit" Value="ManterUsuario"/>
-                <div class="session">
-                    <div class="row">
-                        <label for="nome">Nome: </label>
-                        <input id="nome" type="text" name="nome"/>
-                        <label for="atividade">Ativo: </label>
-                        <select name="ativo" id="ativo">
-                            <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
+            <div class="content">            
+                <form action="/LivrariaNext/ListarUsuarios" method="get">
+                    <input type="hidden" id="edit" Value="ManterUsuario"/>
+                    <div class="session">
+                        <div class="row">
+                            <label for="nome">Nome: </label>
+                            <input id="nome" type="text" name="nome"/>
+                            <label for="atividade">Ativo: </label>
+                            <select name="ativo" id="ativo">
+                                <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
                             <option value="false" ${!ativo ? 'selected' : ''}>Não</option>
                         </select>
                         <label for="perfil">Perfil: </label>
@@ -40,26 +40,24 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:850px;">
-                      <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
-                        <th>Ativo</th>
-                        <th>Perfil</th>
-                        <th></th>
-                      </tr>
-                      <c:forEach items="${usuarios}" var="usuario">
+                    <table  style>
                         <tr>
-                          <td><c:out value="${usuario.id}" /></td>
-                          <td><c:out value="${usuario.nome}" /></td>
-                          <td><c:out value="${usuario.sobrenome}" /></td>
-                          <td><c:out value="${usuario.ativo?'SIM':'NÃO'}" /></td>
-                          <td><c:out value="${usuario.perfil.nome}" /></td>
-                          <td><input type="button" class="btn-editar" data-id="${usuario.id}" Value="Editar" /></td>
-                          <td><input type="button" class="btn-excluir" data-id="${usuario.id}" Value="Excluir" /></td>
+                            <th>Nome</th>
+                            <th>Sobrenome</th>
+                            <th>Ativo</th>
+                            <th>Perfil</th>
+                            <th></th>
                         </tr>
-                      </c:forEach>
+                        <c:forEach items="${usuarios}" var="usuario">
+                            <tr>
+                                <td><c:out value="${usuario.nome}" /></td>
+                                <td><c:out value="${usuario.sobrenome}" /></td>
+                                <td><c:out value="${usuario.ativo?'SIM':'NÃO'}" /></td>
+                                <td><c:out value="${usuario.perfil.nome}" /></td>
+                                <td><input type="button" class="btn-editar" data-id="${usuario.id}" Value="Editar" /></td>
+                                <td><input type="button" class="btn-excluir" data-id="${usuario.id}" Value="Excluir" /></td>
+                            </tr>
+                        </c:forEach>
                     </table>                        
                 </div>
                 <div class="session">
@@ -69,6 +67,6 @@
                 </div>
             </form>
         </div>    
-                        <jsp:include page="/shared/footer.jsp"></jsp:include>
-    </body>
+    </body> 
+    <jsp:include page="/shared/footer.jsp"></jsp:include>
 </html>

@@ -16,6 +16,7 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
+        <div class="content lst-produtos table">
             <div class="content">
                 <form action="/LivrariaNext/ManterProdutos" method="post">
                     <input type="hidden" name="id" value="${produto.id}" />
@@ -49,6 +50,7 @@
                     <input id="cancelar" type='reset' value='Cancelar'>
                 </div>
             </form>
+        </div>
         </div>
         <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>

@@ -34,7 +34,7 @@
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                     <div class="session">
-                        <table  style="width:1200px;">
+                        <table>
                             <tr>
                                 <th>Nome</th>
                                 <th>Cidade</th>

@@ -29,9 +29,8 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:1100px;">
+                    <table>
                       <tr>
-                        <th>ID</th>
                         <th>Nome</th>
                         <th>Sobrenome</th>
                         <th>CPF</th>
@@ -40,7 +39,6 @@
                       </tr>
                       <c:forEach items="${clientes}" var="cliente">
                         <tr>
-                          <td><c:out value="${cliente.id}" /></td>
                           <td><c:out value="${cliente.nome}" /></td>
                           <td><c:out value="${cliente.sobreNome}" /></td>                          
                           <td><c:out value="${cliente.cpf}" /></td>
