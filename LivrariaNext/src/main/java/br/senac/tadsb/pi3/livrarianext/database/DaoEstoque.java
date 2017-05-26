@@ -201,7 +201,12 @@ public class DaoEstoque extends Dao<Estoque> {
 
             List<EstoqueProduto> produtos = new ArrayList<>();
 
-            while (rs.next())
+            while (rs.next()){
+                rs.getInt("estoque_produto_id");
+                
+                if (rs.wasNull())        
+                    continue;
+                    
                 produtos.add(new EstoqueProduto(
                                 rs.getInt("estoque_produto_id"),
                                 estoque,
@@ -215,6 +220,7 @@ public class DaoEstoque extends Dao<Estoque> {
                                         true),
                                 rs.getDouble("estoque_produto_saldo")
                         ));
+            }
 
             return produtos;
         }        

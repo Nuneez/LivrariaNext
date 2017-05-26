@@ -1,9 +1,12 @@
 
-function createInput(type, value, attributes){
+function createInput(type, value, attributes, callback){    
     var input = document.createElement("input");
     input.type = type;
     input.value = value;
     setAttributes(input, attributes);
+    
+    if (type === "button" && callback)
+        input.addEventListener("click", callback);
         
     return input;    
 };
@@ -25,7 +28,7 @@ function createTdWithInput(input, width, value, attributes){
     var td = createTd(width, value, attributes);
     if (input)
     {
-        var i = createInput(input.type, input.value, input.attributes);
+        var i = createInput(input.type, input.value, input.attributes, input.callback);
         td.appendChild(i);        
     }
     return td;

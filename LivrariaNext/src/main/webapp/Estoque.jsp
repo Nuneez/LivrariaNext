@@ -39,15 +39,15 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>EAN</th>
                                 <th>Produto</th>
                                 <th>Saldo</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${estoque.produtos}" var="produto">
-                                <tr data-id="${produto.id}" data-produtoid="${produto.produto.id}" data-action="none">
-                                    <td><c:out value="${produto.produto.id}" /></td>
+                                <tr data-id="${produto.id}" produto-id="${produto.produto.id}" data-action="none">
+                                    <td><c:out value="${produto.produto.ean}" /></td>
                                     <td><c:out value="${produto.produto.nome}" /></td>
                                     <td><input type="number" value="${produto.saldo}" /></td>
                                     <td><input type="button" Value="Excluir" /></td>
@@ -79,8 +79,7 @@
                             <th style="width:300px;">NOME</th>
                             <th style="width:100px;">SALDO</th>
                         </thead>
-                        <tbody>
-                            
+                        <tbody>                            
                         </tbody>
                     </table>
                 </div>

@@ -112,13 +112,13 @@ public class ManterLojas extends HttpServlet {
         Telefone tell = new Telefone(telefone);
         Cnpj c = new Cnpj(cnpj);
         if (!c.validarCnpj()) {
-            mensagemDeErro = "CPF invalido, digite novamente !";
+            mensagemDeErro = "CNPJ inválido, digite novamente !";
         }
         if (!e.validarEmail()) {
-            mensagemDeErro = "E-mail invalido, digite novamente !";
+            mensagemDeErro = "E-mail inválido, digite novamente !";
         }
         if (!tell.validarTelefone()) {
-            mensagemDeErro = "Telefone invalido, digite novamente !";
+            mensagemDeErro = "Telefone inválido, digite novamente !";
             //JOptionPane.showMessageDialog(null, mensagemDeErro);
         }
 
