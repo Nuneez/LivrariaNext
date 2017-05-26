@@ -1,0 +1,135 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 16/04/2017, 06:41:34
+    Author     : Thiago
+*/
+
+body{
+   font-family: Calibri;
+    padding: 10px;
+    font-size: 16px;
+    width:800px;
+    margin: 0 auto;
+
+}
+
+label{
+    display: inline-block;
+    width: 90px;
+    padding-top: 7px;
+    text-align: left;   
+
+}
+footer{
+    position: fixed;
+    width: 100%;
+    width:800px;
+    text-align: center;  
+    bottom:0;
+
+}
+
+#header-space {
+    margin-top: 20px;
+    height: 90px;
+    width: 100%;
+    /* TODO: Remover depois */
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: flex-end;
+}
+#logo-space img {
+    max-height: 100px;
+}
+
+nav {
+    margin-bottom: 40px;
+}
+nav a {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 3px;
+    border-radius: 5px;
+    color: black;
+}
+
+#logo-space {
+    margin-top: 5px;
+    max-height: 100px;
+}
+
+.content {
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 5px black;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+}
+
+.session {
+    display: flex;
+    padding-top: 15px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.mid {
+    width: 45%;
+}
+
+.row, .full {
+    width: 100%;
+}
+.rotate {
+    transform: rotate(90deg);
+}
+
+.left, .esquerda {
+    float: left;
+}
+
+.right, .direita {
+    float: right;
+}
+
+input, select, button {
+    
+    margin-left:2px;
+    border:solid 1px #2d2d2d;
+    text-align:left;
+    background: white;
+    padding: 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+input[name = "numero"]{
+    width: 50px;
+}
+
+input-placeholder {
+    color:rgba(123,123,123,0.4);
+    font: 12px sans-serif;
+}
+
+input[name = "custo"] {
+    text-align:right;
+}
+
+.popup{
+    display:none; 
+    position:fixed;
+    margin: 0 auto;
+    top: 25%;
+    bottom: 25% ;
+    right: 0;
+    left: 0;
+    background-color: white;
+    width: 700px;
+    height: 300px;
+}
