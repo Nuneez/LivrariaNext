@@ -10,6 +10,7 @@ import br.senac.tadsb.pi3.livrarianext.database.*;
 import br.senac.tadsb.pi3.livrarianext.exceptions.LojaException;
 import br.senac.tadsb.pi3.livrarianext.models.Loja;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoLoja;
+import br.senac.tadsb.pi3.livrarianext.validar.CaracteresEspeciais;
 import br.senac.tadsb.pi3.livrarianext.validar.Cnpj;
 import br.senac.tadsb.pi3.livrarianext.validar.Email;
 import br.senac.tadsb.pi3.livrarianext.validar.Telefone;
@@ -109,6 +110,8 @@ public class ManterLojas extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String mensagemDeErro = null;
         Email e = new Email(email);
+        CaracteresEspeciais ce = new CaracteresEspeciais(telefone);
+        telefone = ce.removerCaracter();
         Telefone tell = new Telefone(telefone);
         Cnpj c = new Cnpj(cnpj);
         if (!c.validarCnpj()) {

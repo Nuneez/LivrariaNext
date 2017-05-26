@@ -21,6 +21,8 @@ public class CaracteresEspeciais {
         texto = texto.replace(".", ""); //tira ponto
         texto = texto.replace("/", ""); //tira barra
         texto = texto.replace("-", ""); //tira hífen
+        texto = texto.replace("(", "");
+        texto = texto.replace(")", "");
         return texto;
     }
 }

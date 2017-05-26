@@ -103,6 +103,8 @@ public class ManterClientes extends HttpServlet {
         String mensagemDeErro = null;
         Email e = new Email(email);       
         Cpf c = new Cpf(cpf);
+        CaracteresEspeciais ce = new CaracteresEspeciais(telefone);
+        telefone = ce.removerCaracter();
         Telefone tell = new Telefone(telefone);
         if (!c.validarCpf()) {
             mensagemDeErro = "CPF invalido, digite novamente !";
