@@ -40,9 +40,8 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:850px;">
+                    <table  style="width:900px;">
                       <tr>
-                        <th>ID</th>
                         <th>Nome</th>
                         <th>Sobrenome</th>
                         <th>Ativo</th>
@@ -51,7 +50,6 @@
                       </tr>
                       <c:forEach items="${usuarios}" var="usuario">
                         <tr>
-                          <td><c:out value="${usuario.id}" /></td>
                           <td><c:out value="${usuario.nome}" /></td>
                           <td><c:out value="${usuario.sobrenome}" /></td>
                           <td><c:out value="${usuario.ativo?'SIM':'NÃO'}" /></td>
