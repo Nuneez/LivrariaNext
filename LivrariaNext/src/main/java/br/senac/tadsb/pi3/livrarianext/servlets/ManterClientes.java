@@ -109,13 +109,22 @@ public class ManterClientes extends HttpServlet {
         if (!c.validarCpf()) {
             mensagemDeErro = "CPF invalido, digite novamente !";
         }
+
         if (!e.validarEmail()) {
             mensagemDeErro = "E-mail invalido, digite novamente !";
         }
+        
+
         if (!tell.validarTelefone()) {
             mensagemDeErro = "Telefone invalido, digite novamente !";
-        }
         
+        }
+        if("".equals(nome)){
+            mensagemDeErro = "Campo NOME obrigatorio !";
+        } 
+        if("".equals(cpf)){
+            mensagemDeErro = "Campo CPF obrigatorio !";
+        }
         request.setAttribute("erro", mensagemDeErro);
 
         try {

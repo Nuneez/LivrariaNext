@@ -21,9 +21,14 @@ public class Email {
     }
     
     public boolean validarEmail(){
+
+        if(!"".equals(email)){
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(this.email);
-        return matcher.matches();
+        return matcher.matches();}
+        else
+            return true;
+        
     }
 }

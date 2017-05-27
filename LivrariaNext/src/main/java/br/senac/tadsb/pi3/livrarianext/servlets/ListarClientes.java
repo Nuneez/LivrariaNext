@@ -44,6 +44,7 @@ public class ListarClientes extends ExtendedHttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
+     //   boolean ativo= Boolean.parseBoolean(request.getParameter("ativo"));
         String search = request.getParameter("search");
 
         if (search == null) {
@@ -52,6 +53,7 @@ public class ListarClientes extends ExtendedHttpServlet {
                 request.setAttribute("clientes", clientes);
             } catch (ClienteException ux) {
                 System.out.println(ux.getMessage());
+            
             }
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("Clientes.jsp");

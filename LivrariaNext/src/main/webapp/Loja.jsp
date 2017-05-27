@@ -91,9 +91,9 @@
                 <hr>
                 <div class="row">
                     <label for="telefone">Telefone*</label>
-                    <input type="text" name="telefone" id="telefone" required="required" maxlength="11" placeholder="(99)9999-9999" value="${loja.telefone}"/>
+                    <input type="text" name="telefone" id="telefone" maxlength="11" placeholder="(99)9999-9999" value="${loja.telefone}"/>
                     <label for="email">E-mail*</label>
-                    <input type="text" name="email" id="email" required="required" maxlength="50"placeholder="email@exemplo.com" value="${loja.email}"/>
+                    <input type="text" name="email" id="email" maxlength="50"placeholder="email@exemplo.com" value="${loja.email}"/>
                 </div>
                 <hr>
                 <div class="row">

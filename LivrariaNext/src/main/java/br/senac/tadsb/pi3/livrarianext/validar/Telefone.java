@@ -4,7 +4,8 @@ package br.senac.tadsb.pi3.livrarianext.validar;
  *
  * @author Nuneez
  */
-public class Telefone{
+public class Telefone {
+
     private String telefone;
 
     public Telefone(String telefone) {
@@ -12,11 +13,15 @@ public class Telefone{
     }
 
     public boolean validarTelefone() {
-        try {
-            Integer.parseInt(telefone);
+        if(!"".equals(telefone))
+            try {
+                //Integer.parseInt(telefone);
+                Double.parseDouble(telefone);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        else
             return true;
-        } catch (Exception e) {
-            return false;
-        }
     }
 }

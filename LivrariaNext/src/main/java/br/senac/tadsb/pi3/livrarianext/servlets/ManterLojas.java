@@ -124,6 +124,12 @@ public class ManterLojas extends HttpServlet {
             mensagemDeErro = "Telefone inválido, digite novamente !";
             //JOptionPane.showMessageDialog(null, mensagemDeErro);
         }
+        if("".equals(nome)){
+            mensagemDeErro = "Campo NOME LOJA obrigatorio !";
+        } 
+        if("".equals(cnpj)){
+            mensagemDeErro = "Campo CNPJ obrigatorio !";
+        }
 
         request.setAttribute("erro", mensagemDeErro);
 
