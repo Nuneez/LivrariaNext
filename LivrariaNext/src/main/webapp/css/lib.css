@@ -82,6 +82,13 @@ nav a {
     width: 45%;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+    align-items: center;
+}
+
 .row, .full {
     width: 100%;
 }
@@ -132,4 +139,8 @@ input[name = "custo"] {
     background-color: white;
     width: 700px;
     height: 300px;
+}
+
+table{
+    width:100%;    
 }

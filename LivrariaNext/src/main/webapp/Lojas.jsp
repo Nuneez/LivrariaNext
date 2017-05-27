@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
+        <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lib.css">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lista.css">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/lista.js"></script>
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/ListaLoja.js"></script>
@@ -34,7 +34,7 @@
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                     <div class="session">
-                        <table  style="width:900px;">
+                        <table>
                             <tr>
                                 <th>Nome</th>
                                 <th>Cidade</th>
@@ -44,9 +44,9 @@
                             </tr>
                             <c:forEach items="${lojas}" var="loja">
                                 <tr>
-                                    <td><c:out value="${loja.nome}" /></td>
-                                    <td><c:out value="${loja.cidade}" /></td>                          
-                                    <td><c:out value="${loja.cnpj}" /></td>
+                                    <td style="width:300px;"><c:out value="${loja.nome}" /></td>
+                                    <td style="width:200px;"><c:out value="${loja.cidade}" /></td>                          
+                                    <td style="width:200px;"><c:out value="${loja.cnpj}" /></td>
                                     <td><c:out value="${loja.ativo?'SIM':'NÃO'}" /></td>
                                     <td><input type="button" class="btn-editar" data-id="${loja.id}" Value="Editar" /></td>
                                     <td><input type="button" class="btn-excluir" data-id="${loja.id}" Value="Excluir" /></td>
