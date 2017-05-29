@@ -17,15 +17,15 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-        <div class="content">            
-            <form action="/LivrariaNext/ListarProdutos" method="get">
-                <div class="session">
-                    <div class="row">
-                        <label for="nome">Titulo</label>
-                        <input id="nomecomum" type="text" name="nome"/>
-                        <label for="nome">Ativo</label>
-                         <select name="ativo" id="ativo">
-                            <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
+            <div class="content">            
+                <form action="/LivrariaNext/ListarProdutos" method="get">
+                    <div class="session">
+                        <div class="row">
+                            <label for="nome">Titulo</label>
+                            <input id="nomecomum" type="text" name="nome"/>
+                            <label for="nome">Ativo</label>
+                            <select name="ativo" id="ativo">
+                                <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
                             <option value="false" ${!ativo ? 'selected' : ''}>Não</option>
                         </select>
                         <label for="nome">EAN</label>
@@ -34,22 +34,22 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:850px;">
-                      <tr>
-                        <th>Titulo</th>
-                        <th>Ativo</th>
-                        <th>Descrição</th>
-                        <th></th>
-                      </tr>
-                      <c:forEach items="${produtos}" var="produto">
+                    <table class="table">
                         <tr>
-                          <td><c:out value="${produto.nome}" /></td>                       
-                          <td><c:out value="${produto.ativo?'SIM':'NÃO'}" /></td>
-                          <td><c:out value="${produto.descricao}" /></td>
-                          <td><input type="button" class="btn-editar" data-id="${produto.id}" Value="Editar" /></td>
-                          <td><input type="button" class="btn-excluir" data-id="${produto.id}" Value="Excluir" /></td>
+                            <th>Titulo</th>
+                            <th>Ativo</th>
+                            <th>Descrição</th>
+                            <th></th>
                         </tr>
-                      </c:forEach>
+                        <c:forEach items="${produtos}" var="produto">
+                            <tr>
+                                <td><c:out value="${produto.nome}" /></td>                       
+                                <td><c:out value="${produto.ativo?'SIM':'NÃO'}" /></td>
+                                <td><c:out value="${produto.descricao}" /></td>
+                                <td><input type="button" class="btn-editar" data-id="${produto.id}" Value="Editar" /></td>
+                                <td><input type="button" class="btn-excluir" data-id="${produto.id}" Value="Excluir" /></td>
+                            </tr>
+                        </c:forEach>
                     </table>                            
                 </div>
                 <div class="session">
@@ -59,6 +59,6 @@
                 </div>
             </form>
         </div>    
-                        <jsp:include page="/shared/footer.jsp"></jsp:include>
+        <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
 </html>

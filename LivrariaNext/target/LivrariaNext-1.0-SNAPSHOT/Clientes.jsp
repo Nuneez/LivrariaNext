@@ -17,36 +17,36 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-        <div class="content">            
-            <form action="/LivrariaNext/ListarClientes" method="get">
-                <div class="session">
-                    <div class="row">
-                        <label for="nome">Nome</label>
-                        <input id="nome" type="text" name="nome"/>
-                        <label for="nome">CPF</label>
-                        <input id="cpf" type="text" name="cpf" placeholder="000.000.000-00"/>
-                        <input id="btn-buscar" type="submit" value="Buscar">
+            <div class="content">            
+                <form action="/LivrariaNext/ListarClientes" method="get">
+                    <div class="session">
+                        <div class="row">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text" name="nome"/>
+                            <label for="nome">CPF</label>
+                            <input id="cpf" type="text" name="cpf" placeholder="000.000.000-00"/>
+                            <input id="btn-buscar" type="submit" value="Buscar">
+                        </div>
                     </div>
-                </div>
-                <div class="session">
-                    <table  style="width:900px;">
-                      <tr>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
-                        <th>CPF</th>
-                        <th>Ativo</th>
-                        <th colspan="2"></th>
-                      </tr>
-                      <c:forEach items="${clientes}" var="cliente">
-                        <tr>
-                          <td><c:out value="${cliente.nome}" /></td>
-                          <td><c:out value="${cliente.sobreNome}" /></td>                          
-                          <td><c:out value="${cliente.cpf}" /></td>
-                          <td><c:out value="${cliente.ativo?'SIM':'NÃO'}" /></td>
-                          <td><input type="button" class="btn-editar" data-id="${cliente.id}" Value="Editar" /></td>
-                          <td><input type="button" class="btn-excluir" data-id="${cliente.id}" Value="Excluir" /></td>
-                        </tr>
-                      </c:forEach>
+                    <div class="session">
+                        <table>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Sobrenome</th>
+                                <th>CPF</th>
+                                <th>Ativo</th>
+                                <th colspan="2"></th>
+                            </tr>
+                        <c:forEach items="${clientes}" var="cliente">
+                            <tr>
+                                <td><c:out value="${cliente.nome}" /></td>
+                                <td><c:out value="${cliente.sobreNome}" /></td>                          
+                                <td><c:out value="${cliente.cpf}" /></td>
+                                <td><c:out value="${cliente.ativo?'SIM':'NÃO'}" /></td>
+                                <td><input type="button" class="btn-editar" data-id="${cliente.id}" Value="Editar" /></td>
+                                <td><input type="button" class="btn-excluir" data-id="${cliente.id}" Value="Excluir" /></td>
+                            </tr>
+                        </c:forEach>
                     </table>                        
                 </div>
                 <div class="session">

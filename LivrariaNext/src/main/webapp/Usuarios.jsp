@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table  style="width:900px;">
+                    <table>
                       <tr>
                         <th>Nome</th>
                         <th>Sobrenome</th>

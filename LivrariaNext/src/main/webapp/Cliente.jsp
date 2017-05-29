@@ -54,7 +54,7 @@
                 <div class="row">
                     <label for="email">Email*</label>
                     <input type="text" name="email" id="email" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}"/>
-                    <label for="telefone">Telefone*</label>
+                    <label for="telefone">Telefone</label>
                     <input type="text" maxlength="11" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${cliente.telefone}" />
                 </div>
                 <hr>

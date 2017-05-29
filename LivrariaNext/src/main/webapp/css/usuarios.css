@@ -13,13 +13,11 @@ and open the template in the editor.
 .row {
     display: flex;
     flex-direction: row;
-    padding: 5px 0;
+    padding: 5px;
     align-items: center;
 }
 
-input {
-    margin-right: 5px; 
-}
+
 .session {
-    width: 50%;
+    width: 100%;
 }

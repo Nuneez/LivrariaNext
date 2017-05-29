@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/pedido.js"></script>
+          <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lista.css">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/pedido.css">
         <title>Venda</title>
     </head>
@@ -36,7 +37,7 @@
             </div>
 
             <div class="content lst-produtos table">
-              <table class="row">
+              <table>
                 <tr>
                   <th>Descrição</th>
                   <th>Quantidade</th>

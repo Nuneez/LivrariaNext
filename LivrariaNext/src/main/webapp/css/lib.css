@@ -24,13 +24,19 @@ label{
 
 }
 footer{
-    position: fixed;
-    width: 100%;
-    width:900px;
-    bottom:0;
-    text-align: center;  
-
+    height:90px;
+    color:#777;
+    background-color:#FFF;
+    text-align:center;
+    margin-bottom:-200px;
+    border-top:1px solid #e5e5e5;
 }
+
+
+@media (min-width:768px){
+    .footer{text-align:left}
+}
+
 
 #header-space {
     margin-top: 20px;
@@ -105,8 +111,8 @@ nav a {
 }
 
 input, select, button {
-
-    margin-left:2px;
+    
+    margin-left:-25px; /**/
     border:solid 1px #2d2d2d;
     text-align:left;
     background: white;
@@ -142,5 +148,5 @@ input[name = "custo"] {
 }
 
 table{
-    width:100%;    
+    width: 100%;
 }
