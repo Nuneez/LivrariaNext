@@ -112,7 +112,7 @@ nav a {
 
 input, select, button {
     
-    margin-left:-25px; /**/
+    margin-left:2px;
     border:solid 1px #2d2d2d;
     text-align:left;
     background: white;
