@@ -13,7 +13,7 @@ and open the template in the editor.
 .row {
     display: flex;
     flex-direction: row;
-    padding: 5px;
+    padding: 6px;
     align-items: center;
 }
 
