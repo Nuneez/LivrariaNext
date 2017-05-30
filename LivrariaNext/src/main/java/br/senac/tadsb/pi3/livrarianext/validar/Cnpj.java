@@ -12,16 +12,7 @@ import java.util.InputMismatchException;
  * @author Nuneez
  */
 public class Cnpj {
-
-    private String cnpj;
-
-    public Cnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-
-    public boolean validarCnpj() {
-
+    public static boolean validar(String cnpj) {
 // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (cnpj.equals("00000000000000") || cnpj.equals("11111111111111")
                 || cnpj.equals("22222222222222") || cnpj.equals("33333333333333")
