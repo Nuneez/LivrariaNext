@@ -10,13 +10,7 @@ package br.senac.tadsb.pi3.livrarianext.validar;
  * @author elison.esouza
  */
 public class CaracteresEspeciais {
-    private String texto;
-    
-    public CaracteresEspeciais(String texto){
-        this.texto = texto;
-    }
-    
-    public String removerCaracter(){
+    public static String removerCaracter(String texto){
         texto = texto.replace(" ", ""); //tira espaço em branco
         texto = texto.replace(".", ""); //tira ponto
         texto = texto.replace("/", ""); //tira barra

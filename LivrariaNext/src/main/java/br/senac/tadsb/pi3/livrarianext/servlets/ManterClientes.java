@@ -86,6 +86,8 @@ public class ManterClientes extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String mensagemDeErro = null;   
+        
         //Obtendo parametros
         String id = request.getParameter("id");
         String nome = request.getParameter("nome");
@@ -98,57 +100,69 @@ public class ManterClientes extends HttpServlet {
         String numero = request.getParameter("numero");
         String nascimento = request.getParameter("nascimento");
         String email = request.getParameter("email");
-        String telefone = request.getParameter("telefone");
+        String telefone = request.getParameter("telefone");  
+            
+        try 
+        {
+            if (!Cpf.validar(cpf))            
+                mensagemDeErro += " \n CPF inválido, digite novamente !";
 
-        String mensagemDeErro = null;
-        Email e = new Email(email);       
-        Cpf c = new Cpf(cpf);
-        CaracteresEspeciais ce = new CaracteresEspeciais(telefone);
-        telefone = ce.removerCaracter();
-        Telefone tell = new Telefone(telefone);
-        if (!c.validarCpf()) {
-            mensagemDeErro = "CPF invalido, digite novamente !";
-        }
+            if (!Email.validar(email))
+                mensagemDeErro += " \n E-mail inválido, digite novamente !";
 
-        if (!e.validarEmail()) {
-            mensagemDeErro = "E-mail invalido, digite novamente !";
-        }
-        
+            if (!Telefone.validar(telefone))
+                mensagemDeErro += " \n Telefone inválido, digite novamente !";
 
-        if (!tell.validarTelefone()) {
-            mensagemDeErro = "Telefone invalido, digite novamente !";
-        
-        }
-        if("".equals(nome)){
-            mensagemDeErro = "Campo NOME obrigatorio !";
-        } 
-        if("".equals(cpf)){
-            mensagemDeErro = "Campo CPF obrigatorio !";
-        }
-        request.setAttribute("erro", mensagemDeErro);
+            if(nome.trim().isEmpty())
+                mensagemDeErro += " \n Campo NOME obrigatorio !";
 
-        try {
-            if (mensagemDeErro == null) 
+            if(cpf.trim().isEmpty())
+                mensagemDeErro += " \n Campo CPF obrigatório !";
+
+            if (validarCpfExistente(cpf, Integer.parseInt(id)))
+                mensagemDeErro += " \n CPF pertencente a outro cliente cadastrado!";        
+
+            request.setAttribute("erro", mensagemDeErro);
+
+            if (mensagemDeErro != null && !mensagemDeErro.isEmpty())
             {
-                if (id.isEmpty() || id.equals("0")) {
-                    servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
-                } else {
-                    servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
-                }
-                
-                response.sendRedirect("ListarClientes");
-                
-            } else {
-                Cliente cliente = new Cliente( nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro);
-                request.setAttribute("cliente", cliente);
-                RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
-                dispatcher.forward(request, response);                
+                dispatchFailedPost(new Cliente(nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro), request, response);          
+                return;
             }
+            
+            if (id.isEmpty() || id.equals("0")) 
+                servico.incluir(nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
+            else 
+                servico.alterar(Integer.parseInt(id), nome, sobrenome, cpf, rg, null, sexo, email, telefone, endereco, numero, bairro);
 
-        } catch (ClienteException ue) {
-
-        } catch (Exception ex) {
-            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("ListarClientes");                
+        } 
+        catch (ClienteException ue) 
+        {            
+            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ue);            
+            request.setAttribute("erro", mensagemDeErro);
+            dispatchFailedPost(new Cliente(nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro), request, response);    
+        } 
+        catch (Exception ex) 
+        {
+            Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);            
+            request.setAttribute("erro", "Não foi possível completar a operação.");            
+            dispatchFailedPost(new Cliente(nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro), request, response);
         }
+    }
+    
+    private void dispatchFailedPost(Cliente cliente, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
+            request.setAttribute("cliente", cliente);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Cliente.jsp");
+            dispatcher.forward(request, response);      
+    }
+    
+    private boolean validarCpfExistente(String cpf, int id) throws ClienteException {
+        Cliente cliente = servico.obterClientePorCpf(cpf);
+        
+        if (cliente == null)
+            return false;
+        
+        return cliente.getId() != id;
     }
 }

@@ -16,7 +16,7 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-        <div>${erro == null? '': erro }</div>
+        <div>${erro}</div>
         <div class="content">
             <form action="/LivrariaNext/ManterClientes" method="post">
                 <input type="hidden" name="id" value="${cliente.id}" />

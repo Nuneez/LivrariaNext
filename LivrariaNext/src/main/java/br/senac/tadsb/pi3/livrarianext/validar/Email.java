@@ -13,22 +13,14 @@ import java.util.regex.Pattern;
  * @author Nuneez
  */
 public class Email {
-    
-    private String email;
-    
-    public Email(String email){
-        this.email = email;
-    }
-    
-    public boolean validarEmail(){
+    public static boolean validar(String email){
 
-        if(!"".equals(email)){
+        if (email.trim().isEmpty())
+            return false;
+        
         String regex = "^(.+)@(.+)$";
         Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(this.email);
-        return matcher.matches();}
-        else
-            return true;
-        
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();        
     }
 }

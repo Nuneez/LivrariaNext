@@ -11,14 +11,8 @@ import java.util.InputMismatchException;
  *
  * @author Nuneez
  */
-public class Cpf {
-    private String cpf;
-
-    public Cpf(String cpf){
-        this.cpf = cpf;
-    }
-    
-    public boolean validarCpf() {
+public class Cpf {    
+    public static boolean validar(String cpf) {
         // considera-se erro CPF's formados por uma sequencia de numeros iguais
         if (cpf.equals("00000000000") || cpf.equals("11111111111")
                 || cpf.equals("22222222222") || cpf.equals("33333333333")
