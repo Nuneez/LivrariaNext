@@ -129,25 +129,25 @@ public class ManterLojas extends HttpServlet {
             request.setAttribute("erro", mensagemDeErro);
 
             if (mensagemDeErro != null && !mensagemDeErro.isEmpty()) {
-                dispatchFailedPost(new Loja(nome, filial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual), request, response);
+                dispatchFailedPost(new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
                 return;
             }
 
             if (id.isEmpty() || id.equals("0")) {
-                servico.incluir(nome, null, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
+                servico.incluir( nome, null, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
             } else {
-                servico.alterar(Integer.parseInt(id), nome, null, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
+                servico.alterar(Integer.parseInt(id), nome, null, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
             }
 
             response.sendRedirect("ListarLojas");
         } catch (LojaException ue) {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ue);
             request.setAttribute("erro", mensagemDeErro);
-            dispatchFailedPost(new Loja(nome, filial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual), request, response);
+            dispatchFailedPost(new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
         } catch (Exception ex) {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("erro", "Não foi possível completar a operação.");
-            dispatchFailedPost(new Loja(nome, filial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual), request, response);
+            dispatchFailedPost(new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
         }
     }
 
