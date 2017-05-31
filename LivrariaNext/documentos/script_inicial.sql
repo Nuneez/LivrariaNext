@@ -47,6 +47,13 @@ create table USUARIO
     ATIVO BOOLEAN not null with DEFAULT TRUE
 );
 
+INSERT INTO USUARIO (NOME,SOBRENOME,USERNAME,PASSWORD,EMAIL,PERFIL_ID,LOJA,ATIVO) VALUES ('ERICK','MARQUES','ERMARQUES','123','ERICK@ASTEC.COM',4,1,TRUE);
+INSERT INTO USUARIO (NOME,SOBRENOME,USERNAME,PASSWORD,EMAIL,PERFIL_ID,LOJA,ATIVO) VALUES ('PAULO','NUNES','NUNEEZ','123','NUNEEZ@ASTEC.COM',1,1,TRUE);
+INSERT INTO USUARIO (NOME,SOBRENOME,USERNAME,PASSWORD,EMAIL,PERFIL_ID,LOJA,ATIVO) VALUES ('ROGER','OLIVEIRA','IKARI','123','OLIVEIRA@ASTEC.COM',2,1,TRUE);
+INSERT INTO USUARIO (NOME,SOBRENOME,USERNAME,PASSWORD,EMAIL,PERFIL_ID,LOJA,ATIVO) VALUES ('ELISON','SOUZA','ELISON','123','ELSOUZA@ASTEC.COM',3,1,TRUE);
+INSERT INTO USUARIO (NOME,SOBRENOME,USERNAME,PASSWORD,EMAIL,PERFIL_ID,LOJA,ATIVO) VALUES ('THIAGO','MESSIAS','MESSIAS','123','MESSIAS@ASTEC.COM',5,1,TRUE);
+INSERT INTO USUARIO (NOME,SOBRENOME,USERNAME,PASSWORD,EMAIL,PERFIL_ID,LOJA,ATIVO) VALUES ('ALINE','MORATO','ALINE','123','ALINE@ASTEC.COM',5,1,TRUE);
+
 create table CLIENTE
 (
     ID INTEGER not null primary key
@@ -68,6 +75,13 @@ create table CLIENTE
 
 CREATE UNIQUE INDEX IDX_CLIENTE ON CLIENTE(CPF);
 
+insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('JOAO','SOUZA','73553368861','5896325741','M','RUA ESMORIZ','13','JD SAO BENTO','JOA@GMAIL.COM','11931475866',TRUE);
+insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('MARIA','PINHEIRO','81847884105','429434121','F','RUA JUCELINO','199','JD SAO BERNADO','MARIA@GMAIL.COM','1158772503',TRUE);
+insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('HENRIQUE','MARTINS','83113475732','418757896','M','RUA DA PAZ','80','JD JACIRA','HENRIQUE@GMAIL.COM','11976515793',TRUE);
+insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('JULIO','BEIJAMIN','94231211442','2977269','M','RUA ESMERALDA','54','JD COCAIA','JULIO@GMAIL.COM','1158623324',TRUE);
+insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('MARCOS','TSUDA','24745139497','403289440','M','RUA MIRAFLORES','157','VILA PRUDENTE','MARCOS@GMAIL.COM','11924066674',TRUE);
+
+
 create table PRODUTO
 (
     ID INTEGER not null primary key
@@ -83,14 +97,11 @@ create table PRODUTO
 
 CREATE UNIQUE INDEX IDX_PRODUTO ON PRODUTO(EAN);
 
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('IPHONE SE', 'SMARTPHONE 2GB DE MEMÓRIA BLUETOOTH ETC', 2000, 2000, '123456789123', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('IPHONE 6', 'SMARTPHONE 2GB DE MEMÓRIA SEM BLUETOOTH ETC', 3000, 3000, '123456789124', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SAMSUNG GALAXY S7', 'SMARTPHONE 4GB DE MEMÓRIA BLUETOOTH ETC', 2000, 2000, '123456789125', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SAMSUNG GALAXY S8', 'SMARTPHONE 8GB DE MEMÓRIA BLUETOOTH ETC', 4000, 4000, '123456789126', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SONY PLAYSTATION 4', 'VIDEOGAME DE ULTIMA GERAÇÃO', 1700, 1700, '123456789127', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('MICROSOFT XBOX ONE', 'VIDEOGAME DE ULTIMA GERAÇÃO', 1500, 1500, '123456789128', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('NOTEBOOK DELL VOSTRO 3000', 'NOTEBOOK I7', 4000, 4000, '123456789129', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('NOTEBOOK MACBOOK PRO', 'NOTEBOOK', 6000, 6000, '123456789130', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('IPHONE 7', 'SMARTPHONE 64GB DE MEMÓRIA', 4000, 4000, '00001', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SAMSUNG GALAXY S8', 'SMARTPHONE 32GB', 4000, 4000, '00002', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('PLAYSTATION 4', 'VIDEOGAME SONY', 1700, 1700, '00003', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('XBOX ONE', 'VIDEOGAME MICROSOFT', 1500, 1500, '00004', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('NOTEBOOK MACBOOK PRO', 'NOTEBOOK', 6000, 6000, '00005', true);
 
 create table SERVICO 
 (
@@ -120,6 +131,11 @@ create table LOJA
     EMAIL VARCHAR(100) NOT NULL,
     ATIVO BOOLEAN NOT NULL WITH DEFAULT TRUE
 );
+insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA BENQ',TRUE,'92152264000189','ASTEC','855698595736','AVENIDA ATLANTICA','666','SAO PAULO','SP','1158935000','BENQ@ASTEC.COM',TRUE);
+insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA ECOLOGIC',TRUE,'45665318000120','ASTEC','968498595736','AVENIDA OTAVIO FARIAS','7589','PORTO ALEGRE','RS','5458617721','ECO@ASTEC.COM',TRUE);
+insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA CONEXÃO',TRUE,'70853231000123','ASTEC','785677635736','AVENIDA SOCRATES','5569','RECIFE','PE','8154937721','CONEXAO@ASTEC.COM',TRUE);
+insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA IMAGINARIUM',TRUE,'82055417000116','ASTEC','685698598895','RUA DAMASCO','28','SAO PAULO','SP','1153725488','IMAGINARIUM@ASTEC.COM',TRUE);
+insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA NEW ERA',TRUE,'25891069000183','ASTEC','6193595736','AVENIDA DOS PARAIBA','111','RECIFE','PE','8154337210','NWE@ASTEC.COM',TRUE);
 
 CREATE UNIQUE INDEX IDX_LOJA ON LOJA(CNPJ);
 
