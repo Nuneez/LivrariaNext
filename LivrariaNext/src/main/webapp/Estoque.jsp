@@ -59,7 +59,7 @@
             <div id="div-novo-item" class="content popup">
                 <p>Incluir Produtos</p> 
                 <div class="row">
-                    Produto: <input type="text" id="search-produto" style="width: 400px" />
+                    Produto: <input type="text" id="search-produto" maxlength="20"style="width: 400px" />
                     <input type="button" value="Buscar" id="btn-buscar-novo" />
                 </div>
                 <div class="row">

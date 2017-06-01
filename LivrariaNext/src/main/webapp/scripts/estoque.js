@@ -1,6 +1,6 @@
 function init(){    
     document.querySelector("#cancelar").addEventListener("click", function(){ window.history.back(); })
-    document.querySelector("#btn-popup").addEventListener("click", abrirPopup);
+    document.querySelector("#btn-popup").addEventListener("click", abrirPopup);//function(){ window.history.back();
     document.querySelector("#btn-add-produto").addEventListener("click", incluirProdutos);
     document.querySelector("#btn-fechar-popup").addEventListener("click", fecharPopup);
     document.querySelector("#btn-salvar").addEventListener("click", salvar);    
