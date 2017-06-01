@@ -22,16 +22,16 @@
           <form onsubmit="false">
             <div class="row">
               <label for="cliente">CPF Cliente</label>
-              <input id="cliente" name="cliente" live-search="cliente"/>
+              <input id="cliente" name="cliente" maxlength="11" live-search="cliente"/>
               <button name="match_client" type="button">Associar cliente</button>
             </div>
 
             <div class="row">
               <label for="produto">Produto</label>
-              <input name="produto" id="produto" live-search="produto"/>
+              <input name="produto" id="produto" maxlength="20" live-search="produto"/>
 
               <label for="quantidade_produto">Quantidade Produto</label>
-              <input type="number" name="quantidade_produto" id="quantidade_produto" value="1"/>
+              <input type="number" name="quantidade_produto" min="1" max="10" id="quantidade_produto" value="1"/>
 
               <button type="button" name="add_produto" id="add_produto">Adicionar</button>
             </div>

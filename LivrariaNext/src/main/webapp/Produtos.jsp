@@ -22,14 +22,14 @@
                     <div class="session">
                         <div class="row">
                             <label for="nome">Titulo</label>
-                            <input id="nomecomum" type="text" name="nome"/>
+                            <input id="nomecomum" type="text" maxlength="20"name="nome"/>
                             <label for="nome">Ativo</label>
                             <select name="ativo" id="ativo">
                                 <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
                             <option value="false" ${!ativo ? 'selected' : ''}>Não</option>
                         </select>
                         <label for="nome">EAN</label>
-                        <input id="ean" type="text" name="ean"/>
+                        <input id="ean" type="text" maxlength="5" name="ean"/>
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                 </div>

@@ -23,7 +23,7 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome: </label>
-                        <input id="nome" type="text" name="nome"/>
+                        <input id="nome" type="text" maxlength="15"name="nome"/>
                         <label for="atividade">Ativo: </label>
                         <select name="ativo" id="ativo">
                             <option value="true" ${ativo ? 'selected' : ''}>Sim</option>

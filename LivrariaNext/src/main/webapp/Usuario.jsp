@@ -24,7 +24,7 @@
                         <label for="nome">Nome*</label>
                         <input id="nome" type="text" required="required" name="nome" maxlength="20" value="${usuario.nome}"/>
                         <label for="sobrenome">Sobrenome</label>
-                        <input id="sobrenome" type="text" name="sobrenome" maxlength="50"value="${usuario.sobrenome}"/>                        
+                        <input id="sobrenome" type="text" name="sobrenome" maxlength="20"value="${usuario.sobrenome}"/>                        
                     </div>
                     <div class="row">
                         <label for="username">Username*</label>

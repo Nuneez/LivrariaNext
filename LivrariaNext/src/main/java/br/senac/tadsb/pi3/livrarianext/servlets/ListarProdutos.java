@@ -114,14 +114,14 @@ public class ListarProdutos extends HttpServlet {
             
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Opera√ß√£o conclu√≠da com sucesso.\" }");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"OperaÁ„o concluida com sucesso.\" }");
         }
         catch(ProdutoException ux)
         {
             System.out.println(ux.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na opera√ß√£o. Detalhes: " + ux.getMessage() + "' }");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na OperaÁ„o. Detalhes: " + ux.getMessage() + "' }");
         }
     }
    

@@ -22,9 +22,9 @@
                     <div class="session">
                         <div class="row">
                             <label for="nome">Nome</label>
-                            <input id="nome" type="text" name="nome"/>
+                            <input id="nome" type="text"  maxlength="20" name="nome"/>
                             <label for="nome">CPF</label>
-                            <input id="cpf" type="text" name="cpf" placeholder="000.000.000-00"/>
+                            <input id="cpf" type="text" name="cpf" maxlength="11" placeholder="000.000.000-00"/>
                             <input id="btn-buscar" type="submit" value="Buscar">
                         </div>
                     </div>

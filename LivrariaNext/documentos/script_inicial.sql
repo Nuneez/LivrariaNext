@@ -75,7 +75,7 @@ create table CLIENTE
 
 CREATE UNIQUE INDEX IDX_CLIENTE ON CLIENTE(CPF);
 
-insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('JOAO','SOUZA','73553368861','5896325741','M','RUA ESMORIZ','13','JD SAO BENTO','JOA@GMAIL.COM','11931475866',TRUE);
+insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('JOAO','SOUZA','73553368861','5896325741','M','RUA AZEVEDO MACEDO','20','VILA MARIANA','JOAO@GMAIL.COM','11931475866',TRUE);
 insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('MARIA','PINHEIRO','81847884105','429434121','F','RUA JUCELINO','199','JD SAO BERNADO','MARIA@GMAIL.COM','1158772503',TRUE);
 insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('HENRIQUE','MARTINS','83113475732','418757896','M','RUA DA PAZ','80','JD JACIRA','HENRIQUE@GMAIL.COM','11976515793',TRUE);
 insert into cliente (nome,sobrenome,cpf,rg,sexo,endereco,numero,bairro,email,telefone,ativo)values('JULIO','BEIJAMIN','94231211442','2977269','M','RUA ESMERALDA','54','JD COCAIA','JULIO@GMAIL.COM','1158623324',TRUE);
@@ -91,7 +91,7 @@ create table PRODUTO
     DESCRICAO VARCHAR(100) not null,
     CUSTO DOUBLE not null,
     PRECOMEDIO DOUBLE not null,
-    EAN VARCHAR(13) not null,
+    EAN VARCHAR(10) not null,
     ATIVO BOOLEAN not null with DEFAULT TRUE
 );
 
@@ -101,7 +101,7 @@ insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values
 insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('SAMSUNG GALAXY S8', 'SMARTPHONE 32GB', 4000, 4000, '00002', true);
 insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('PLAYSTATION 4', 'VIDEOGAME SONY', 1700, 1700, '00003', true);
 insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('XBOX ONE', 'VIDEOGAME MICROSOFT', 1500, 1500, '00004', true);
-insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('NOTEBOOK MACBOOK PRO', 'NOTEBOOK', 6000, 6000, '00005', true);
+insert into produto (nomecomum, descricao, custo, precomedio, ean, ativo) values ('MACBOOK PRO', 'NOTEBOOK', 6000, 6000, '00005', true);
 
 create table SERVICO 
 (
@@ -132,8 +132,8 @@ create table LOJA
     ATIVO BOOLEAN NOT NULL WITH DEFAULT TRUE
 );
 insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA BENQ',TRUE,'92152264000189','ASTEC','855698595736','AVENIDA ATLANTICA','666','SAO PAULO','SP','1158935000','BENQ@ASTEC.COM',TRUE);
-insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA ECOLOGIC',TRUE,'45665318000120','ASTEC','968498595736','AVENIDA OTAVIO FARIAS','7589','PORTO ALEGRE','RS','5458617721','ECO@ASTEC.COM',TRUE);
-insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA CONEXÃO',TRUE,'70853231000123','ASTEC','785677635736','AVENIDA SOCRATES','5569','RECIFE','PE','8154937721','CONEXAO@ASTEC.COM',TRUE);
+insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA ROMAR',TRUE,'45665318000120','ASTEC','968498595736','AVENIDA OTAVIO FARIAS','7589','PORTO ALEGRE','RS','5458617721','ECO@ASTEC.COM',TRUE);
+insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA MASSONI',TRUE,'70853231000123','ASTEC','785677635736','AVENIDA SOCRATES','5569','RECIFE','PE','8154937721','CONEXAO@ASTEC.COM',TRUE);
 insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA IMAGINARIUM',TRUE,'82055417000116','ASTEC','685698598895','RUA DAMASCO','28','SAO PAULO','SP','1153725488','IMAGINARIUM@ASTEC.COM',TRUE);
 insert into loja(nome,filial,cnpj,razao_social,inscricao_estadual,endereco,numero,cidade,estado,telefone,email,ativo) values ('LIVRARIA NEW ERA',TRUE,'25891069000183','ASTEC','6193595736','AVENIDA DOS PARAIBA','111','RECIFE','PE','8154337210','NWE@ASTEC.COM',TRUE);
 

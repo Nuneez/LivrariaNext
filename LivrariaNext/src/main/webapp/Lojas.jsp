@@ -23,9 +23,9 @@
                     <div class="session">
                         <div class="row">
                             <label for="nome">Nome</label>
-                            <input id="nome" type="text" name="nome"/>
+                            <input id="nome" type="text" maxlength="15"name="nome"/>
                             <label for="nome">CNPJ</label>
-                            <input id="cnpj" type="text" name="cnpj"/>
+                            <input id="cnpj" type="text" maxlength="14"name="cnpj"/>
                             <label for="atividade">Ativo: </label>
                             <select name="ativo" id="ativo">
                                 <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
