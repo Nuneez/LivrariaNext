@@ -1,4 +1,4 @@
 /LivrariaNext/target/
-*.class
-*.war
+.class
+.war
 .DS_Store
