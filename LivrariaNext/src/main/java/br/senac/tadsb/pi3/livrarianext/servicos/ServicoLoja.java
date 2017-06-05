@@ -27,7 +27,7 @@ public class ServicoLoja extends Servico<Loja> {
     public void incluir(String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual)  throws LojaException {
         try
         {
-            Loja novo = new Loja(nome, ehFilial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email,  inscricaoEstadual);
+            Loja novo = new Loja(nome, ehFilial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
             super.incluir(novo);
         }
         catch(ServicoException se)

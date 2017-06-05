@@ -12,6 +12,7 @@ import br.senac.tadsb.pi3.livrarianext.models.NameValue;
 import br.senac.tadsb.pi3.livrarianext.models.Produto;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -78,7 +79,14 @@ public class ServicoProduto extends Servico<Produto> {
     }
     public List<Produto> obterProdutos(String texto) throws ProdutoException {
         
-        List<Produto> produtos = obterProdutos(texto.trim(), null);
+        String nome = null, ean = null;
+        
+        if (StringUtils.isNumeric(texto.trim()))
+            ean = texto.trim();
+        else
+            nome = texto.trim();
+        
+        List<Produto> produtos = obterProdutos(nome, ean);
         List<NameValue> colecao = new ArrayList<>();
 
         for (Produto p : produtos)
@@ -86,10 +94,10 @@ public class ServicoProduto extends Servico<Produto> {
         return produtos;
     }
     
-    public List<Produto> obterProdutos(String nome, String cnpj) throws ProdutoException  {
+    public List<Produto> obterProdutos(String nome, String ean) throws ProdutoException  {
         try
         {
-            return dao.obterProdutos(nome, cnpj);
+            return dao.obterProdutos(nome, ean);
         }
         catch(DaoException sqlex)
         {

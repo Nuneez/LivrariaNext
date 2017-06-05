@@ -49,7 +49,7 @@
                     <label for="endereco">Endereço</label>
                     <input type="text" name="endereco" id="endereco" value="${loja.endereco}" />
                     <label for="numero">Numero</label>
-                    <input type="text" name="   numero" maxlength="5" id="numero" placeholder="Nº" value="${loja.numero}"/>
+                    <input type="text" name="numero" maxlength="5" id="numero" placeholder="Nº" value="${loja.numero}"/>
                 </div>
                 <div class="row">
                     <label for="cidade">Cidade</label>

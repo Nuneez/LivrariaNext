@@ -134,7 +134,7 @@ public class ManterLojas extends HttpServlet {
             }
 
             if (id.isEmpty() || id.equals("0")) {
-                servico.incluir( nome, null, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
+                servico.incluir(nome, true, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
             } else {
                 servico.alterar(Integer.parseInt(id), nome, null, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
             }
