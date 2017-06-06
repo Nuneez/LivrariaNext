@@ -162,6 +162,13 @@ table{
     text-align: left;
 
 }
+
+.exit {
+  align-self: baseline;
+  position: absolute;
+  right: 20%;
+}
+
 /*
 .btn-editar{
 

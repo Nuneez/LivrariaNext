@@ -60,6 +60,13 @@ public class Sessao extends HttpServlet {
         if (session == null || session.getAttribute("user") == null) {
             return false;
         } else {
+            String logout = request.getParameter("logout");
+            if (logout != null && logout.equals("true")) {
+                session.invalidate();
+                request.setAttribute("sessionUser", null);
+                return false;
+            }
+            request.setAttribute("sessionUser", session.getAttribute("user"));
             return true;
         }
     }
