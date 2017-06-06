@@ -53,7 +53,7 @@ public class Pedido extends ExtendedHttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         RequestDispatcher dispatcher = request.getRequestDispatcher("Pedido.jsp");
         dispatcher.forward(request, response);
     }
@@ -69,7 +69,7 @@ public class Pedido extends ExtendedHttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         String produtos = request.getParameter("produtos");
         String cpf = request.getParameter("cliente");
         

@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : Cliente
     Created on : 15/04/2017, 20:50:24
     Author     : Thiago
@@ -40,7 +40,7 @@
                     </div>
                     <div class="row">
                         <label for="cpf">CPF*</label>
-                        <input type="text" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
+                        <input type="number" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
                         <label for="rg">RG</label>
                         <input type="text" maxlength="9" name="rg" id="rg" value="${cliente.rg}">
                     </div>

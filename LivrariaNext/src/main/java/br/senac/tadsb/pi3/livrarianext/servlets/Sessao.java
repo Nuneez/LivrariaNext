@@ -64,11 +64,13 @@ public class Sessao extends HttpServlet {
         }
     }
     
-    protected void authRequest(HttpServletRequest request, HttpServletResponse response) 
+    protected boolean authRequest(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException  {
         if (!processRequest(request, response)) {
             response.sendRedirect("Sessao");
+            return false;
         }
+        return true;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

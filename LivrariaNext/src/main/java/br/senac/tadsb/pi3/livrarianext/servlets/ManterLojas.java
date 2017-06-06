@@ -55,7 +55,7 @@ public class ManterLojas extends ExtendedHttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         try {
             String id = request.getParameter("id");
             Loja dominio = (id != null && !id.isEmpty()) ? servico.obterLojaPorId(Integer.parseInt(id)) : new Loja();
@@ -84,7 +84,7 @@ public class ManterLojas extends ExtendedHttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         String mensagemDeErro = null;
 
         //Obtendo parametros

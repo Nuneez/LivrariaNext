@@ -52,7 +52,6 @@ public class Produtos extends ExtendedHttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
         try
         {
             //Obtendo parametros

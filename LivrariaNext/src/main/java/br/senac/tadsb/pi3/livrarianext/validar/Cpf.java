@@ -74,7 +74,7 @@ public class Cpf {
     }
 
     public static String removeCaracterEspecial(String texto) {
-        texto = texto.replaceAll("[^a-zZ-Z1-9 ]", "");
+        texto = texto.replaceAll("[^a-zA-Z1-9]", "");
         return texto;
     }
 }

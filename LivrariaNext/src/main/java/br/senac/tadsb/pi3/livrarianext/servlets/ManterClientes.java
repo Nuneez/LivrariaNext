@@ -57,7 +57,7 @@ public class ManterClientes extends ExtendedHttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         try {
             String id = request.getParameter("id");
             Cliente cliente = (id != null && !id.isEmpty()) ? servico.obterClientePorId(Integer.parseInt(id)) : new Cliente();
@@ -86,8 +86,8 @@ public class ManterClientes extends ExtendedHttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
-        String mensagemDeErro = null;   
+        if (!authRequest(request, response)) { return; }
+        String mensagemDeErro = "";   
         
         //Obtendo parametros
         String id = request.getParameter("id");

@@ -1,5 +1,7 @@
 package br.senac.tadsb.pi3.livrarianext.validar;
 
+import java.util.regex.Pattern;
+
 /**
  *
  * @author Nuneez
@@ -10,14 +12,9 @@ public class Telefone {
         if (telefone.trim().isEmpty())
             return false;        
         
-        try 
-        {
-            Long.parseLong(CaracteresEspeciais.removerCaracter(telefone));
+        if (Pattern.matches("[0-9]+", telefone) && telefone.length() > 7) {
             return true;
-        } 
-        catch (Exception e) 
-        {
-            return false;
         }
+        return false;
     }
 }

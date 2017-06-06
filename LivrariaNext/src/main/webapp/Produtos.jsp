@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : Produtos
     Created on : 01/05/2017, 16:03:32
     Author     : Elison
@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,7 +22,7 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-            <div class="content">            
+            <div class="content">
                 <form action="/LivrariaNext/ListarProdutos" method="get">
                     <div class="session">
                         <div class="row">
@@ -47,14 +49,14 @@
 
                         <c:forEach items="${produtos}" var="produto">
                             <tr>
-                                <td><c:out value="${produto.nome}" /></td>                       
+                                <td><c:out value="${produto.nome}" /></td>
                                 <td><c:out value="${produto.ativo?'SIM':'NÃO'}" /></td>
-                                <td><c:out value="${produto.descricao}" /></td>
+                                <td><c:out value="${fn:substring(produto.descricao, 0, 10)}..." /></td>
                                 <td><input type="button" class="btn-editar" data-id="${produto.id}" Value="Editar" /></td>
                                 <td><input type="button" class="btn-excluir" data-id="${produto.id}" Value="Excluir" /></td>
                             </tr>
                         </c:forEach>
-                    </table>                            
+                    </table>
                 </div>
                 <div class="session">
                     <div class="row">
@@ -62,7 +64,7 @@
                     </div>
                 </div>
             </form>
-        </div>    
+        </div>
         <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
 </html>

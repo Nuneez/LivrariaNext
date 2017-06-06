@@ -54,7 +54,7 @@ public class ListarLojas extends ExtendedHttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         try
         {
             //Obtendo parametros
@@ -102,7 +102,7 @@ public class ListarLojas extends ExtendedHttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         String action = request.getParameter("action");
                 
         try

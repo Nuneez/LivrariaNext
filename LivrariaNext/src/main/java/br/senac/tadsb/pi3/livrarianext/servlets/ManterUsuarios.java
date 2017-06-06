@@ -55,7 +55,7 @@ public class ManterUsuarios extends ExtendedHttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         try
         {               
             //Obtendo parametros
@@ -98,7 +98,7 @@ public class ManterUsuarios extends ExtendedHttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         //Obtendo parametros
         String id = request.getParameter("id");
         String nome = request.getParameter("nome");

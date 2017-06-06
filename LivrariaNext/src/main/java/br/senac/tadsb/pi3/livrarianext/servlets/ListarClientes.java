@@ -41,13 +41,13 @@ public class ListarClientes extends ExtendedHttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        authRequest(request, response);
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
      //   boolean ativo= Boolean.parseBoolean(request.getParameter("ativo"));
         String search = request.getParameter("search");
-
+        
         if (search == null) {
+            if (!authRequest(request, response)) { return; }
             try {
                 List<Cliente> clientes = servico.obterClientes(nome == null ? "" : nome, cpf);
                 request.setAttribute("clientes", clientes);
@@ -91,7 +91,7 @@ public class ListarClientes extends ExtendedHttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        authRequest(request, response);
+        if (!authRequest(request, response)) { return; }
         String action = request.getParameter("action");
 
         try {

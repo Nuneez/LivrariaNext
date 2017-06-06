@@ -99,7 +99,7 @@ function addProduto() {
       data.nome = option.getAttribute('nome');
       data.qnt = parseInt(document.querySelector('#quantidade_produto').value);
       data.total = data.value * data.qnt;
-      var addNew = true;
+      // var addNew = true;
       // document.listaProdutos.forEach(function(produto, index) {
       //   if (produto.id === data.id) {
       //     addNew = false;
@@ -108,11 +108,11 @@ function addProduto() {
       //     updateTableRow(index);
       //   }
       // });
-      if (addNew) {
+      // if (addNew) {
         document.listaProdutos.push(data);
         data.listIndex = document.listaProdutos.length - 1;
         addTableRow(data);
-      }
+      // }
     }
   }
   calcTotal();
