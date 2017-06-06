@@ -28,7 +28,7 @@ import java.util.List;
  * @author roger
  */
 @WebServlet(name = "ManterEstoques", urlPatterns = {"/ManterEstoques"})
-public class ManterEstoques extends HttpServlet {
+public class ManterEstoques extends ExtendedHttpServlet {
     
     ServicoEstoque servico;
     Gson gson = new Gson();
@@ -57,6 +57,7 @@ public class ManterEstoques extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        authRequest(request, response);
         try
         {            
             String id = request.getParameter("id");
@@ -91,7 +92,7 @@ public class ManterEstoques extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        authRequest(request, response);
         //Obtendo parametros
         try
         {

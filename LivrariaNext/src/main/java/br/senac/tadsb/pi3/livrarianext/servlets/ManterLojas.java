@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Nunez
  */
-public class ManterLojas extends HttpServlet {
+public class ManterLojas extends ExtendedHttpServlet {
 
     ServicoLoja servico;
 
@@ -55,6 +55,7 @@ public class ManterLojas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        authRequest(request, response);
         try {
             String id = request.getParameter("id");
             Loja dominio = (id != null && !id.isEmpty()) ? servico.obterLojaPorId(Integer.parseInt(id)) : new Loja();
@@ -83,7 +84,7 @@ public class ManterLojas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        authRequest(request, response);
         String mensagemDeErro = null;
 
         //Obtendo parametros
@@ -103,15 +104,15 @@ public class ManterLojas extends HttpServlet {
 
         try {
             if (!Cnpj.validar(cnpj)) {
-                mensagemDeErro += " \n CNPJ inválido, digite novamente !";
+                mensagemDeErro += " \n CNPJ invï¿½lido, digite novamente !";
             }
 
             if (!Email.validar(email)) {
-                mensagemDeErro += " \n E-mail inválido, digite novamente !";
+                mensagemDeErro += " \n E-mail invï¿½lido, digite novamente !";
             }
 
             if (!Telefone.validar(telefone)) {
-                mensagemDeErro += " \n Telefone inválido, digite novamente !";
+                mensagemDeErro += " \n Telefone invï¿½lido, digite novamente !";
             }
 
             if (nome.trim().isEmpty()) {
@@ -119,7 +120,7 @@ public class ManterLojas extends HttpServlet {
             }
 
             if (cnpj.trim().isEmpty()) {
-                mensagemDeErro += " \n Campo CNPJ obrigatório !";
+                mensagemDeErro += " \n Campo CNPJ obrigatï¿½rio !";
             }
 
             if (validarCnpjExistente(cnpj, Integer.parseInt(id))) {
@@ -134,7 +135,7 @@ public class ManterLojas extends HttpServlet {
             }
 
             if (id.isEmpty() || id.equals("0")) {
-                servico.incluir( nome, null, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
+                servico.incluir(nome, true, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
             } else {
                 servico.alterar(Integer.parseInt(id), nome, null, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone);
             }
@@ -146,7 +147,7 @@ public class ManterLojas extends HttpServlet {
             dispatchFailedPost(new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
         } catch (Exception ex) {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            request.setAttribute("erro", "Não foi possível completar a operação.");
+            request.setAttribute("erro", "Nï¿½o foi possï¿½vel completar a operaï¿½ï¿½o.");
             dispatchFailedPost(new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
         }
     }

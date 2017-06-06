@@ -1,157 +1,179 @@
 /*
+
+fwenuifhweuifhwroieejhoiwejroijewoifjewiop
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /*
-    Created on : 16/04/2017, 06:41:34
-    Author     : Thiago
+  Created on : 16/04/2017, 06:41:34
+  Author     : Thiago
 */
 
-body{
-    font-family: Calibri;
-    padding: 10px;
-    font-size: 16px;
-    width:900px;
-    margin: 0 auto;
+body {
+  font-family: 'PT Sans', sans-serif;
+  padding: 10px;
+  font-size: 16px;
+  width:900px;
+  margin: 0 auto;
 }
 
-label{
-    display: inline-block;
-    width: 90px;
-    padding-top: 7px;
-    text-align: left;   
-
-}
-footer{
-    height:90px;
-    color:#777;
-    background-color:#FFF;
-    text-align:center;    
-    border-top:1px solid #e5e5e5;
-    margin: 0 auto;
-    right: 0;
-    left:0;
-    bottom:0;
-    position: fixed;
+footer {
+  height:90px;
+  color:#777;
+  background-color:#FFF;
+  text-align:center;
+  margin: 0 auto;
+  right: 0;
+  left:0;
+  bottom:0;
 }
 
-
-@media (min-width:768px){
-    .footer{text-align:left}
+label {
+  display: inline-block;
+  text-align: left;
+  margin-right: 5px;
 }
-
 
 #header-space {
-    margin-top: 20px;
-    height: 90px;
-    width: 100%;
-    /* TODO: Remover depois */
-    border-bottom: 1px solid black;
-    display: flex;
-    align-items: flex-end;
+  margin-top: 20px;
+  height: 90px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
 }
+
 #logo-space img {
-    max-height: 100px;
+  max-height: 100px;
 }
 
 nav {
-    margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 nav a {
-    border: 1px solid black;
-    padding: 10px;
-    margin: 3px;
-    border-radius: 5px;
-    color: black;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 3px;
+  border-radius: 5px;
+  color: black;
+  text-decoration: none;
 }
 
 #logo-space {
-    margin-top: 5px;
-    max-height: 100px;
+  margin-top: 5px;
+  max-height: 100px;
 }
 
 .content {
-    padding: 20px;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 5px black;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 3px;
-    margin-bottom: 90px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 5px black;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 3px;
+  margin-bottom: 20px;
 }
 
 .session {
-    display: flex;
-    padding-top: 15px;
-    flex-direction: column;
-    width: 100%;
-    text-align:left;
+  display: flex;
+  padding-top: 15px;
+  flex-direction: column;
+  width: 100%;
+  text-align:left;
 }
 
 .mid {
-    width: 45%;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    padding: 5px 0;
-    align-items: center;
+  width: 45%;
 }
 
 .row, .full {
-    width: 100%;
+  width: 100%;
+}
+form .row{
+  display: flex;
+  flex-direction: row;
+  padding: 5px 0;
+  align-items: center;
 }
 .rotate {
-    transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .left, .esquerda {
-    float: left;
+  float: left;
 }
 
 .right, .direita {
-    float: right;
+  float: right;
 }
 
 input, select, button {
-    
-    margin-left:2px;
-    border:solid 1px #2d2d2d;
-    text-align:left;
-    background: white;
-    padding: 5px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+  margin-left:2px;
+  border:solid 1px #2d2d2d;
+  text-align:left;
+  background: white;
+  padding: 5px;
+  margin-right: 10px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  font-size: 10pt;
+  margin-right: 6%;
 }
 
 input[name = "numero"]{
-    width: 50px;
+  width: 50px;
 }
 
 input-placeholder {
-    color:rgba(123,123,123,0.4);
-    font: 12px sans-serif;
+  color:rgba(123,123,123,0.4);
+  font: 12px sans-serif;
 }
 
 input[name = "custo"] {
-    text-align:right;
+  text-align:right;
 }
 
 .popup{
-    display:none; 
-    position:fixed;
-    margin: 0 auto;
-    top: 25%;
-    bottom: 25% ;
-    right: 0;
-    left: 0;
-    background-color: white;
-    width: 700px;
-    height: 300px;
+  display:none;
+  position:fixed;
+  margin: 0 auto;
+  top: 25%;
+  bottom: 25% ;
+  right: 0;
+  left: 0;
+  background-color: white;
+  width: 700px;
+  height: 300px;
 }
 
 table{
-    width: 100%;
+  width: 100%;
 }
+.mdl-data-table{
+    font-family: Calibri;
+    font-size: 15px;
+    text-align: left;
+}
+.mdl-data-table th{
+    font-size: 17px;
+    text-align: left;
+}
+.mdl-data-table td{
+    text-align: left;
+
+}
+/*
+.btn-editar{
+
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+    padding: 0 16px;
+}
+*/

@@ -10,6 +10,8 @@ import br.senac.tadsb.pi3.livrarianext.models.*;
 import br.senac.tadsb.pi3.livrarianext.enums.ExceptionTypesEnum;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -90,10 +92,19 @@ public class ServicoUsuario extends Servico<Usuario> {
     }
     
     private void enviarSenhaAoUsuario(Usuario usuario){
-        //Disparar email ao usuário com a senha gerada
+        //Disparar email ao usuï¿½rio com a senha gerada
         //usuario.getEmail();
         //usuario.getSenha()
     } 
+    
+    public Usuario obterPorUsername(String username) {
+        try {
+            return dao.obterUsuarioUsername(username);
+        } catch (DaoException ex) {
+            Logger.getLogger(ServicoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
     public List<Usuario> obterUsuarios(String nome, Boolean ativos, int perfil) throws UsuarioException  {
         try
@@ -129,5 +140,5 @@ public class ServicoUsuario extends Servico<Usuario> {
             sqlex.printStackTrace();
             throw new UsuarioException(ExceptionTypesEnum.SPECIFIC_SELECT);
         }
-    }   
+    }
 }

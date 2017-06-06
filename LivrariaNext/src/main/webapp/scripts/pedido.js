@@ -100,14 +100,14 @@ function addProduto() {
       data.qnt = parseInt(document.querySelector('#quantidade_produto').value);
       data.total = data.value * data.qnt;
       var addNew = true;
-      document.listaProdutos.forEach(function(produto, index) {
-        if (produto.id === data.id) {
-          addNew = false;
-          produto.qnt += data.qnt;
-          produto.total = produto.qnt * produto.preco;
-          updateTableRow(index);
-        }
-      });
+      // document.listaProdutos.forEach(function(produto, index) {
+      //   if (produto.id === data.id) {
+      //     addNew = false;
+      //     produto.qnt += data.qnt;
+      //     produto.total = produto.qnt * produto.preco;
+      //     updateTableRow(index);
+      //   }
+      // });
       if (addNew) {
         document.listaProdutos.push(data);
         data.listIndex = document.listaProdutos.length - 1;

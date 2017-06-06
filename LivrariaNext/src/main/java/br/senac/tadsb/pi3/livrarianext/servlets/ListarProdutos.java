@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class ListarProdutos extends HttpServlet {
+public class ListarProdutos extends ExtendedHttpServlet {
 
     private ServicoProduto servico;
     
@@ -51,6 +51,7 @@ public class ListarProdutos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        authRequest(request, response);
         try
         {
             //Obtendo parametros
@@ -65,7 +66,7 @@ public class ListarProdutos extends HttpServlet {
             request.setAttribute("produtos", obterProdutos(nome, cnpj, ativos));
             request.setAttribute("ativo", ativos);
 
-            //Despachando a requisição
+            //Despachando a requisiï¿½ï¿½o
             RequestDispatcher dispatcher = request.getRequestDispatcher("Produtos.jsp");
 
             try
@@ -74,7 +75,7 @@ public class ListarProdutos extends HttpServlet {
             }
             catch(IOException ex)
             {
-                throw new ProdutoException("Não foi possível enviar a requisição.");
+                throw new ProdutoException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
             }
         }
         catch(ProdutoException ux)
@@ -98,7 +99,7 @@ public class ListarProdutos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {   
-        
+        authRequest(request, response);
         String action = request.getParameter("action");
                 
         try
@@ -114,14 +115,14 @@ public class ListarProdutos extends HttpServlet {
             
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluida com sucesso.\" }");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operaï¿½ï¿½o concluida com sucesso.\" }");
         }
         catch(ProdutoException ux)
         {
             System.out.println(ux.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na Operação. Detalhes: " + ux.getMessage() + "' }");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na Operaï¿½ï¿½o. Detalhes: " + ux.getMessage() + "' }");
         }
     }
    

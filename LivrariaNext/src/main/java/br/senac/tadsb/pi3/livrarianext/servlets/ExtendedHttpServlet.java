@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class ExtendedHttpServlet extends HttpServlet {
+public class ExtendedHttpServlet extends Sessao {
     protected void writeJsonResponse(HttpServletResponse response, String json) throws IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

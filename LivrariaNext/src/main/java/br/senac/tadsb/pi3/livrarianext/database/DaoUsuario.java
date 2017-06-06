@@ -180,4 +180,26 @@ public class DaoUsuario extends Dao<Usuario> {
             throw new DaoException();
         }     
     }
+    
+    public Usuario obterUsuarioUsername(String username) throws DaoException {
+        try {
+            String query = queryPadrao;
+            boolean ativo = true;
+            query += " where u.username = '" + username + "' AND u.ativo=" + ativo;
+            ResultSet rs = getList(query);
+
+            List<Usuario> usuarios = new ArrayList<>();
+
+            while (rs.next())            
+                usuarios.add(obterDominio(rs));
+            
+            System.out.println(usuarios.size());
+            return usuarios.get(0);        
+        }
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }        
+    }
 }

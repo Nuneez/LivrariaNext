@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class ListarUsuarios extends HttpServlet {
+public class ListarUsuarios extends ExtendedHttpServlet {
     
     private ServicoUsuario servico;
     
@@ -55,7 +55,7 @@ public class ListarUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        authRequest(request, response);
         try
         {
             //Obtendo parametros
@@ -71,7 +71,7 @@ public class ListarUsuarios extends HttpServlet {
             request.setAttribute("usuarios", obterUsuarios(nome, ativos, Parser.tryParseInt(perfil)));
             request.setAttribute("ativo", ativos);
 
-            //Despachando a requisição
+            //Despachando a requisiï¿½ï¿½o
             RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
 
             try
@@ -80,7 +80,7 @@ public class ListarUsuarios extends HttpServlet {
             }
             catch(IOException ex)
             {
-                throw new UsuarioException("Não foi possível enviar a requisição.");
+                throw new UsuarioException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
             }
         }
         catch(UsuarioException ux)
@@ -104,7 +104,7 @@ public class ListarUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+        authRequest(request, response);
         String action = request.getParameter("action");
                 
         try
