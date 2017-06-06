@@ -185,16 +185,17 @@ public class DaoUsuario extends Dao<Usuario> {
         try {
             String query = queryPadrao;
             boolean ativo = true;
-            query += " where u.username = '" + username + "' AND u.ativo=" + ativo;
+            query += " where UPPER(u.username) = '" + username.toUpperCase() + "' AND u.ativo=" + ativo;
             ResultSet rs = getList(query);
 
             List<Usuario> usuarios = new ArrayList<>();
 
             while (rs.next())            
                 usuarios.add(obterDominio(rs));
-            
-            System.out.println(usuarios.size());
-            return usuarios.get(0);        
+            if (usuarios.size() > 0) {
+                return usuarios.get(0);        
+            }
+            return null;
         }
         catch(SQLException sqlex)
         {

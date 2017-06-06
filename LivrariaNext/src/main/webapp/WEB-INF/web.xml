@@ -48,6 +48,10 @@
         <servlet-name>Relatorio</servlet-name>
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Relatorio</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Index</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarUsuarios</servlet-name>
         <url-pattern>/ListarUsuarios</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>Relatorio</servlet-name>
         <url-pattern>/Relatorio</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/Index</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -93,7 +93,7 @@ public class Sessao extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (processRequest(request, response)) {
-            response.sendRedirect("ListarClientes");
+            response.sendRedirect("Index");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
             dispatcher.forward(request, response);
@@ -120,11 +120,11 @@ public class Sessao extends HttpServlet {
             return;
         }
 
-        Usuario user = servico.obterPorUsername(username);
-        if (user != null && user.getPassword().equals(passwd)) {
+        Usuario user = servico.obterPorUsername(username.trim());
+        if (user != null && user.getPassword().equals(passwd.trim())) {
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);            
-            response.sendRedirect("ListarUsuarios");
+            response.sendRedirect("Index");
         } else {
             dispatcher.forward(request, response);
         }

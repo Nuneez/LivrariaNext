@@ -40,7 +40,7 @@
                     </div>
                     <div class="row">
                         <label for="cpf">CPF*</label>
-                        <input type="number" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
+                        <input type="text" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
                         <label for="rg">RG</label>
                         <input type="text" maxlength="9" name="rg" id="rg" value="${cliente.rg}">
                     </div>
@@ -56,7 +56,7 @@
                     <input type="text" name="numero" maxlength="5" id="numero" placeholder="Nº"value="${cliente.numero}"/>
                 </div>
                 <div class="row">
-                    <label for="email">Email*</label>
+                    <label for="email">Email</label>
                     <input type="text" name="email" id="email" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}"/>
                     <label for="telefone">Telefone</label>
                     <input type="text" maxlength="11" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${cliente.telefone}" />

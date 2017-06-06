@@ -28,9 +28,9 @@
       </c:if>
       <form action="/LivrariaNext/Sessao" method="post">
         <label for="username">Nome de usuario</label>
-        <input type="text" name="username" id="username" required/>
+        <input type="text" name="username" maxlength="15" id="username" required/>
         <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha" required/>
+        <input type="password" name="senha" maxlength="10" id="senha" required/>
         <input type="submit" value="Login"/>
       </form>
     </div>
