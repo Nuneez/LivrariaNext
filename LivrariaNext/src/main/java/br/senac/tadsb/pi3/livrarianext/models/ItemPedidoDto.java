@@ -19,9 +19,21 @@ public class ItemPedidoDto {
     private String clienteNome;
     private String vendedorNome;
     private String produtoNome;
-    private String qtdProduto;
+    private double qtdProduto;
     private double valorUnitario;
     private double valorTotal;
+    
+    public ItemPedidoDto(int pedidoId, int itemPedidoId, Date pedidoData, String lojaNome, String clienteNome, String vendedorNome, String produtoNome, double qtdProduto, double valorUnitario){
+        this.pedidoId = pedidoId;
+        this.itemPedidoId = itemPedidoId;
+        this.pedidoData = pedidoData;
+        this.lojaNome = lojaNome;
+        this.clienteNome = clienteNome;
+        this.vendedorNome = vendedorNome;
+        this.produtoNome = produtoNome;
+        this.qtdProduto = qtdProduto;
+        this.valorUnitario = valorUnitario;
+    }
 
     /**
      * @return the pedidoId
@@ -110,14 +122,14 @@ public class ItemPedidoDto {
     /**
      * @return the qtdProduto
      */
-    public String getQtdProduto() {
+    public double getQtdProduto() {
         return qtdProduto;
     }
 
     /**
      * @param qtdProduto the qtdProduto to set
      */
-    public void setQtdProduto(String qtdProduto) {
+    public void setQtdProduto(double qtdProduto) {
         this.qtdProduto = qtdProduto;
     }
 

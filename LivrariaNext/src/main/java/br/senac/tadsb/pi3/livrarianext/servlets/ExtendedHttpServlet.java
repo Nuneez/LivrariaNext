@@ -6,6 +6,11 @@
 package br.senac.tadsb.pi3.livrarianext.servlets;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,5 +23,17 @@ public class ExtendedHttpServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(json);    
+    }
+    
+    protected Date convertStringToDate(String text){
+        try
+        {
+            DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.FRANCE);
+            return format.parse(text);
+        }
+        catch(ParseException p)
+        {
+            return null;
+        }
     }
 }
