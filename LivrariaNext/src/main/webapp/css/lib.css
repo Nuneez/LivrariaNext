@@ -9,20 +9,22 @@ and open the template in the editor.
 */
 
 body{
-    font-family: Calibri;
-    padding: 10px;
-    font-size: 16px;
+    font-family:"Calibri","Helvetica","Arial","sans-serif";
+    font-size: 17px;
+    text-align: left;
     width:900px;
     margin: 0 auto;
+    
 }
 
 label{
     display: inline-block;
     width: 90px;
     padding-top: 7px;
-    text-align: left;   
+    text-align: center;   
 
 }
+
 footer{
     height:90px;
     color:#777;
@@ -32,7 +34,7 @@ footer{
     margin: 0 auto;
     right: 0;
     left:0;
-    bottom:0;
+    bottom:-25px;
     position: fixed;
 }
 
@@ -116,7 +118,7 @@ nav a {
 }
 
 input, select, button {
-    
+
     margin-left:2px;
     border:solid 1px #2d2d2d;
     text-align:left;
@@ -155,3 +157,31 @@ input[name = "custo"] {
 table{
     width: 100%;
 }
+.mdl-data-table{
+    font-family: Calibri;
+    font-size: 15px;
+    text-align: left;
+}
+.mdl-data-table th{
+    font-size: 17px;
+    text-align: left;
+}
+.mdl-data-table td{
+    text-align: left;
+
+}
+/*
+.btn-editar{
+
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+    padding: 0 16px;
+}
+*/

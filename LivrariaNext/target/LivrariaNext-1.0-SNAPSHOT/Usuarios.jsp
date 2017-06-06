@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
@@ -17,16 +19,16 @@
     </head>
     <body>
         <jsp:include page="/shared/menu.jsp"></jsp:include>
-        <div class="content">            
-            <form action="/LivrariaNext/ListarUsuarios" method="get">
-                <input type="hidden" id="edit" Value="ManterUsuario"/>
-                <div class="session">
-                    <div class="row">
-                        <label for="nome">Nome: </label>
-                        <input id="nome" type="text" maxlength="15"name="nome"/>
-                        <label for="atividade">Ativo: </label>
-                        <select name="ativo" id="ativo">
-                            <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
+            <div class="content">            
+                <form action="/LivrariaNext/ListarUsuarios" method="get">
+                    <input type="hidden" id="edit" Value="ManterUsuario"/>
+                    <div class="session">
+                        <div class="row">
+                            <label for="nome">Nome: </label>
+                            <input id="nome" type="text" maxlength="15"name="nome"/>
+                            <label for="atividade">Ativo: </label>
+                            <select name="ativo" id="ativo">
+                                <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
                             <option value="false" ${!ativo ? 'selected' : ''}>Não</option>
                         </select>
                         <label for="perfil">Perfil: </label>
@@ -40,24 +42,24 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table>
-                      <tr>
-                        <th>Nome</th>
-                        <th>Sobrenome</th>
-                        <th>Ativo</th>
-                        <th>Perfil</th>
-                        <th></th>
-                      </tr>
-                      <c:forEach items="${usuarios}" var="usuario">
+                    <table class="mdl-data-table">
                         <tr>
-                          <td><c:out value="${usuario.nome}" /></td>
-                          <td><c:out value="${usuario.sobrenome}" /></td>
-                          <td><c:out value="${usuario.ativo?'SIM':'NÃO'}" /></td>
-                          <td><c:out value="${usuario.perfil.nome}" /></td>
-                          <td><input type="button" class="btn-editar" data-id="${usuario.id}" Value="Editar" /></td>
-                          <td><input type="button" class="btn-excluir" data-id="${usuario.id}" Value="Excluir" /></td>
+                            <th>Nome</th>
+                            <th>Sobrenome</th>
+                            <th>Ativo</th>
+                            <th>Perfil</th>
+                            <th colspan="2"></th> 
                         </tr>
-                      </c:forEach>
+                                <c:forEach items="${usuarios}" var="usuario">
+                            <tr>
+                                <td><c:out value="${usuario.nome}" /></td>
+                                <td><c:out value="${usuario.sobrenome}" /></td>
+                                <td><c:out value="${usuario.ativo?'SIM':'NÃO'}" /></td>
+                                <td><c:out value="${usuario.perfil.nome}" /></td>
+                                <td><input type="button" class="btn-editar" data-id="${usuario.id}" Value="Editar" /></td>
+                                <td><input type="button" class="btn-excluir" data-id="${usuario.id}" Value="Excluir" /></td>
+                            </tr>
+                        </c:forEach>
                     </table>                        
                 </div>
                 <div class="session">
@@ -67,6 +69,6 @@
                 </div>
             </form>
         </div>    
-                        <jsp:include page="/shared/footer.jsp"></jsp:include>
+        <jsp:include page="/shared/footer.jsp"></jsp:include>
     </body>
 </html>

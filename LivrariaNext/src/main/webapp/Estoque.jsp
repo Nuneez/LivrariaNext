@@ -9,6 +9,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/cliente.css">
         <script type="text/javascript" lang="javascript" src="/LivrariaNext/scripts/elementHelper.js"></script>
@@ -27,7 +29,7 @@
                     </div>
                 </div>
                 <div class="session">
-                    <table>
+                    <table class="mdl-data-table">
                         <thead>
                             <tr>
                                 <th>EAN</th>
@@ -55,7 +57,7 @@
                     </div>
                 </div>
             </form>
-                        
+
             <div id="div-novo-item" class="content popup">
                 <p>Incluir Produtos</p> 
                 <div class="row">
@@ -63,12 +65,12 @@
                     <input type="button" value="Buscar" id="btn-buscar-novo" />
                 </div>
                 <div class="row">
-                    <table id="lista-novos-produtos">
+                    <table id="lista-novos-produtos" class="mdl-data-table">
                         <thead>
-                            <th></th>
-                            <th style="width:100px;">EAN</th>
-                            <th style="width:300px;">NOME</th>
-                            <th style="width:100px;">SALDO</th>
+                        <th></th>
+                        <th style="width:100px;">EAN</th>
+                        <th style="width:300px;">NOME</th>
+                        <th style="width:100px;">SALDO</th>
                         </thead>
                         <tbody>                            
                         </tbody>
@@ -79,8 +81,8 @@
                     <input type="button" id="btn-fechar-popup" name="btn-cancelar-add-produto" Value="Fechar" />
                 </div>
             </div>
-                    
-                    
+
+
         </div>
     </body>
 </html>

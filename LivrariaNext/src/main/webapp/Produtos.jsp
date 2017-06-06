@@ -9,6 +9,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/usuarios.css">
         <link rel="stylesheet" type="text/css" href="/LivrariaNext/css/lista.css">
@@ -33,14 +36,15 @@
                         <input id="btn-buscar" type="submit" value="Buscar">
                     </div>
                 </div>
-                <div class="session">
-                    <table class="table">
+                <div class="session" >
+                    <table class="mdl-data-table">
                         <tr>
                             <th>Titulo</th>
                             <th>Ativo</th>
                             <th>Descrição</th>
-                            <th></th>
+                            <th colspan="2"></th>
                         </tr>
+
                         <c:forEach items="${produtos}" var="produto">
                             <tr>
                                 <td><c:out value="${produto.nome}" /></td>                       
