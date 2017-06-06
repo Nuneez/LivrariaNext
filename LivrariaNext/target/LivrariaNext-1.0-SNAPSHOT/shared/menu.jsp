@@ -18,5 +18,6 @@
         <a href="/LivrariaNext/Pedido">Vendas</a>
         <a href="/LivrariaNext/ListarUsuarios">Usuários</a>
         <a href="/LivrariaNext/ListarLojas">Lojas</a>
+        <a href="/LivrariaNext/Relatorio">Relatório</a>
     </nav>
 </div>

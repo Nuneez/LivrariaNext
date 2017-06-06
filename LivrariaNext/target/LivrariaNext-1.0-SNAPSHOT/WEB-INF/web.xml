@@ -44,6 +44,10 @@
         <servlet-name>Sessao</servlet-name>
         <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Sessao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Relatorio</servlet-name>
+        <servlet-class>br.senac.tadsb.pi3.livrarianext.servlets.Relatorio</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarUsuarios</servlet-name>
         <url-pattern>/ListarUsuarios</url-pattern>
@@ -87,6 +91,10 @@
     <servlet-mapping>
         <servlet-name>Sessao</servlet-name>
         <url-pattern>/Sessao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Relatorio</servlet-name>
+        <url-pattern>/Relatorio</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
