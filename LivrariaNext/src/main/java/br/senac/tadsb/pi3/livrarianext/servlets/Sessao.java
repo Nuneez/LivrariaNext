@@ -28,7 +28,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author thiagomessias
  */
-public class Sessao extends ExtendedHttpServlet {
+public class Sessao extends HttpServlet {
 
     private ServicoUsuario servico;
 
@@ -57,10 +57,17 @@ public class Sessao extends ExtendedHttpServlet {
     protected boolean processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        if (session != null || session.getAttribute("user") != null) {
+        if (session == null || session.getAttribute("user") == null) {
             return false;
         } else {
             return true;
+        }
+    }
+    
+    protected void authRequest(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException  {
+        if (!processRequest(request, response)) {
+            response.sendRedirect("Sessao");
         }
     }
 
@@ -77,8 +84,7 @@ public class Sessao extends ExtendedHttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (processRequest(request, response)) {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/Clientes.jsp");
-            dispatcher.forward(request, response);
+            response.sendRedirect("ListarClientes");
         } else {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
             dispatcher.forward(request, response);
@@ -97,6 +103,7 @@ public class Sessao extends ExtendedHttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp");
+        request.setAttribute("erro", "Nome de usuario ou senha invalido.");
         String username = request.getParameter("username");
         String passwd = request.getParameter("senha");
         if (username == null || passwd == null) {
@@ -104,7 +111,6 @@ public class Sessao extends ExtendedHttpServlet {
             return;
         }
 
-        System.out.println(username + " = " + passwd);
         Usuario user = servico.obterPorUsername(username);
         if (user != null && user.getPassword().equals(passwd)) {
             HttpSession session = request.getSession(true);

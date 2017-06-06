@@ -186,7 +186,6 @@ public class DaoUsuario extends Dao<Usuario> {
             String query = queryPadrao;
             boolean ativo = true;
             query += " where u.username = '" + username + "' AND u.ativo=" + ativo;
-            System.out.println(query);
             ResultSet rs = getList(query);
 
             List<Usuario> usuarios = new ArrayList<>();

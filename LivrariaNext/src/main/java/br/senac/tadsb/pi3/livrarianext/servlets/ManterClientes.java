@@ -30,7 +30,7 @@ import javax.swing.JOptionPane;
  * @author roger
  */
 @WebServlet(name = "ManterClientes", urlPatterns = {"/ManterClientes"})
-public class ManterClientes extends HttpServlet {
+public class ManterClientes extends ExtendedHttpServlet {
 
     ServicoCliente servico;
 
@@ -57,6 +57,7 @@ public class ManterClientes extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        authRequest(request, response);
         try {
             String id = request.getParameter("id");
             Cliente cliente = (id != null && !id.isEmpty()) ? servico.obterClientePorId(Integer.parseInt(id)) : new Cliente();
@@ -85,7 +86,7 @@ public class ManterClientes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        authRequest(request, response);
         String mensagemDeErro = null;   
         
         //Obtendo parametros
@@ -105,19 +106,19 @@ public class ManterClientes extends HttpServlet {
         try 
         {
             if (!Cpf.validar(cpf))            
-                mensagemDeErro += " \n CPF inválido, digite novamente !";
+                mensagemDeErro += " \n CPF invï¿½lido, digite novamente !";
 
             if (!Email.validar(email))
-                mensagemDeErro += " \n E-mail inválido, digite novamente !";
+                mensagemDeErro += " \n E-mail invï¿½lido, digite novamente !";
 
             if (!Telefone.validar(telefone))
-                mensagemDeErro += " \n Telefone inválido, digite novamente !";
+                mensagemDeErro += " \n Telefone invï¿½lido, digite novamente !";
 
             if(nome.trim().isEmpty())
                 mensagemDeErro += " \n Campo NOME obrigatorio !";
 
             if(cpf.trim().isEmpty())
-                mensagemDeErro += " \n Campo CPF obrigatório !";
+                mensagemDeErro += " \n Campo CPF obrigatï¿½rio !";
 
             if (validarCpfExistente(cpf, Integer.parseInt(id)))
                 mensagemDeErro += " \n CPF pertencente a outro cliente cadastrado!";        
@@ -146,7 +147,7 @@ public class ManterClientes extends HttpServlet {
         catch (Exception ex) 
         {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);            
-            request.setAttribute("erro", "Não foi possível completar a operação.");            
+            request.setAttribute("erro", "Nï¿½o foi possï¿½vel completar a operaï¿½ï¿½o.");            
             dispatchFailedPost(new Cliente(nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro), request, response);
         }
     }

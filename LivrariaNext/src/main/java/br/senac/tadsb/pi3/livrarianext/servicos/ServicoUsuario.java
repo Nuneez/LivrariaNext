@@ -98,7 +98,6 @@ public class ServicoUsuario extends Servico<Usuario> {
     } 
     
     public Usuario obterPorUsername(String username) {
-        System.out.println("Aquiii");
         try {
             return dao.obterUsuarioUsername(username);
         } catch (DaoException ex) {

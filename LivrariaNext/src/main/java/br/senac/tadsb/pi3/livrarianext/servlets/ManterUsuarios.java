@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class ManterUsuarios extends HttpServlet {    
+public class ManterUsuarios extends ExtendedHttpServlet {    
     
     ServicoUsuario servico;
     
@@ -55,7 +55,7 @@ public class ManterUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        authRequest(request, response);
         try
         {               
             //Obtendo parametros
@@ -65,7 +65,7 @@ public class ManterUsuarios extends HttpServlet {
             request.setAttribute("usuario", (usuarioId != null && !usuarioId.isEmpty()) ? servico.obterUsuarioPorId(Integer.parseInt(usuarioId)) : new Usuario());            
             request.setAttribute("perfis", servico.obterPerfis());         
                     
-            //Despachando a requisição
+            //Despachando a requisiï¿½ï¿½o
             RequestDispatcher dispatcher = request.getRequestDispatcher("Usuario.jsp");        
 
             try
@@ -74,7 +74,7 @@ public class ManterUsuarios extends HttpServlet {
             }
             catch(IOException ex)
             {
-                throw new UsuarioException("Não foi possível enviar a requisição.");
+                throw new UsuarioException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
             }           
         }
         catch(UsuarioException ue)
@@ -98,7 +98,7 @@ public class ManterUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        authRequest(request, response);
         //Obtendo parametros
         String id = request.getParameter("id");
         String nome = request.getParameter("nome");

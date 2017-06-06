@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Thiago
  */
-public class Pedido extends HttpServlet {
+public class Pedido extends ExtendedHttpServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -53,6 +53,7 @@ public class Pedido extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        authRequest(request, response);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Pedido.jsp");
         dispatcher.forward(request, response);
     }
@@ -68,7 +69,7 @@ public class Pedido extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        authRequest(request, response);
         String produtos = request.getParameter("produtos");
         String cpf = request.getParameter("cliente");
         

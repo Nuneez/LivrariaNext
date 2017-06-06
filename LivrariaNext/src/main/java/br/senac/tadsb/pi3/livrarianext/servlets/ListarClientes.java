@@ -41,6 +41,7 @@ public class ListarClientes extends ExtendedHttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        authRequest(request, response);
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
      //   boolean ativo= Boolean.parseBoolean(request.getParameter("ativo"));
@@ -90,6 +91,7 @@ public class ListarClientes extends ExtendedHttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        authRequest(request, response);
         String action = request.getParameter("action");
 
         try {

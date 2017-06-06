@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class ListarUsuarios extends HttpServlet {
+public class ListarUsuarios extends ExtendedHttpServlet {
     
     private ServicoUsuario servico;
     
@@ -55,7 +55,7 @@ public class ListarUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        authRequest(request, response);
         try
         {
             //Obtendo parametros
@@ -104,7 +104,7 @@ public class ListarUsuarios extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+        authRequest(request, response);
         String action = request.getParameter("action");
                 
         try

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author roger
  */
-public class ManterProdutos extends HttpServlet {
+public class ManterProdutos extends ExtendedHttpServlet {
  
     ServicoProduto servico;
     
@@ -54,6 +54,7 @@ public class ManterProdutos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        authRequest(request, response);
         try
         {            
             String id = request.getParameter("id");
@@ -88,7 +89,7 @@ public class ManterProdutos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        authRequest(request, response);
         //Obtendo parametros
         String id = request.getParameter("id");
         String nome = request.getParameter("nome");

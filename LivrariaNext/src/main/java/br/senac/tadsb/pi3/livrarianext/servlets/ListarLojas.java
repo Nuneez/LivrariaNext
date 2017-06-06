@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Thiago
  */
-public class ListarLojas extends HttpServlet {
+public class ListarLojas extends ExtendedHttpServlet {
 
     private ServicoLoja servico;
     
@@ -54,7 +54,7 @@ public class ListarLojas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        authRequest(request, response);
         try
         {
             //Obtendo parametros
@@ -69,7 +69,7 @@ public class ListarLojas extends HttpServlet {
             request.setAttribute("lojas", obterLojas(nome, cnpj, ativos));
             request.setAttribute("ativo", ativos);
 
-            //Despachando a requisição
+            //Despachando a requisiï¿½ï¿½o
             RequestDispatcher dispatcher = request.getRequestDispatcher("Lojas.jsp");
 
             try
@@ -78,7 +78,7 @@ public class ListarLojas extends HttpServlet {
             }
             catch(IOException ex)
             {
-                throw new LojaException("Não foi possível enviar a requisição.");
+                throw new LojaException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
             }
         }
         catch(LojaException ux)
@@ -102,7 +102,7 @@ public class ListarLojas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-   
+        authRequest(request, response);
         String action = request.getParameter("action");
                 
         try
