@@ -1,4 +1,6 @@
 /*
+
+fwenuifhweuifhwroieejhoiwejroijewoifjewiop
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
@@ -147,3 +149,31 @@ input[name = "custo"] {
 table{
   width: 100%;
 }
+.mdl-data-table{
+    font-family: Calibri;
+    font-size: 15px;
+    text-align: left;
+}
+.mdl-data-table th{
+    font-size: 17px;
+    text-align: left;
+}
+.mdl-data-table td{
+    text-align: left;
+
+}
+/*
+.btn-editar{
+
+    overflow: hidden;
+    will-change: box-shadow;
+    transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+    outline: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    line-height: 36px;
+    vertical-align: middle;
+    padding: 0 16px;
+}
+*/
