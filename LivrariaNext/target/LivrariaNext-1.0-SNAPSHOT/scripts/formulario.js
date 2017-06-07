@@ -24,7 +24,7 @@ var cancelar = function(){
 var salvo = function(r){            
         
     if (r === undefined){
-        alert("Erro ao executar a operaÃ§Ã£o.");
+        alert("Erro ao executar a operação.");
         return;
     }
     

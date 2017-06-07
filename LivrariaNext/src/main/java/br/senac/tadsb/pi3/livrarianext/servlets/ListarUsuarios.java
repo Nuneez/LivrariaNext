@@ -120,14 +120,14 @@ public class ListarUsuarios extends ExtendedHttpServlet {
             
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Opera√ß√£o conclu√≠da com sucesso.\" }");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"operaÁ„o concluida com sucesso.\" }");
         }
         catch(UsuarioException ux)
         {
             System.out.println(ux.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na opera√ß√£o. Detalhes: " + ux.getMessage() + "' }");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na operaÁ„o. Detalhes: " + ux.getMessage() + "' }");
         }        
     }
     

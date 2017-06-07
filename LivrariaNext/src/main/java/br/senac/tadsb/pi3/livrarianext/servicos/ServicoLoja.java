@@ -24,10 +24,10 @@ public class ServicoLoja extends Servico<Loja> {
         this.dao = (DaoLoja)dao;
     }    
     
-    public void incluir(String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual)  throws LojaException {
+    public void incluir(String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual, boolean ativo)  throws LojaException {
         try
         {
-            Loja novo = new Loja(nome, ehFilial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual);
+            Loja novo = new Loja(nome, ehFilial, cnpj, razaoSocial, telefone, endereco, numero, cidade, estado, email, inscricaoEstadual, ativo);
             super.incluir(novo);
         }
         catch(ServicoException se)
@@ -36,7 +36,7 @@ public class ServicoLoja extends Servico<Loja> {
         }
     }
     
-    public void alterar(int id, String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual) throws LojaException {
+    public void alterar(int id, String nome, Boolean ehFilial, String cnpj, String razaoSocial, String telefone, String endereco, String numero, String cidade, String estado, String email, String inscricaoEstadual, boolean ativo) throws LojaException {
         try
         {
             Loja dominio = dao.obterPorId(id);
@@ -50,7 +50,8 @@ public class ServicoLoja extends Servico<Loja> {
             dominio.setCidade(cidade);
             dominio.setEstado(estado);
             dominio.setEmail(email);            
-            dominio.setInscricaoEstadual(inscricaoEstadual);           
+            dominio.setInscricaoEstadual(inscricaoEstadual);
+            dominio.setAtivo(ativo);
             
             super.alterar(dominio);
         }
