@@ -19,6 +19,14 @@ public class Item {
     private Boolean ativo;
     
     public Item(){ this.ativo = true; }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
     
     public Item(String nome, String descricao, double custo, double preco, Boolean ativo){        
         this();

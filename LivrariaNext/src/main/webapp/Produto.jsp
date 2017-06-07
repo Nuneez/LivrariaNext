@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : Produto
     Created on : 01/05/2017, 14:50:31
     Author     : Elison
@@ -22,7 +22,9 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome*</label>
-                        <input id="nome" type="text" required="required" maxlength="100"name="nome" value="${produto.nome}" />
+                        <input id="nome" type="text" required="required" maxlength="100" name="nome" value="${produto.nome}" />
+                        <label for="qnt">Quantidade*</label>
+                        <input id="qnt" type="number" required="required" maxlength="100" name="quantidade" value="${produto.quantidade}" />
                     </div>
                     <div class="row">
                         <label for="ean">EAN*</label>
@@ -42,8 +44,8 @@
                 <div class="row">
                     <label for="descricao">Descrição</label>
                     <textarea rows="4" cols="50" name="descricao" maxlength="50" id="descricao">${produto.descricao}</textarea>
-                </div>                         
-                <hr> 
+                </div>
+                <hr>
                 <div class="row">
                     <input type="submit" value="Enviar">
                     <input id="cancelar" type='reset' value='Cancelar'>

@@ -83,7 +83,7 @@ public class Pedido extends ExtendedHttpServlet {
                 Cliente cliente = servicoCliente.obterClientePorCpf(cpf);
                 ServicoPedido sp = new ServicoPedido(new DaoPedido(util));
                 ServicoItemPedido sip = new ServicoItemPedido(new DaoItemPedido(util));
-                ServicoProduto servicoProdudo = new ServicoProduto(new DaoProduto(util));
+                ServicoProduto servicoProduto = new ServicoProduto(new DaoProduto(util));
                 // TODO: Vendedor e loja
                 Usuario u = new Usuario();
                 u.setId(1);
@@ -95,9 +95,18 @@ public class Pedido extends ExtendedHttpServlet {
                 for (int i = 0; i < jsonArray.size(); i++) {
                     final int qnt = tryParseInt(jsonArray.get(i).getAsJsonObject().get("qnt").toString().replace("\"", ""));
                     final int id = tryParseInt(jsonArray.get(i).getAsJsonObject().get("id").toString().replace("\"", ""));
-                    final Produto prod = servicoProdudo.obterProdutoPorId(id);
+                    final Produto prod = servicoProduto.obterProdutoPorId(id);
                     if (prod != null) {
                         sip.incluir(qnt, id, lastPedido, prod.getPreco());
+                        servicoProduto.alterar(
+                                prod.getId(), 
+                                prod.getNome(), 
+                                prod.getDescricao(), 
+                                prod.getCusto(),
+                                prod.getPreco(),
+                                prod.getEan(),
+                                prod.getAtivo(),
+                                prod.getQuantidade() - qnt);
                     } else {
                         sip.incluir(qnt, id, lastPedido, (double) 0);
                     }

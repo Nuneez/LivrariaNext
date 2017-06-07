@@ -9,6 +9,7 @@ import br.senac.tadsb.pi3.livrarianext.database.ConnectionUtils;
 import br.senac.tadsb.pi3.livrarianext.database.DaoProduto;
 import br.senac.tadsb.pi3.livrarianext.exceptions.*;
 import br.senac.tadsb.pi3.livrarianext.helpers.Parser;
+import static br.senac.tadsb.pi3.livrarianext.helpers.Parser.tryParseInt;
 import br.senac.tadsb.pi3.livrarianext.models.*;
 import br.senac.tadsb.pi3.livrarianext.servicos.ServicoProduto;
 import java.io.IOException;
@@ -98,13 +99,14 @@ public class ManterProdutos extends ExtendedHttpServlet {
         //String preco = request.getParameter("preco");
         String ean = request.getParameter("ean");
         String ativo = request.getParameter("ativo");
+        Integer quantidade = tryParseInt(request.getParameter("quantidade"));
         
         try
         {
             if (id.isEmpty() || id.equals("0"))        
-                servico.incluir(nome, descricao, Parser.parseDouble(custo), Parser.parseDouble(custo), ean);
+                servico.incluir(nome, descricao, Parser.parseDouble(custo), Parser.parseDouble(custo), ean, quantidade);
             else
-                servico.alterar(Integer.parseInt(id), nome, descricao, Parser.parseDouble(custo), Parser.parseDouble(custo), ean, Boolean.parseBoolean(ativo));
+                servico.alterar(Integer.parseInt(id), nome, descricao, Parser.parseDouble(custo), Parser.parseDouble(custo), ean, Boolean.parseBoolean(ativo), quantidade);
                         
             response.sendRedirect("ListarProdutos");
         }

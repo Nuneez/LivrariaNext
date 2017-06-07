@@ -27,6 +27,7 @@
                     <div class="row">
                         <label for="cliente">CPF Cliente</label>
                         <input id="cliente" name="cliente" maxlength="11" required="required" live-search="cliente"/>
+                        <input type="hidden" />
                     </div>
 
                     <div class="row">

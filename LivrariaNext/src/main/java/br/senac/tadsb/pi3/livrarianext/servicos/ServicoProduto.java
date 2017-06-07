@@ -27,7 +27,7 @@ public class ServicoProduto extends Servico<Produto> {
         this.dao = (DaoProduto)dao;
     }        
     
-    public void incluir(String nome, String descricao, Double custo, Double preco, String ean)  throws ProdutoException {
+    public void incluir(String nome, String descricao, Double custo, Double preco, String ean, int quantidade)  throws ProdutoException {
         try
         {
             Produto novo = new Produto(nome, descricao, custo, preco, ean);
@@ -62,6 +62,29 @@ public class ServicoProduto extends Servico<Produto> {
         }
     }
     
+    public void alterar(int id, String nome, String descricao, Double custo, Double preco, String ean, Boolean ativo, int quantidade) throws ProdutoException {
+        try
+        {
+            Produto dominio = dao.obterPorId(id);
+            dominio.setNome(nome);
+            dominio.setDescricao(descricao);
+            dominio.setCusto(custo);
+            dominio.setPreco(preco);
+            dominio.setEan(ean);
+            dominio.setAtivo(ativo);
+            dominio.setQuantidade(quantidade);
+            
+            super.alterar(dominio);
+        }
+        catch(DaoException de)
+        {
+            throw new ProdutoException(ExceptionTypesEnum.DATABASE);
+        }
+        catch(ServicoException se)
+        {
+            throw new ProdutoException(ExceptionTypesEnum.SPECIFIC_CRUD);
+        }
+    }
     public void excluir(int id) throws ProdutoException {
         try
         {

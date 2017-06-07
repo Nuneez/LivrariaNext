@@ -30,8 +30,8 @@ function activatedLiveSearch(options, element) {
   if (Array.isArray(options)) {
     if (document.querySelector('datalist#' + liveSearchAttr + '-options')) {
       document.querySelectorAll('datalist#' + liveSearchAttr + '-options')
-      .forEach(function(element) {
-        element.remove();
+      .forEach(function(el) {
+        el.remove();
       });
     }
 

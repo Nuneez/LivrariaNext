@@ -151,6 +151,10 @@ function postData() {
     return false;
   }
   var cliente = document.querySelector('#cliente').value;
+  if (cliente === undefined || cliente.length < 1) {
+    alert("O cpf do cliente é obrigatorio");
+    return false;
+  }
   var produtos = [];
   document.listaProdutos.forEach(function(produto) {
     produtos.push({
@@ -201,6 +205,7 @@ function prepareProduct(products) {
  * @return {Array}         Lista de clientes com tratamento da api
  */
 function prepareClient(clients) {
+  console.log(clients);
   if (!Array.isArray(clients)) {
     return false;
   }

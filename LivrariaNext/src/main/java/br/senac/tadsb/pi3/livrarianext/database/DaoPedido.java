@@ -34,11 +34,18 @@ public class DaoPedido extends Dao<Pedido> {
     @Override
     public void incluir(Pedido pedido) throws DaoException {     
         try {                   
-            PreparedStatement stt = obterStatement("INSERT INTO pedido (id_loja, id_vendedor, id_cliente) VALUES (?,?,?)");
-            stt.setInt(1, pedido.getLoja().getId());
-            stt.setInt(2, pedido.getVendedor().getId());
-            stt.setInt(3, pedido.getCliente().getId());
-            stt.execute();
+            if (pedido.getCliente() == null) {
+            PreparedStatement stt = obterStatement("INSERT INTO pedido (id_loja, id_vendedor, id_cliente) VALUES (?,?, 0)");
+                stt.setInt(1, pedido.getLoja().getId());
+                stt.setInt(2, pedido.getVendedor().getId());
+                stt.execute();   
+            } else {
+                PreparedStatement stt = obterStatement("INSERT INTO pedido (id_loja, id_vendedor, id_cliente) VALUES (?,?,?)");
+                stt.setInt(1, pedido.getLoja().getId());
+                stt.setInt(2, pedido.getVendedor().getId());
+                stt.setInt(3, pedido.getCliente().getId());
+                stt.execute();
+            }
         }
         catch(SQLException sqlex)
         {

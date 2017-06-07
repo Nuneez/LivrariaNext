@@ -33,13 +33,14 @@ public class DaoProduto extends Dao<Produto> {
     public void incluir(Produto dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("insert into produto (NOMECOMUM, DESCRICAO, CUSTO, PRECOMEDIO, EAN, ATIVO) values (?,?,?,?,?,?)");
+            PreparedStatement stt = obterStatement("insert into produto (NOMECOMUM, DESCRICAO, CUSTO, PRECOMEDIO, EAN, ATIVO, QUANTIDADE) values (?,?,?,?,?,?,?)");
             stt.setString(1, dominio.getNome());
             stt.setString(2, dominio.getDescricao());
             stt.setDouble(3, dominio.getCusto());
             stt.setDouble(4, dominio.getPreco());
             stt.setString(5, dominio.getEan());
             stt.setBoolean(6, true);
+            stt.setInt(7, dominio.getQuantidade());
 
             stt.execute();
         }
@@ -59,7 +60,7 @@ public class DaoProduto extends Dao<Produto> {
     public void alterar(Produto dominio) throws DaoException {
         try
         {
-            PreparedStatement stt = obterStatement("update produto set NOMECOMUM = ?, DESCRICAO = ?, CUSTO = ?,  precomedio = ?, EAN = ?, ativo = ? where id = ?");
+            PreparedStatement stt = obterStatement("update produto set NOMECOMUM = ?, DESCRICAO = ?, CUSTO = ?,  precomedio = ?, EAN = ?, ativo = ?, QUANTIDADE = ? where id = ?");
 
             stt.setString(1, dominio.getNome());
             stt.setString(2, dominio.getDescricao());
@@ -67,8 +68,9 @@ public class DaoProduto extends Dao<Produto> {
             stt.setDouble(4, dominio.getPreco());
             stt.setString(5, dominio.getEan());
             stt.setBoolean(6, dominio.getAtivo());
+            stt.setInt(7, dominio.getQuantidade());
 
-            stt.setInt(7, dominio.getId());
+            stt.setInt(8, dominio.getId());
 
             stt.execute();
         }
