@@ -27,7 +27,7 @@
                 <div class="session">
                     <div class="row">
                         <label for="nome">Nome*</label>
-                        <input id="nome" type="text" name="nome" required="required" maxlength="15" value="${cliente.nome}"/>
+                        <input id="nome" type="text" name="nome" required="required" maxlength="15" value="${cliente.nome}" required/>
                         <label for="sobrenome">Sobrenome</label>
                         <input id="sobrenome" type="text" name="sobrenome" maxlength="30"value="${cliente.sobreNome}"/>
                         <label for="sexo">Sexo</label>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="row">
                         <label for="cpf">CPF*</label>
-                        <input type="text" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}">
+                        <input type="text" name="cpf" required="required" name="numbers" maxlength="11" pattern="[0-9]+$" id="cpf" placeholder="000.000.000-00" value="${cliente.cpf}" required>
                         <label for="rg">RG</label>
                         <input type="text" maxlength="9" name="rg" id="rg" value="${cliente.rg}">
                     </div>
@@ -57,9 +57,9 @@
                 </div>
                 <div class="row">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}"/>
+                    <input type="text" name="email" id="email" maxlength="50" placeholder="email@exemplo.com" value="${cliente.email}" required/>
                     <label for="telefone">Telefone</label>
-                    <input type="text" maxlength="11" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${cliente.telefone}" />
+                    <input type="text" maxlength="11" name="telefone" id="telefone" placeholder="(99)9999-9999" value="${cliente.telefone}" required />
                 </div>
                 <hr>
                 <div class="row">
