@@ -130,7 +130,7 @@ public class ManterLojas extends ExtendedHttpServlet {
             request.setAttribute("erro", mensagemDeErro);
 
             if (mensagemDeErro != null && !mensagemDeErro.isEmpty()) {
-                dispatchFailedPost(new Loja(nome, filial, cnpj, razaoSocial, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone, ativo.equals("true")), request, response);
+                dispatchFailedPost(new Loja(nome, filial.equals("true"), cnpj, razaoSocial, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone, ativo.equals("true")), request, response);
                 return;
             }
 
@@ -144,11 +144,11 @@ public class ManterLojas extends ExtendedHttpServlet {
         } catch (LojaException ue) {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ue);
             request.setAttribute("erro", mensagemDeErro);
-            dispatchFailedPost(new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
+            dispatchFailedPost(new Loja(nome, filial.equals("true"), razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
         } catch (Exception ex) {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("erro", "Não foi possível completar a operação.");
-            dispatchFailedPost(new Loja(nome, filial, razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
+            dispatchFailedPost(new Loja(nome, filial.equals("true"), razaoSocial, cnpj, inscricaoEstadual, endereco, numero, cidade, estado, email, telefone), request, response);
         }
     }
 

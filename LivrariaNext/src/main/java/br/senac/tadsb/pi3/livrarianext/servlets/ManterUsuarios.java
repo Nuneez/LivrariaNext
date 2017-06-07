@@ -65,7 +65,7 @@ public class ManterUsuarios extends ExtendedHttpServlet {
             request.setAttribute("usuario", (usuarioId != null && !usuarioId.isEmpty()) ? servico.obterUsuarioPorId(Integer.parseInt(usuarioId)) : new Usuario());            
             request.setAttribute("perfis", servico.obterPerfis());         
                     
-            //Despachando a requisiï¿½ï¿½o
+            //Despachando a requisição
             RequestDispatcher dispatcher = request.getRequestDispatcher("Usuario.jsp");        
 
             try
@@ -74,7 +74,7 @@ public class ManterUsuarios extends ExtendedHttpServlet {
             }
             catch(IOException ex)
             {
-                throw new UsuarioException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
+                throw new UsuarioException("Não foi possivel enviar a requisição.");
             }           
         }
         catch(UsuarioException ue)

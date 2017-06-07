@@ -147,7 +147,7 @@ public class ManterClientes extends ExtendedHttpServlet {
         catch (Exception ex) 
         {
             Logger.getLogger(ManterUsuarios.class.getName()).log(Level.SEVERE, null, ex);            
-            request.setAttribute("erro", "Nï¿½o foi possï¿½vel completar a operaï¿½ï¿½o.");            
+            request.setAttribute("erro", "Não foi possivel completar a operaï¿½ï¿½o.");            
             dispatchFailedPost(new Cliente(nome, sobrenome, cpf, rg, nascimento, sexo, email, telefone, endereco, numero, bairro), request, response);
         }
     }

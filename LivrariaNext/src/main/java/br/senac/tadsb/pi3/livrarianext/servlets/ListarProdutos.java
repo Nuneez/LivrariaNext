@@ -66,7 +66,7 @@ public class ListarProdutos extends ExtendedHttpServlet {
             request.setAttribute("produtos", obterProdutos(nome, cnpj, ativos));
             request.setAttribute("ativo", ativos);
 
-            //Despachando a requisiï¿½ï¿½o
+            //Despachando a requisição
             RequestDispatcher dispatcher = request.getRequestDispatcher("Produtos.jsp");
 
             try {
@@ -74,7 +74,7 @@ public class ListarProdutos extends ExtendedHttpServlet {
             }
             catch(IOException ex)
             {
-                throw new ProdutoException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
+                throw new ProdutoException("Não foi possivel enviar a requisição.");
             }
         }
         catch(ProdutoException ux)

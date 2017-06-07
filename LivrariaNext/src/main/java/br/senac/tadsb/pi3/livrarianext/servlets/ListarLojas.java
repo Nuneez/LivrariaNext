@@ -63,13 +63,17 @@ public class ListarLojas extends ExtendedHttpServlet {
             String ativo = request.getParameter("ativo");
                 
             //tratando os atributos            
-            Boolean ativos = ativo == null || ativo.isEmpty() ? true : Boolean.parseBoolean(ativo);            
-                        
+            
+            if (ativo == null || ativo.isEmpty()) {
+                request.setAttribute("lojas", obterLojas(nome, cnpj));
+            } else {
+                Boolean ativos = Boolean.parseBoolean(ativo);            
+                request.setAttribute("lojas", obterLojas(nome, cnpj, ativos));
+            }           
             //Setando atributos para o jsp
-            request.setAttribute("lojas", obterLojas(nome, cnpj, ativos));
-            request.setAttribute("ativo", ativos);
+            
 
-            //Despachando a requisiï¿½ï¿½o
+            //Despachando a requisição
             RequestDispatcher dispatcher = request.getRequestDispatcher("Lojas.jsp");
 
             try
@@ -78,7 +82,7 @@ public class ListarLojas extends ExtendedHttpServlet {
             }
             catch(IOException ex)
             {
-                throw new LojaException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
+                throw new LojaException("Não foi possivel enviar a requisição.");
             }
         }
         catch(LojaException ux)
@@ -130,6 +134,9 @@ public class ListarLojas extends ExtendedHttpServlet {
     }
     
     private List<Loja> obterLojas(String nome, String cnpj, Boolean ativos) throws LojaException {
-        return servico.obterLojas(nome, cnpj);
+        return servico.obterLojas(nome, cnpj, ativos);
     }    
+     private List<Loja> obterLojas(String nome, String cnpj) throws LojaException {
+        return servico.obterLojas(nome, cnpj);
+    } 
 }

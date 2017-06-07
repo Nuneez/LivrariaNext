@@ -174,11 +174,44 @@ public class DaoLoja extends Dao<Loja> {
             String query = queryPadrao;
 
             if (nome != null && !nome.isEmpty())
-                query = tratarQuery(query) + " UPPER(c.nome) like ('%" + nome.toUpperCase() + "%')";
+                query = tratarQuery(query) + " UPPER(l.nome) like ('%" + nome.toUpperCase() + "%')";
 
             if (cnpj != null && !cnpj.isEmpty())
-                query = tratarQuery(query) + " c.cnpj like ('%" + cnpj + "%')";
+                query = tratarQuery(query) + " l.cnpj like ('%" + cnpj + "%')";
 
+            ResultSet rs = getList(query);
+
+            List<Loja> lojas = new ArrayList<>();
+
+            while (rs.next())
+                lojas.add(obterDominio(rs));
+
+            return lojas;
+        }        
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
+    }
+    
+        public List<Loja> obterLojas(String nome, String cnpj, boolean ativo) throws DaoException {
+        try
+        {
+            String query = queryPadrao;
+
+            if (nome != null && !nome.isEmpty())
+                query = tratarQuery(query) + " UPPER(l.nome) like ('%" + nome.toUpperCase() + "%')";
+
+            if (cnpj != null && !cnpj.isEmpty())
+                query = tratarQuery(query) + " l.cnpj like ('%" + cnpj + "%')";
+            
+            query = tratarQuery(query) + " ATIVO = " + ativo;
             ResultSet rs = getList(query);
 
             List<Loja> lojas = new ArrayList<>();

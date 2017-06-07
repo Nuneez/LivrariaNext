@@ -71,7 +71,7 @@ public class ListarUsuarios extends ExtendedHttpServlet {
             request.setAttribute("usuarios", obterUsuarios(nome, ativos, Parser.tryParseInt(perfil)));
             request.setAttribute("ativo", ativos);
 
-            //Despachando a requisiï¿½ï¿½o
+            //Despachando a requisição
             RequestDispatcher dispatcher = request.getRequestDispatcher("Usuarios.jsp");
 
             try
@@ -80,7 +80,7 @@ public class ListarUsuarios extends ExtendedHttpServlet {
             }
             catch(IOException ex)
             {
-                throw new UsuarioException("Nï¿½o foi possï¿½vel enviar a requisiï¿½ï¿½o.");
+                throw new UsuarioException("Não foi possivel enviar a requisição.");
             }
         }
         catch(UsuarioException ux)

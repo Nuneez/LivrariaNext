@@ -93,6 +93,17 @@ public class ServicoLoja extends Servico<Loja> {
         }
     }
     
+    public List<Loja> obterLojas(String nome, String cnpj, boolean ativo) throws LojaException  {
+        try
+        {
+            return dao.obterLojas(nome, cnpj, ativo);
+        }
+        catch(DaoException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new LojaException(ExceptionTypesEnum.SPECIFIC_SELECT);
+        }
+    }
     public Loja obterLojaPorId(int id) throws LojaException  {
         try
         {
