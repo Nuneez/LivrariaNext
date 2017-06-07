@@ -129,6 +129,18 @@ public class ServicoProduto extends Servico<Produto> {
         }
     }
     
+        public List<Produto> obterProdutos(String nome, String ean, boolean ativo) throws ProdutoException  {
+        try
+        {
+            return dao.obterProdutos(nome, ean, ativo);
+        }
+        catch(DaoException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new ProdutoException(ExceptionTypesEnum.SPECIFIC_SELECT);
+        }
+    }
+    
     public Produto obterProdutoPorId(int id) throws ProdutoException  {
         try
         {

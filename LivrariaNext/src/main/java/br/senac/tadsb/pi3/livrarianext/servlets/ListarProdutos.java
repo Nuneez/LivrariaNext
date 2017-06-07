@@ -61,10 +61,11 @@ public class ListarProdutos extends ExtendedHttpServlet {
                 
             //tratando os atributos            
             Boolean ativos = ativo == null || ativo.isEmpty() ? true : Boolean.parseBoolean(ativo);            
-                        
-            //Setando atributos para o jsp
-            request.setAttribute("produtos", obterProdutos(nome, cnpj, ativos));
-            request.setAttribute("ativo", ativos);
+            if (ativo == null || ativo.isEmpty()) {
+                request.setAttribute("produtos", obterProdutos(nome, cnpj));
+            } else {
+                request.setAttribute("produtos", obterProdutos(nome, cnpj, ativos));
+            }
 
             //Despachando a requisição
             RequestDispatcher dispatcher = request.getRequestDispatcher("Produtos.jsp");
@@ -114,18 +115,21 @@ public class ListarProdutos extends ExtendedHttpServlet {
             
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operaï¿½ï¿½o concluida com sucesso.\" }");
+            response.getWriter().write("{ \"sucesso\" : \"true\", \"mensagem\" : \"Operação concluida com sucesso.\" }");
         }
         catch(ProdutoException ux)
         {
             System.out.println(ux.getMessage());
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na Operaï¿½ï¿½o. Detalhes: " + ux.getMessage() + "' }");
+            response.getWriter().write("{ sucesso : false, mensagem : 'Falha na Operação. Detalhes: " + ux.getMessage() + "' }");
         }
     }
    
-    private List<Produto> obterProdutos(String nome, String cnpj, Boolean ativos) throws ProdutoException {
+    private List<Produto> obterProdutos(String nome, String cnpj) throws ProdutoException {
         return servico.obterProdutos(nome, cnpj);
-    }  
+    }
+    private List<Produto> obterProdutos(String nome, String cnpj, Boolean ativos) throws ProdutoException {
+        return servico.obterProdutos(nome, cnpj, ativos);
+    }
 }

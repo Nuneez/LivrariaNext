@@ -49,8 +49,8 @@
 
                         <c:forEach items="${produtos}" var="produto">
                             <tr>
-                                <td><c:out value="${produto.nome}" /></td>
-                                <td><c:out value="${produto.ativo?'SIM':'NÃO'}" /></td>
+                                <td><c:out value="${fn:substring(produto.nome, 0, 10)}" /></td>
+                                <td><c:out value="${produto.ativo? 'SIM' : 'NÃO' }" /></td>
                                 <td><c:out value="${fn:substring(produto.descricao, 0, 10)}..." /></td>
                                 <td><input type="button" class="btn-editar" data-id="${produto.id}" Value="Editar" /></td>
                                 <td><input type="button" class="btn-excluir" data-id="${produto.id}" Value="Excluir" /></td>

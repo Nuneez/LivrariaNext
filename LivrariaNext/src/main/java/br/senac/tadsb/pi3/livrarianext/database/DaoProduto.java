@@ -161,12 +161,45 @@ public class DaoProduto extends Dao<Produto> {
             ex.printStackTrace();
             throw new DaoException();
         }
+    }
+
+    public List<Produto> obterProdutos(String nome, String ean, boolean ativo) throws DaoException {
+        try
+        {
+            String query = queryPadrao;
+
+            if (nome != null && !nome.isEmpty())
+                query = tratarQuery(query) + " UPPER(p.NOMECOMUM) like ('%" + nome.toUpperCase() + "%')";
+
+            if (ean != null && !ean.isEmpty())
+                query = tratarQuery(query) + " p.ean like ('%" + ean + "%')";
+            query = tratarQuery(query) + " ATIVO = " + ativo;
+            ResultSet rs = getList(query);
+
+            List<Produto> dominios = new ArrayList<>();
+
+            while (rs.next())
+                dominios.add(obterDominio(rs));
+
+            return dominios;
+        }        
+        catch(SQLException sqlex)
+        {
+            sqlex.printStackTrace();
+            throw new DaoException();
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+            throw new DaoException();
+        }
     }    
 
     @Override
     protected Produto obterDominio(ResultSet rs) throws DaoException {
         try
-        {                        
+        {         
+            System.out.println(rs.getBoolean("ATIVO"));
             return new Produto(
                     rs.getInt("id"),
                     rs.getInt("QUANTIDADE"),
@@ -175,8 +208,9 @@ public class DaoProduto extends Dao<Produto> {
                     rs.getDouble("CUSTO"),
                     rs.getDouble("PRECOMEDIO"),
                     rs.getString("EAN"),
-                    rs.getBoolean("ativo")
+                    rs.getBoolean("ATIVO")
             );         
+            
         }
         catch(SQLException sqlex)
         {

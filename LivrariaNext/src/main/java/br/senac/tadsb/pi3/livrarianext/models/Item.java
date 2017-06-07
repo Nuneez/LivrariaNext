@@ -34,6 +34,7 @@ public class Item {
         this.descricao = descricao;
         this.custo = custo;
         this.preco = preco;
+        this.ativo = ativo;
     }
     
     public Item(int id, String nome, String descricao, double custo, double preco, Boolean ativo){

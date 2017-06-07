@@ -61,6 +61,7 @@ public class ManterProdutos extends ExtendedHttpServlet {
             String id = request.getParameter("id");
             Produto dominio = (id != null && !id.isEmpty()) ? servico.obterProdutoPorId(Integer.parseInt(id)) : new Produto();                
             request.setAttribute("produto", dominio);
+            
         }
         catch(ProdutoException ce)
         {

@@ -35,7 +35,7 @@
                         <input name="produto" id="produto" maxlength="20" live-search="produto"/>
 
                         <label for="quantidade_produto">Quantidade</label>
-                        <input type="number" name="quantidade_produto" min="1" max="10" id="quantidade_produto" value="1"/>
+                        <input type="number" name="quantidade_produto" min="1" id="quantidade_produto" value="1"/>
 
                         <button type="button" name="add_produto" id="add_produto">Adicionar</button>
                     </div>
