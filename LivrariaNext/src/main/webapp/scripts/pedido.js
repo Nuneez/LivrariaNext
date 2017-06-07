@@ -18,10 +18,10 @@ window.onload = function() {
     }
   });
 
-  document.querySelector('[name="match_client"]').addEventListener('click', function() {
-    var cpf = document.querySelector('#cliente').value;
-    window.location = '/LivrariaNext/ManterClientes?cpf=' + cpf;
-  });
+  // document.querySelector('[name="match_client"]').addEventListener('click', function() {
+  //   var cpf = document.querySelector('#cliente').value;
+  //   window.location = '/LivrariaNext/ManterClientes?cpf=' + cpf;
+  // });
 
   document.querySelector("#add_produto").addEventListener('click', addProduto);
   document.querySelector("#reset").addEventListener('click', resetData);
@@ -99,6 +99,11 @@ function addProduto() {
       data.nome = option.getAttribute('nome');
       data.qnt = parseInt(document.querySelector('#quantidade_produto').value);
       data.total = data.value * data.qnt;
+      var qnt = parseInt(option.getAttribute('quantidade'));
+      if (data.qnt > qnt) {
+        alert("Quantidade de produtos solicitados é maior qua a quantidade disponivel! Quantidade disponivel: " + parseInt(option.getAttribute('quantidade')))
+        return false;
+      }
       // var addNew = true;
       // document.listaProdutos.forEach(function(produto, index) {
       //   if (produto.id === data.id) {

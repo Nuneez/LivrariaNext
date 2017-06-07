@@ -167,6 +167,7 @@ public class DaoProduto extends Dao<Produto> {
         {                        
             return new Produto(
                     rs.getInt("id"),
+                    rs.getInt("QUANTIDADE"),
                     rs.getString("NOMECOMUM"),
                     rs.getString("DESCRICAO"),
                     rs.getDouble("CUSTO"),

@@ -24,6 +24,11 @@ public class Produto extends Item {
         super(id, nome, descricao, custo, preco, ativo);
         this.ean = ean;
     }
+    
+    public Produto(int id, int quantidade, String nome, String descricao, double custo, double preco, String ean, Boolean ativo){
+        super(id, quantidade, nome, descricao, custo, preco, ativo);
+        this.ean = ean;
+    }
 
     /**
      * @return the precoMedio

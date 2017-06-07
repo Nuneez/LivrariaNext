@@ -25,13 +25,12 @@ CREATE TABLE PERFIL
     NOME VARCHAR(100) not null,
     ATIVO BOOLEAN not null with default TRUE
 );
-<!--
+
 insert into perfil (nome, ativo) values ('ADMINISTRADOR', TRUE);
 insert into perfil (nome, ativo) values ('GERENTE', TRUE);
 insert into perfil (nome, ativo) values ('BACKOFFICE', TRUE);
 insert into perfil (nome, ativo) values ('VENDEDOR', TRUE);
 insert into perfil (nome, ativo) values ('TI', TRUE);
--->
 create table USUARIO
 (
     ID INTEGER not null primary key
@@ -87,6 +86,7 @@ create table PRODUTO
     ID INTEGER not null primary key
             GENERATED ALWAYS AS IDENTITY
             (START WITH 1, INCREMENT BY 1),
+    QUANTIDADE INTEGER default 1, 
     NOMECOMUM VARCHAR(100) not null,
     DESCRICAO VARCHAR(100) not null,
     CUSTO DOUBLE not null,

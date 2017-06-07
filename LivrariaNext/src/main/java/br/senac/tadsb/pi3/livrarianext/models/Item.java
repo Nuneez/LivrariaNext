@@ -11,6 +11,7 @@ package br.senac.tadsb.pi3.livrarianext.models;
  */
 public class Item {
     private int id;
+    private int quantidade;
     private String nome;
     private String descricao;
     private double custo;
@@ -31,7 +32,12 @@ public class Item {
         this(nome, descricao, custo, preco, ativo);
         this.id = id;
     }
-
+    
+    public Item(int id, int quantidade, String nome, String descricao, double custo, double preco, Boolean ativo){
+        this(nome, descricao, custo, preco, ativo);
+        this.id = id;
+        this.quantidade = quantidade;
+    }
     /**
      * @return the id
      */

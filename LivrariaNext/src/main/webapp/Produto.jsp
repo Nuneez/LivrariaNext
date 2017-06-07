@@ -41,7 +41,7 @@
                 <hr>
                 <div class="row">
                     <label for="descricao">Descrição</label>
-                    <textarea rows="4" cols="50" name="descricao" maxlength="50"id="descricao" value="${produto.descricao}"></textarea>
+                    <textarea rows="4" cols="50" name="descricao" maxlength="50" id="descricao">${produto.descricao}</textarea>
                 </div>                         
                 <hr> 
                 <div class="row">
