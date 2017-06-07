@@ -30,9 +30,10 @@
                             <input id="nomecomum" type="text" maxlength="20"name="nome"/>
                             <label for="nome">Ativo</label>
                             <select name="ativo" id="ativo">
+                                <option value="">Ambos</option>
                                 <option value="true" ${ativo ? 'selected' : ''}>Sim</option>
-                            <option value="false" ${!ativo ? 'selected' : ''}>Não</option>
-                        </select>
+                                <option value="false" ${!ativo ? 'selected' : ''}>Não</option>
+                            </select>
                         <label for="nome">EAN</label>
                         <input id="ean" type="text" maxlength="5" name="ean"/>
                         <input id="btn-buscar" type="submit" value="Buscar">
